@@ -13,7 +13,7 @@ class MpdConnectionDetails {
     required this.timeout,
   });
 
-  /// Resolves the connection details derived from the environment variables.
+  /// Resolves the connection details from environment variables.
   ///
   /// See https://mpd.readthedocs.io/en/stable/client.html.
   factory MpdConnectionDetails.resolve() {
