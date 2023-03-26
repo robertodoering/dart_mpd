@@ -1,0 +1,1 @@
+dart_mpd is a dart package which implements the [Music Player Daemon](https://www.musicpd.org/) protocol.
