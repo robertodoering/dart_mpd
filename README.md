@@ -1,5 +1,7 @@
 # dart_mpd
 
+[![pub](https://img.shields.io/pub/v/dart_mpd)](https://pub.dev/packages/dart_mpd)
+
 dart_mpd is a dart package which implements the [Music Player Daemon](https://www.musicpd.org/) protocol.
 
 
