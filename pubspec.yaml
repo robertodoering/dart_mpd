@@ -1,6 +1,6 @@
 name: dart_mpd
-description: mpd client
-version: 0.1.0
+description: a dart package which implements the MPD protocol. https://www.musicpd.org/
+version: 0.1.1
 repository: https://github.com/robertodoering/dart_mpd
 
 environment:
