@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:collection';
 import 'dart:io' show Socket, InternetAddress, InternetAddressType;
 import 'dart:typed_data';
 
@@ -25,9 +26,12 @@ class MpdConnection {
   final void Function()? _onDone;
   final void Function(Object error, StackTrace stackTrace)? _onError;
 
+  final _requestQueue = Queue<Future<void> Function()>();
+  bool _isProcessingQueue = false;
+
   Socket? _socket;
   StreamSubscription<MpdResponse>? _subscription;
-  Completer<MpdResponse> _completer = Completer();
+  Completer<MpdResponse> _responseCompleter = Completer();
   String? _protocolVersion;
 
   bool get isConnected => _socket != null;
@@ -64,8 +68,8 @@ class MpdConnection {
           );
 
     _subscription = stream.listen((data) {
-      _completer.complete(data);
-      _completer = Completer();
+      _responseCompleter.complete(data);
+      _responseCompleter = Completer();
       _subscription!.pause();
     });
 
@@ -90,25 +94,48 @@ class MpdConnection {
     _subscription = null;
 
     // prevent potentially open futures from completing after re-connecting
-    _completer = Completer();
+    _responseCompleter = Completer();
 
     _protocolVersion = null;
   }
 
   Future<MpdResponse> send(String event) async {
-    if (!isConnected) await connect();
+    final completer = Completer<MpdResponse>();
 
-    _socket?.write('$event\n');
-    await _socket?.flush();
+    _requestQueue.add(() async {
+      try {
+        if (!isConnected) await connect();
 
-    return _read();
+        _socket!.write('$event\n');
+        await _socket!.flush();
+
+        completer.complete(await _read());
+      } catch (e) {
+        completer.completeError(e);
+      }
+    });
+
+    if (!_isProcessingQueue) _processQueue();
+
+    return completer.future;
   }
 
   Future<MpdResponse> _read() async {
     if (!isConnected) throw const MpdClientException('not connected');
 
     _subscription!.resume();
-    return _completer.future;
+    return _responseCompleter.future;
+  }
+
+  Future<void> _processQueue() async {
+    _isProcessingQueue = true;
+
+    while (_requestQueue.isNotEmpty) {
+      final request = _requestQueue.removeFirst();
+      await request();
+    }
+
+    _isProcessingQueue = false;
   }
 }
 

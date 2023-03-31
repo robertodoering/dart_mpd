@@ -29,6 +29,12 @@ MpdClient(
 );
 ```
 
+### Requests
+
+To handle concurrent request, each request gets queued. That means you can use use one client to make simultanious requests.
+
+Keep in mind that using `idle` will block the socket until an `idle` response has been received.
+
 ### Connection details
 
 `MpdConnectionDetails.resolve` will resolve the connection details from
