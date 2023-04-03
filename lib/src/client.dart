@@ -228,7 +228,7 @@ class MpdClient {
 
   /// Begins playing the playlist at song [songid].
   Future<void> playid(int songid) {
-    return _sendEmpty('songid', args: [songid]);
+    return _sendEmpty('playid', args: [songid]);
   }
 
   /// Plays previous song in the playlist.
