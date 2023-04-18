@@ -39,10 +39,12 @@ class MpdConnection {
 
   Future<void> connect() async {
     _socket = await Socket.connect(
-      InternetAddress(
-        _connectionDetails.host,
-        type: _connectionDetails.port == 0 ? InternetAddressType.unix : null,
-      ),
+      _connectionDetails.port == 0
+          ? InternetAddress(
+              _connectionDetails.host,
+              type: InternetAddressType.unix,
+            )
+          : _connectionDetails.host,
       _connectionDetails.port,
       timeout: _connectionDetails.timeout,
     );
