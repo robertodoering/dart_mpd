@@ -109,7 +109,6 @@ class MpdConnection {
         if (!isConnected) await connect();
 
         _socket!.write('$event\n');
-        await _socket!.flush();
 
         completer.complete(await _read());
       } catch (e) {
