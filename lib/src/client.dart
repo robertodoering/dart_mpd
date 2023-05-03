@@ -30,10 +30,14 @@ class MpdClient {
 
   /// Returns the song info of the current song (same song that is identified
   /// in status).
-  Future<MpdSong> currentsong() {
+  ///
+  /// Returns `null` if no song is playing.
+  Future<MpdSong?> currentsong() {
     return _send(
       'currentsong',
-      (response) => MpdSong.fromValue(response.values.single),
+      (response) => response.values.isNotEmpty
+          ? MpdSong.fromValue(response.values.single)
+          : null,
     );
   }
 
