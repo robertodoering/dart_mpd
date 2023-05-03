@@ -316,14 +316,14 @@ class MpdClient {
   /// Moves the song at [positionOrRange] to [to] in the playlist.
   Future<void> move(
     MpdPositionOrRange? positionOrRange,
-    MpdRelativePosition to,
+    MpdPositionOrRelativePosition to,
   ) {
     return _sendEmpty('move', args: [positionOrRange, to]);
   }
 
   /// Moves the song with [from] (songid) to [to] (playlist index) in the
   /// playlist.
-  Future<void> moveid(int from, MpdRelativePosition to) {
+  Future<void> moveid(int from, MpdPositionOrRelativePosition to) {
     return _sendEmpty('moveid', args: [from, to]);
   }
 
