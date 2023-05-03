@@ -104,7 +104,10 @@ MpdResponse parseMpdResponse(Uint8List data) {
           binary = _parseBinary(iterator, int.parse(value));
         }
       } else {
-        assert(false, 'unhandled line in response: $line');
+        assert(
+          false,
+          'unhandled line in response: $line, $valuesBuffer, $values',
+        );
       }
     } else {
       byteBuffer.add(value);
