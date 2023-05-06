@@ -20,9 +20,9 @@ MpdConfig _$MpdConfigFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MpdConfig {
-  @JsonKey(name: 'music_directory')
+  @JsonKey(name: 'music_directory', fromJson: parseString)
   String? get musicDirectory => throw _privateConstructorUsedError;
-  @JsonKey(name: 'playlist_directory')
+  @JsonKey(name: 'playlist_directory', fromJson: parseString)
   String? get playlistDirectory => throw _privateConstructorUsedError;
   @JsonKey(fromJson: parseBool)
   bool? get pcre => throw _privateConstructorUsedError;
@@ -39,9 +39,12 @@ abstract class $MpdConfigCopyWith<$Res> {
       _$MpdConfigCopyWithImpl<$Res, MpdConfig>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'music_directory') String? musicDirectory,
-      @JsonKey(name: 'playlist_directory') String? playlistDirectory,
-      @JsonKey(fromJson: parseBool) bool? pcre});
+      {@JsonKey(name: 'music_directory', fromJson: parseString)
+          String? musicDirectory,
+      @JsonKey(name: 'playlist_directory', fromJson: parseString)
+          String? playlistDirectory,
+      @JsonKey(fromJson: parseBool)
+          bool? pcre});
 }
 
 /// @nodoc
@@ -86,9 +89,12 @@ abstract class _$$_MpdConfigCopyWith<$Res> implements $MpdConfigCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'music_directory') String? musicDirectory,
-      @JsonKey(name: 'playlist_directory') String? playlistDirectory,
-      @JsonKey(fromJson: parseBool) bool? pcre});
+      {@JsonKey(name: 'music_directory', fromJson: parseString)
+          String? musicDirectory,
+      @JsonKey(name: 'playlist_directory', fromJson: parseString)
+          String? playlistDirectory,
+      @JsonKey(fromJson: parseBool)
+          bool? pcre});
 }
 
 /// @nodoc
@@ -127,18 +133,21 @@ class __$$_MpdConfigCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MpdConfig implements _MpdConfig {
   const _$_MpdConfig(
-      {@JsonKey(name: 'music_directory') this.musicDirectory,
-      @JsonKey(name: 'playlist_directory') this.playlistDirectory,
-      @JsonKey(fromJson: parseBool) this.pcre});
+      {@JsonKey(name: 'music_directory', fromJson: parseString)
+          this.musicDirectory,
+      @JsonKey(name: 'playlist_directory', fromJson: parseString)
+          this.playlistDirectory,
+      @JsonKey(fromJson: parseBool)
+          this.pcre});
 
   factory _$_MpdConfig.fromJson(Map<String, dynamic> json) =>
       _$$_MpdConfigFromJson(json);
 
   @override
-  @JsonKey(name: 'music_directory')
+  @JsonKey(name: 'music_directory', fromJson: parseString)
   final String? musicDirectory;
   @override
-  @JsonKey(name: 'playlist_directory')
+  @JsonKey(name: 'playlist_directory', fromJson: parseString)
   final String? playlistDirectory;
   @override
   @JsonKey(fromJson: parseBool)
@@ -182,18 +191,21 @@ class _$_MpdConfig implements _MpdConfig {
 
 abstract class _MpdConfig implements MpdConfig {
   const factory _MpdConfig(
-      {@JsonKey(name: 'music_directory') final String? musicDirectory,
-      @JsonKey(name: 'playlist_directory') final String? playlistDirectory,
-      @JsonKey(fromJson: parseBool) final bool? pcre}) = _$_MpdConfig;
+      {@JsonKey(name: 'music_directory', fromJson: parseString)
+          final String? musicDirectory,
+      @JsonKey(name: 'playlist_directory', fromJson: parseString)
+          final String? playlistDirectory,
+      @JsonKey(fromJson: parseBool)
+          final bool? pcre}) = _$_MpdConfig;
 
   factory _MpdConfig.fromJson(Map<String, dynamic> json) =
       _$_MpdConfig.fromJson;
 
   @override
-  @JsonKey(name: 'music_directory')
+  @JsonKey(name: 'music_directory', fromJson: parseString)
   String? get musicDirectory;
   @override
-  @JsonKey(name: 'playlist_directory')
+  @JsonKey(name: 'playlist_directory', fromJson: parseString)
   String? get playlistDirectory;
   @override
   @JsonKey(fromJson: parseBool)

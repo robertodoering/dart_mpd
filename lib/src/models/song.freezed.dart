@@ -20,16 +20,17 @@ MpdSong _$MpdSongFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MpdSong {
+  @JsonKey(fromJson: parseStringOrEmpty)
   String get file => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Last-Modified')
+  @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
   DateTime? get lastModified => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Artist')
+  @JsonKey(name: 'Artist', fromJson: parseString)
   String? get artist => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Title')
+  @JsonKey(name: 'Title', fromJson: parseString)
   String? get title => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Genre')
+  @JsonKey(name: 'Genre', fromJson: parseString)
   String? get genre => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Format')
+  @JsonKey(name: 'Format', fromJson: parseString)
   String? get format => throw _privateConstructorUsedError;
   @JsonKey(name: 'Time', fromJson: parseInt)
   int? get time => throw _privateConstructorUsedError;
@@ -42,7 +43,7 @@ mixin _$MpdSong {
 
   /// Any other arbitrary tags that are not explicitly parsed.
   @JsonKey(ignore: true)
-  Map<String, String> get tags => throw _privateConstructorUsedError;
+  Map<String, MpdValue> get tags => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,17 +56,28 @@ abstract class $MpdSongCopyWith<$Res> {
       _$MpdSongCopyWithImpl<$Res, MpdSong>;
   @useResult
   $Res call(
-      {String file,
-      @JsonKey(name: 'Last-Modified') DateTime? lastModified,
-      @JsonKey(name: 'Artist') String? artist,
-      @JsonKey(name: 'Title') String? title,
-      @JsonKey(name: 'Genre') String? genre,
-      @JsonKey(name: 'Format') String? format,
-      @JsonKey(name: 'Time', fromJson: parseInt) int? time,
-      @JsonKey(fromJson: parseDuration) Duration? duration,
-      @JsonKey(name: 'Pos', fromJson: parseInt) int? pos,
-      @JsonKey(name: 'Id', fromJson: parseInt) int? id,
-      @JsonKey(ignore: true) Map<String, String> tags});
+      {@JsonKey(fromJson: parseStringOrEmpty)
+          String file,
+      @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
+          DateTime? lastModified,
+      @JsonKey(name: 'Artist', fromJson: parseString)
+          String? artist,
+      @JsonKey(name: 'Title', fromJson: parseString)
+          String? title,
+      @JsonKey(name: 'Genre', fromJson: parseString)
+          String? genre,
+      @JsonKey(name: 'Format', fromJson: parseString)
+          String? format,
+      @JsonKey(name: 'Time', fromJson: parseInt)
+          int? time,
+      @JsonKey(fromJson: parseDuration)
+          Duration? duration,
+      @JsonKey(name: 'Pos', fromJson: parseInt)
+          int? pos,
+      @JsonKey(name: 'Id', fromJson: parseInt)
+          int? id,
+      @JsonKey(ignore: true)
+          Map<String, MpdValue> tags});
 }
 
 /// @nodoc
@@ -137,7 +149,7 @@ class _$MpdSongCopyWithImpl<$Res, $Val extends MpdSong>
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as Map<String, MpdValue>,
     ) as $Val);
   }
 }
@@ -150,17 +162,28 @@ abstract class _$$_MpdSongCopyWith<$Res> implements $MpdSongCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String file,
-      @JsonKey(name: 'Last-Modified') DateTime? lastModified,
-      @JsonKey(name: 'Artist') String? artist,
-      @JsonKey(name: 'Title') String? title,
-      @JsonKey(name: 'Genre') String? genre,
-      @JsonKey(name: 'Format') String? format,
-      @JsonKey(name: 'Time', fromJson: parseInt) int? time,
-      @JsonKey(fromJson: parseDuration) Duration? duration,
-      @JsonKey(name: 'Pos', fromJson: parseInt) int? pos,
-      @JsonKey(name: 'Id', fromJson: parseInt) int? id,
-      @JsonKey(ignore: true) Map<String, String> tags});
+      {@JsonKey(fromJson: parseStringOrEmpty)
+          String file,
+      @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
+          DateTime? lastModified,
+      @JsonKey(name: 'Artist', fromJson: parseString)
+          String? artist,
+      @JsonKey(name: 'Title', fromJson: parseString)
+          String? title,
+      @JsonKey(name: 'Genre', fromJson: parseString)
+          String? genre,
+      @JsonKey(name: 'Format', fromJson: parseString)
+          String? format,
+      @JsonKey(name: 'Time', fromJson: parseInt)
+          int? time,
+      @JsonKey(fromJson: parseDuration)
+          Duration? duration,
+      @JsonKey(name: 'Pos', fromJson: parseInt)
+          int? pos,
+      @JsonKey(name: 'Id', fromJson: parseInt)
+          int? id,
+      @JsonKey(ignore: true)
+          Map<String, MpdValue> tags});
 }
 
 /// @nodoc
@@ -229,7 +252,7 @@ class __$$_MpdSongCopyWithImpl<$Res>
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as Map<String, MpdValue>,
     ));
   }
 }
@@ -238,38 +261,50 @@ class __$$_MpdSongCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MpdSong implements _MpdSong {
   const _$_MpdSong(
-      {required this.file,
-      @JsonKey(name: 'Last-Modified') this.lastModified,
-      @JsonKey(name: 'Artist') this.artist,
-      @JsonKey(name: 'Title') this.title,
-      @JsonKey(name: 'Genre') this.genre,
-      @JsonKey(name: 'Format') this.format,
-      @JsonKey(name: 'Time', fromJson: parseInt) this.time,
-      @JsonKey(fromJson: parseDuration) this.duration,
-      @JsonKey(name: 'Pos', fromJson: parseInt) this.pos,
-      @JsonKey(name: 'Id', fromJson: parseInt) this.id,
-      @JsonKey(ignore: true) final Map<String, String> tags = const {}})
+      {@JsonKey(fromJson: parseStringOrEmpty)
+          required this.file,
+      @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
+          this.lastModified,
+      @JsonKey(name: 'Artist', fromJson: parseString)
+          this.artist,
+      @JsonKey(name: 'Title', fromJson: parseString)
+          this.title,
+      @JsonKey(name: 'Genre', fromJson: parseString)
+          this.genre,
+      @JsonKey(name: 'Format', fromJson: parseString)
+          this.format,
+      @JsonKey(name: 'Time', fromJson: parseInt)
+          this.time,
+      @JsonKey(fromJson: parseDuration)
+          this.duration,
+      @JsonKey(name: 'Pos', fromJson: parseInt)
+          this.pos,
+      @JsonKey(name: 'Id', fromJson: parseInt)
+          this.id,
+      @JsonKey(ignore: true)
+          final Map<String, MpdValue> tags = const {}})
       : _tags = tags;
 
   factory _$_MpdSong.fromJson(Map<String, dynamic> json) =>
       _$$_MpdSongFromJson(json);
 
   @override
+  @JsonKey(fromJson: parseStringOrEmpty)
   final String file;
   @override
-  @JsonKey(name: 'Last-Modified')
+  @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
   final DateTime? lastModified;
   @override
-  @JsonKey(name: 'Artist')
+  @JsonKey(name: 'Artist', fromJson: parseString)
   final String? artist;
   @override
-  @JsonKey(name: 'Title')
+  @JsonKey(name: 'Title', fromJson: parseString)
   final String? title;
   @override
-  @JsonKey(name: 'Genre')
+  @JsonKey(name: 'Genre', fromJson: parseString)
   final String? genre;
   @override
-  @JsonKey(name: 'Format')
+  @JsonKey(name: 'Format', fromJson: parseString)
   final String? format;
   @override
   @JsonKey(name: 'Time', fromJson: parseInt)
@@ -285,12 +320,12 @@ class _$_MpdSong implements _MpdSong {
   final int? id;
 
   /// Any other arbitrary tags that are not explicitly parsed.
-  final Map<String, String> _tags;
+  final Map<String, MpdValue> _tags;
 
   /// Any other arbitrary tags that are not explicitly parsed.
   @override
   @JsonKey(ignore: true)
-  Map<String, String> get tags {
+  Map<String, MpdValue> get tags {
     if (_tags is EqualUnmodifiableMapView) return _tags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_tags);
@@ -353,36 +388,48 @@ class _$_MpdSong implements _MpdSong {
 
 abstract class _MpdSong implements MpdSong {
   const factory _MpdSong(
-      {required final String file,
-      @JsonKey(name: 'Last-Modified') final DateTime? lastModified,
-      @JsonKey(name: 'Artist') final String? artist,
-      @JsonKey(name: 'Title') final String? title,
-      @JsonKey(name: 'Genre') final String? genre,
-      @JsonKey(name: 'Format') final String? format,
-      @JsonKey(name: 'Time', fromJson: parseInt) final int? time,
-      @JsonKey(fromJson: parseDuration) final Duration? duration,
-      @JsonKey(name: 'Pos', fromJson: parseInt) final int? pos,
-      @JsonKey(name: 'Id', fromJson: parseInt) final int? id,
-      @JsonKey(ignore: true) final Map<String, String> tags}) = _$_MpdSong;
+      {@JsonKey(fromJson: parseStringOrEmpty)
+          required final String file,
+      @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
+          final DateTime? lastModified,
+      @JsonKey(name: 'Artist', fromJson: parseString)
+          final String? artist,
+      @JsonKey(name: 'Title', fromJson: parseString)
+          final String? title,
+      @JsonKey(name: 'Genre', fromJson: parseString)
+          final String? genre,
+      @JsonKey(name: 'Format', fromJson: parseString)
+          final String? format,
+      @JsonKey(name: 'Time', fromJson: parseInt)
+          final int? time,
+      @JsonKey(fromJson: parseDuration)
+          final Duration? duration,
+      @JsonKey(name: 'Pos', fromJson: parseInt)
+          final int? pos,
+      @JsonKey(name: 'Id', fromJson: parseInt)
+          final int? id,
+      @JsonKey(ignore: true)
+          final Map<String, MpdValue> tags}) = _$_MpdSong;
 
   factory _MpdSong.fromJson(Map<String, dynamic> json) = _$_MpdSong.fromJson;
 
   @override
+  @JsonKey(fromJson: parseStringOrEmpty)
   String get file;
   @override
-  @JsonKey(name: 'Last-Modified')
+  @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
   DateTime? get lastModified;
   @override
-  @JsonKey(name: 'Artist')
+  @JsonKey(name: 'Artist', fromJson: parseString)
   String? get artist;
   @override
-  @JsonKey(name: 'Title')
+  @JsonKey(name: 'Title', fromJson: parseString)
   String? get title;
   @override
-  @JsonKey(name: 'Genre')
+  @JsonKey(name: 'Genre', fromJson: parseString)
   String? get genre;
   @override
-  @JsonKey(name: 'Format')
+  @JsonKey(name: 'Format', fromJson: parseString)
   String? get format;
   @override
   @JsonKey(name: 'Time', fromJson: parseInt)
@@ -400,7 +447,7 @@ abstract class _MpdSong implements MpdSong {
 
   /// Any other arbitrary tags that are not explicitly parsed.
   @JsonKey(ignore: true)
-  Map<String, String> get tags;
+  Map<String, MpdValue> get tags;
   @override
   @JsonKey(ignore: true)
   _$$_MpdSongCopyWith<_$_MpdSong> get copyWith =>

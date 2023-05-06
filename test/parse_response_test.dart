@@ -6,7 +6,7 @@ import 'package:dart_mpd/src/parser/parse_response.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group(parseMpdResponse, () {
+  group('$parseMpdResponse', () {
     test('parses greeting message', () {
       final response = parseMpdResponse(_asUtf8('OK MPD 0.21.0\n'));
 
@@ -34,12 +34,12 @@ void main() {
 
       expect(response, isA<MpdResponseOk>());
       expect(
-        response.whenOrNull(ok: (values, binary) => values),
+        response.whenOrNull(ok: (values, _) => values),
         equals([
-          {'volume': '100'}
+          {'volume': MpdValue.single('100')}
         ]),
       );
-      expect(response.whenOrNull(ok: (values, binary) => binary), isNull);
+      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
     });
 
     test('parses single value with multiple key value pairs', () {
@@ -49,12 +49,12 @@ void main() {
 
       expect(response, isA<MpdResponseOk>());
       expect(
-        response.whenOrNull(ok: (values, binary) => values),
+        response.whenOrNull(ok: (values, _) => values),
         equals([
-          {'volume': '100', 'repeat': '1'}
+          {'volume': MpdValue.single('100'), 'repeat': MpdValue.single('1')}
         ]),
       );
-      expect(response.whenOrNull(ok: (values, binary) => binary), isNull);
+      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
     });
 
     test('parses list of values with one key value pair', () {
@@ -68,13 +68,13 @@ void main() {
 
       expect(response, isA<MpdResponseOk>());
       expect(
-        response.whenOrNull(ok: (values, binary) => values),
+        response.whenOrNull(ok: (values, _) => values),
         equals([
-          {'file': '/home/foo/Music/bar.ogg'},
-          {'file': '/home/foo/Music/bar2.ogg'},
+          {'file': MpdValue.single('/home/foo/Music/bar.ogg')},
+          {'file': MpdValue.single('/home/foo/Music/bar2.ogg')},
         ]),
       );
-      expect(response.whenOrNull(ok: (values, binary) => binary), isNull);
+      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
     });
 
     test('parses list of values with multiple key value pairs', () {
@@ -92,21 +92,21 @@ void main() {
 
       expect(response, isA<MpdResponseOk>());
       expect(
-        response.whenOrNull(ok: (values, binary) => values),
+        response.whenOrNull(ok: (values, _) => values),
         equals([
           {
-            'file': '/home/foo/Music/bar.ogg',
-            'Title': 'bar',
-            'Artist': 'foo',
+            'file': MpdValue.single('/home/foo/Music/bar.ogg'),
+            'Title': MpdValue.single('bar'),
+            'Artist': MpdValue.single('foo'),
           },
           {
-            'file': '/home/foo/Music/bar2.ogg',
-            'Title': 'bar2',
-            'Artist': 'foo2',
+            'file': MpdValue.single('/home/foo/Music/bar2.ogg'),
+            'Title': MpdValue.single('bar2'),
+            'Artist': MpdValue.single('foo2'),
           },
         ]),
       );
-      expect(response.whenOrNull(ok: (values, binary) => binary), isNull);
+      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
     });
 
     test('parses list of values with unique keys', () {
@@ -123,14 +123,18 @@ void main() {
 
       expect(response, isA<MpdResponseOk>());
       expect(
-        response.whenOrNull(ok: (values, binary) => values),
+        response.whenOrNull(ok: (values, _) => values),
         equals([
-          {'file': '/home/foo/Music/bar.ogg', 'Title': 'bar', 'Artist': 'foo'},
-          {'directory': '/home/foo'},
-          {'directory': '/home/foo/Music'},
+          {
+            'file': MpdValue.single('/home/foo/Music/bar.ogg'),
+            'Title': MpdValue.single('bar'),
+            'Artist': MpdValue.single('foo'),
+          },
+          {'directory': MpdValue.single('/home/foo')},
+          {'directory': MpdValue.single('/home/foo/Music')},
         ]),
       );
-      expect(response.whenOrNull(ok: (values, binary) => binary), isNull);
+      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
     });
 
     test('parses list of values with multiple common keys', () {
@@ -152,21 +156,25 @@ void main() {
 
       expect(response, isA<MpdResponseOk>());
       expect(
-        response.whenOrNull(ok: (values, binary) => values),
+        response.whenOrNull(ok: (values, _) => values),
         equals([
           {
-            'plugin': 'mad',
-            'suffix': 'mp3,mp2',
-            'mime_type': 'audio/mpeg',
+            'plugin': MpdValue.single('mad'),
+            'suffix': MpdValue.multiple(['mp3', 'mp2']),
+            'mime_type': MpdValue.single('audio/mpeg'),
           },
           {
-            'plugin': 'vorbis',
-            'suffix': 'ogg,oga',
-            'mime_type': 'application/ogg,audio/ogg,audio/vorbis'
+            'plugin': MpdValue.single('vorbis'),
+            'suffix': MpdValue.multiple(['ogg', 'oga']),
+            'mime_type': MpdValue.multiple([
+              'application/ogg',
+              'audio/ogg',
+              'audio/vorbis',
+            ]),
           },
         ]),
       );
-      expect(response.whenOrNull(ok: (values, binary) => binary), isNull);
+      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
     });
 
     test('parses binary data', () {
@@ -176,15 +184,73 @@ void main() {
 
       expect(response, isA<MpdResponseOk>());
       expect(
-        response.whenOrNull(ok: (values, binary) => values),
+        response.whenOrNull(ok: (values, _) => values),
         equals([
-          {'binary': '4'}
+          {'binary': MpdValue.single('4')}
         ]),
       );
       expect(
-        response.whenOrNull(ok: (values, binary) => binary),
+        response.whenOrNull(ok: (_, binary) => binary),
         equals('1234'.codeUnits),
       );
+    });
+
+    test('parses currentsong with multiple custom tags', () {
+      final response = parseMpdResponse(
+        _asUtf8(
+          'file: NAS/NAS/Baroque/Guitar/Guitar_Concertos_-_DECCA_464_0132/01.Concerto_in_D_major_for_4_guitars_-_1._Allegro-Vivaldi,_Antonio.flac\n'
+          'Last-Modified: 2022-01-23T18:26:15Z\n'
+          'Format: 44100:16:2\n'
+          'Performer: Los Romeros\n'
+          'Performer: Academy of St. Martin-in-the-Fields\n'
+          'Performer: Brown, Iona\n'
+          'Album: Guitar Concertos - DECCA 464 0132\n'
+          'Composer: Vivaldi, Antonio\n'
+          'Artist: Vivaldi, Antonio\n'
+          'Date: 1990\n'
+          'Title: Concerto in D major for 4 guitars - 1. Allegro\n'
+          'Genre: Baroque\n'
+          'Track: 1\n'
+          'Time: 184\n'
+          'duration: 184.106\n'
+          'Pos: 0\n'
+          'Id: 160\n'
+          'OK\n',
+        ),
+      );
+
+      expect(response, isA<MpdResponseOk>());
+      expect(
+        response.whenOrNull(ok: (values, _) => values),
+        equals([
+          {
+            'file': MpdValue.single(
+              'NAS/NAS/Baroque/Guitar/Guitar_Concertos_-_DECCA_464_0132/01.Concerto_in_D_major_for_4_guitars_-_1._Allegro-Vivaldi,_Antonio.flac',
+            ),
+            'Last-Modified': MpdValue.single('2022-01-23T18:26:15Z'),
+            'Format': MpdValue.single('44100:16:2'),
+            'Performer': MpdValue.multiple([
+              'Los Romeros',
+              'Academy of St. Martin-in-the-Fields',
+              'Brown, Iona',
+            ]),
+            'Album': MpdValue.single('Guitar Concertos - DECCA 464 0132'),
+            'Composer': MpdValue.single('Vivaldi, Antonio'),
+            'Artist': MpdValue.single('Vivaldi, Antonio'),
+            'Date': MpdValue.single('1990'),
+            'Title': MpdValue.single(
+              'Concerto in D major for 4 guitars - 1. Allegro',
+            ),
+            'Genre': MpdValue.single('Baroque'),
+            'Track': MpdValue.single('1'),
+            'Time': MpdValue.single('184'),
+            'duration': MpdValue.single('184.106'),
+            'Pos': MpdValue.single('0'),
+            'Id': MpdValue.single('160'),
+          }
+        ]),
+      );
+      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
     });
   });
 }

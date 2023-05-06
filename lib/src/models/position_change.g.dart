@@ -8,8 +8,8 @@ part of 'position_change.dart';
 
 _$_MpdPositionChange _$$_MpdPositionChangeFromJson(Map<String, dynamic> json) =>
     _$_MpdPositionChange(
-      id: parseInt(json['Id'] as String?),
-      cpos: parseInt(json['cpos'] as String?),
+      id: parseInt(json['Id'] as MpdValue?),
+      cpos: parseInt(json['cpos'] as MpdValue?),
     );
 
 Map<String, dynamic> _$$_MpdPositionChangeToJson(

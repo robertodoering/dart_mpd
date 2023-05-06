@@ -20,7 +20,9 @@ MpdNeighbor _$MpdNeighborFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MpdNeighbor {
+  @JsonKey(fromJson: parseString)
   String? get neighbor => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: parseString)
   String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +37,9 @@ abstract class $MpdNeighborCopyWith<$Res> {
           MpdNeighbor value, $Res Function(MpdNeighbor) then) =
       _$MpdNeighborCopyWithImpl<$Res, MpdNeighbor>;
   @useResult
-  $Res call({String? neighbor, String? name});
+  $Res call(
+      {@JsonKey(fromJson: parseString) String? neighbor,
+      @JsonKey(fromJson: parseString) String? name});
 }
 
 /// @nodoc
@@ -75,7 +79,9 @@ abstract class _$$_MpdNeighborCopyWith<$Res>
       __$$_MpdNeighborCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? neighbor, String? name});
+  $Res call(
+      {@JsonKey(fromJson: parseString) String? neighbor,
+      @JsonKey(fromJson: parseString) String? name});
 }
 
 /// @nodoc
@@ -108,14 +114,18 @@ class __$$_MpdNeighborCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_MpdNeighbor implements _MpdNeighbor {
-  const _$_MpdNeighbor({this.neighbor, this.name});
+  const _$_MpdNeighbor(
+      {@JsonKey(fromJson: parseString) this.neighbor,
+      @JsonKey(fromJson: parseString) this.name});
 
   factory _$_MpdNeighbor.fromJson(Map<String, dynamic> json) =>
       _$$_MpdNeighborFromJson(json);
 
   @override
+  @JsonKey(fromJson: parseString)
   final String? neighbor;
   @override
+  @JsonKey(fromJson: parseString)
   final String? name;
 
   @override
@@ -152,15 +162,18 @@ class _$_MpdNeighbor implements _MpdNeighbor {
 }
 
 abstract class _MpdNeighbor implements MpdNeighbor {
-  const factory _MpdNeighbor({final String? neighbor, final String? name}) =
-      _$_MpdNeighbor;
+  const factory _MpdNeighbor(
+      {@JsonKey(fromJson: parseString) final String? neighbor,
+      @JsonKey(fromJson: parseString) final String? name}) = _$_MpdNeighbor;
 
   factory _MpdNeighbor.fromJson(Map<String, dynamic> json) =
       _$_MpdNeighbor.fromJson;
 
   @override
+  @JsonKey(fromJson: parseString)
   String? get neighbor;
   @override
+  @JsonKey(fromJson: parseString)
   String? get name;
   @override
   @JsonKey(ignore: true)

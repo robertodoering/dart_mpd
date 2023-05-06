@@ -4,7 +4,7 @@ import 'package:platform/platform.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group(MpdConnectionDetails, () {
+  group('$MpdConnectionDetails', () {
     setUp(() {
       // reset the platform and file system to default values for each test
       MpdConnectionDetails.platform = FakePlatform();

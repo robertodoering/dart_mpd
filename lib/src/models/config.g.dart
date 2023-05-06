@@ -7,9 +7,9 @@ part of 'config.dart';
 // **************************************************************************
 
 _$_MpdConfig _$$_MpdConfigFromJson(Map<String, dynamic> json) => _$_MpdConfig(
-      musicDirectory: json['music_directory'] as String?,
-      playlistDirectory: json['playlist_directory'] as String?,
-      pcre: parseBool(json['pcre'] as String?),
+      musicDirectory: parseString(json['music_directory'] as MpdValue?),
+      playlistDirectory: parseString(json['playlist_directory'] as MpdValue?),
+      pcre: parseBool(json['pcre'] as MpdValue?),
     );
 
 Map<String, dynamic> _$$_MpdConfigToJson(_$_MpdConfig instance) =>

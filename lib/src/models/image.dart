@@ -18,7 +18,7 @@ class MpdImage with _$MpdImage {
   factory MpdImage.fromResponse(MpdResponseOk response) {
     return MpdImage(
       size: parseInt(response.values.single['size']),
-      type: response.values.single['type'],
+      type: parseString(response.values.single['type']),
       binary: parseInt(response.values.single['binary']),
       bytes: response.binary ?? const [],
     );

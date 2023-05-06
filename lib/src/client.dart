@@ -89,7 +89,7 @@ class MpdClient {
     return _send(
       'idle',
       (response) => response.values
-          .map((value) => MpdSubsystem.parse(value['changed']))
+          .map((value) => MpdSubsystem.parse(value['changed']?.asSingle()))
           .whereType<MpdSubsystem>()
           .toSet(),
       args: [...?subsystems?.map((e) => e.toValue())],
@@ -205,7 +205,7 @@ class MpdClient {
     return _send(
       'replay_gain_status',
       (response) => ReplayGainMode.parse(
-        response.values.single['replay_gain_mode'],
+        response.values.single['replay_gain_mode']?.asSingle(),
       ),
     );
   }
@@ -664,7 +664,7 @@ class MpdClient {
   Future<String?> getfingerprint(String uri) {
     return _send(
       'getfingerprint',
-      (response) => response.values.single['chromaprint'],
+      (response) => response.values.single['chromaprint']?.asSingle(),
       args: [uri],
     );
   }
@@ -719,7 +719,7 @@ class MpdClient {
   /// `list('album', groups: ['albumartist'])`
   ///
   /// For filters, see https://mpd.readthedocs.io/en/stable/protocol.html#filter-syntax.
-  Future<List<Map<String, String>>> list(
+  Future<List<Map<String, MpdValue>>> list(
     String type, {
     String? filter,
     List<String> groups = const [],
@@ -782,7 +782,7 @@ class MpdClient {
   ///
   /// The meaning of these depends on the codec, and not all decoder plugins
   /// support it. For example, on Ogg files, this lists the Vorbis comments.
-  Future<Map<String, String>> readcomments(String uri) {
+  Future<Map<String, MpdValue>> readcomments(String uri) {
     return _send(
       'readcomments',
       (response) => response.values.single,
@@ -955,7 +955,7 @@ class MpdClient {
   ) {
     return _send(
       'sticker get',
-      (response) => parseSticker(response.values.single),
+      (response) => parseSticker(response.values.single['sticker']),
       args: [type, uri, name],
     );
   }
@@ -991,7 +991,9 @@ class MpdClient {
     return _send(
       'sticker list',
       (response) => Map.fromEntries(
-        response.values.map(parseSticker).whereType<MapEntry<String, String>>(),
+        response.values
+            .map((value) => parseSticker(value['sticker']))
+            .whereType<MapEntry<String, String>>(),
       ),
       args: [type, uri],
     );

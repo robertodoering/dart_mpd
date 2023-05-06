@@ -1,3 +1,4 @@
+import 'package:dart_mpd/dart_mpd.dart';
 import 'package:dart_mpd/src/parser/value_parser.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -11,14 +12,14 @@ class MpdCount with _$MpdCount {
     int? playtime,
   }) = _MpdCount;
 
-  factory MpdCount.fromValue(Map<String, String> value) {
+  factory MpdCount.fromValue(Map<String, MpdValue> value) {
     String? group;
 
     final filtered = {...value}
       ..remove('songs')
       ..remove('playtime');
 
-    if (filtered.length == 1) group = filtered.values.single;
+    if (filtered.length == 1) group = parseString(filtered.values.single);
 
     return MpdCount(
       group: group,

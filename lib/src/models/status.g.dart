@@ -7,28 +7,28 @@ part of 'status.dart';
 // **************************************************************************
 
 _$_MpdStatus _$$_MpdStatusFromJson(Map<String, dynamic> json) => _$_MpdStatus(
-      partition: json['partition'] as String?,
-      volume: parseInt(json['volume'] as String?),
-      repeat: parseBool(json['repeat'] as String?),
-      random: parseBool(json['random'] as String?),
-      single: MpdSingle.parse(json['single'] as String?),
-      consume: parseBool(json['consume'] as String?),
-      playlist: parseInt(json['playlist'] as String?),
-      playlistlength: parseInt(json['playlistlength'] as String?),
-      state: $enumDecodeNullable(_$MpdStateEnumMap, json['state']),
-      song: parseInt(json['song'] as String?),
-      songid: parseInt(json['songid'] as String?),
-      nextsong: parseInt(json['nextsong'] as String?),
-      nextsongid: parseInt(json['nextsongid'] as String?),
-      elapsed: parseDouble(json['elapsed'] as String?),
-      duration: parseDouble(json['duration'] as String?),
-      bitrate: parseInt(json['bitrate'] as String?),
-      crossfade: parseInt(json['crossfade'] as String?),
-      mixramp: parseDouble(json['mixramp'] as String?),
-      mixrampdelay: parseDouble(json['mixrampdelay'] as String?),
-      audio: json['audio'] as String?,
-      updatingDb: parseInt(json['updatingDb'] as String?),
-      error: json['error'] as String?,
+      partition: parseString(json['partition'] as MpdValue?),
+      volume: parseInt(json['volume'] as MpdValue?),
+      repeat: parseBool(json['repeat'] as MpdValue?),
+      random: parseBool(json['random'] as MpdValue?),
+      single: parseMpdSingle(json['single'] as MpdValue?),
+      consume: parseBool(json['consume'] as MpdValue?),
+      playlist: parseInt(json['playlist'] as MpdValue?),
+      playlistlength: parseInt(json['playlistlength'] as MpdValue?),
+      state: parseMpdState(json['state'] as MpdValue?),
+      song: parseInt(json['song'] as MpdValue?),
+      songid: parseInt(json['songid'] as MpdValue?),
+      nextsong: parseInt(json['nextsong'] as MpdValue?),
+      nextsongid: parseInt(json['nextsongid'] as MpdValue?),
+      elapsed: parseDouble(json['elapsed'] as MpdValue?),
+      duration: parseDouble(json['duration'] as MpdValue?),
+      bitrate: parseInt(json['bitrate'] as MpdValue?),
+      crossfade: parseInt(json['crossfade'] as MpdValue?),
+      mixramp: parseDouble(json['mixramp'] as MpdValue?),
+      mixrampdelay: parseDouble(json['mixrampdelay'] as MpdValue?),
+      audio: parseString(json['audio'] as MpdValue?),
+      updatingDb: parseInt(json['updatingDb'] as MpdValue?),
+      error: parseString(json['error'] as MpdValue?),
     );
 
 Map<String, dynamic> _$$_MpdStatusToJson(_$_MpdStatus instance) =>
@@ -37,7 +37,7 @@ Map<String, dynamic> _$$_MpdStatusToJson(_$_MpdStatus instance) =>
       'volume': instance.volume,
       'repeat': instance.repeat,
       'random': instance.random,
-      'single': instance.single,
+      'single': _$MpdSingleEnumMap[instance.single],
       'consume': instance.consume,
       'playlist': instance.playlist,
       'playlistlength': instance.playlistlength,
@@ -56,6 +56,12 @@ Map<String, dynamic> _$$_MpdStatusToJson(_$_MpdStatus instance) =>
       'updatingDb': instance.updatingDb,
       'error': instance.error,
     };
+
+const _$MpdSingleEnumMap = {
+  MpdSingle.enabled: 'enabled',
+  MpdSingle.disabled: 'disabled',
+  MpdSingle.oneshot: 'oneshot',
+};
 
 const _$MpdStateEnumMap = {
   MpdState.play: 'play',

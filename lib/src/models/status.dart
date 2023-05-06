@@ -10,15 +10,15 @@ part 'status.g.dart';
 @freezed
 class MpdStatus with _$MpdStatus {
   const factory MpdStatus({
-    String? partition,
+    @JsonKey(fromJson: parseString) String? partition,
     @JsonKey(fromJson: parseInt) int? volume,
     @JsonKey(fromJson: parseBool) bool? repeat,
     @JsonKey(fromJson: parseBool) bool? random,
-    @JsonKey(fromJson: MpdSingle.parse) MpdSingle? single,
+    @JsonKey(fromJson: parseMpdSingle) MpdSingle? single,
     @JsonKey(fromJson: parseBool) bool? consume,
     @JsonKey(fromJson: parseInt) int? playlist,
     @JsonKey(fromJson: parseInt) int? playlistlength,
-    MpdState? state,
+    @JsonKey(fromJson: parseMpdState) MpdState? state,
     @JsonKey(fromJson: parseInt) int? song,
     @JsonKey(fromJson: parseInt) int? songid,
     @JsonKey(fromJson: parseInt) int? nextsong,
@@ -29,9 +29,9 @@ class MpdStatus with _$MpdStatus {
     @JsonKey(fromJson: parseInt) int? crossfade,
     @JsonKey(fromJson: parseDouble) double? mixramp,
     @JsonKey(fromJson: parseDouble) double? mixrampdelay,
-    String? audio,
+    @JsonKey(fromJson: parseString) String? audio,
     @JsonKey(fromJson: parseInt) int? updatingDb,
-    String? error,
+    @JsonKey(fromJson: parseString) String? error,
   }) = _MpdStatus;
 
   factory MpdStatus.fromJson(Map<String, dynamic> json) =>

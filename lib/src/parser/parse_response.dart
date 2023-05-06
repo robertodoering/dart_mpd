@@ -40,8 +40,8 @@ const _commonKeys = ['suffix', 'mime_type'];
 ///
 /// See: https://mpd.readthedocs.io/en/stable/protocol.html#protocol-overview
 MpdResponse parseMpdResponse(Uint8List data) {
-  final values = <Map<String, String>>[];
-  final valuesBuffer = <String, String>{};
+  final values = <Map<String, MpdValue>>[];
+  final valuesBuffer = <String, MpdValue>{};
 
   List<int>? binary;
 
@@ -83,7 +83,8 @@ MpdResponse parseMpdResponse(Uint8List data) {
 
         if (valuesBuffer[key] != null && _commonKeys.contains(key)) {
           // add to existing value
-          valuesBuffer[key] = '${valuesBuffer[key]},$value';
+          final existingValue = valuesBuffer[key]!.asList();
+          valuesBuffer[key] = MpdValueMultiple([...existingValue, value]);
         } else if (valuesBuffer[key] != null ||
             _uniqueKeys.any(
               (pair) =>
@@ -93,10 +94,10 @@ MpdResponse parseMpdResponse(Uint8List data) {
           // assume additional data set
           values.add({...valuesBuffer});
           valuesBuffer.clear();
-          valuesBuffer[key] = value;
+          valuesBuffer[key] = MpdValueSingle(value);
         } else {
           // new key value pair
-          valuesBuffer[key] = value;
+          valuesBuffer[key] = MpdValueSingle(value);
         }
 
         // binary data follows

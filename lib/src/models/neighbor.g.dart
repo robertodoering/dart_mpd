@@ -8,8 +8,8 @@ part of 'neighbor.dart';
 
 _$_MpdNeighbor _$$_MpdNeighborFromJson(Map<String, dynamic> json) =>
     _$_MpdNeighbor(
-      neighbor: json['neighbor'] as String?,
-      name: json['name'] as String?,
+      neighbor: parseString(json['neighbor'] as MpdValue?),
+      name: parseString(json['name'] as MpdValue?),
     );
 
 Map<String, dynamic> _$$_MpdNeighborToJson(_$_MpdNeighbor instance) =>

@@ -20,7 +20,9 @@ MpdMount _$MpdMountFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MpdMount {
+  @JsonKey(fromJson: parseString)
   String? get mount => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: parseString)
   String? get storage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +36,9 @@ abstract class $MpdMountCopyWith<$Res> {
   factory $MpdMountCopyWith(MpdMount value, $Res Function(MpdMount) then) =
       _$MpdMountCopyWithImpl<$Res, MpdMount>;
   @useResult
-  $Res call({String? mount, String? storage});
+  $Res call(
+      {@JsonKey(fromJson: parseString) String? mount,
+      @JsonKey(fromJson: parseString) String? storage});
 }
 
 /// @nodoc
@@ -73,7 +77,9 @@ abstract class _$$_MpdMountCopyWith<$Res> implements $MpdMountCopyWith<$Res> {
       __$$_MpdMountCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? mount, String? storage});
+  $Res call(
+      {@JsonKey(fromJson: parseString) String? mount,
+      @JsonKey(fromJson: parseString) String? storage});
 }
 
 /// @nodoc
@@ -106,14 +112,18 @@ class __$$_MpdMountCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_MpdMount implements _MpdMount {
-  const _$_MpdMount({this.mount, this.storage});
+  const _$_MpdMount(
+      {@JsonKey(fromJson: parseString) this.mount,
+      @JsonKey(fromJson: parseString) this.storage});
 
   factory _$_MpdMount.fromJson(Map<String, dynamic> json) =>
       _$$_MpdMountFromJson(json);
 
   @override
+  @JsonKey(fromJson: parseString)
   final String? mount;
   @override
+  @JsonKey(fromJson: parseString)
   final String? storage;
 
   @override
@@ -149,14 +159,17 @@ class _$_MpdMount implements _MpdMount {
 }
 
 abstract class _MpdMount implements MpdMount {
-  const factory _MpdMount({final String? mount, final String? storage}) =
-      _$_MpdMount;
+  const factory _MpdMount(
+      {@JsonKey(fromJson: parseString) final String? mount,
+      @JsonKey(fromJson: parseString) final String? storage}) = _$_MpdMount;
 
   factory _MpdMount.fromJson(Map<String, dynamic> json) = _$_MpdMount.fromJson;
 
   @override
+  @JsonKey(fromJson: parseString)
   String? get mount;
   @override
+  @JsonKey(fromJson: parseString)
   String? get storage;
   @override
   @JsonKey(ignore: true)

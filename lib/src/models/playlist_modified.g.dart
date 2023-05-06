@@ -8,8 +8,8 @@ part of 'playlist_modified.dart';
 
 _$_PlaylistModified _$$_PlaylistModifiedFromJson(Map<String, dynamic> json) =>
     _$_PlaylistModified(
-      playlist: json['playlist'] as String,
-      lastModified: parseDateTime(json['Last-Modified'] as String?),
+      playlist: parseStringOrEmpty(json['playlist'] as MpdValue?),
+      lastModified: parseDateTime(json['Last-Modified'] as MpdValue?),
     );
 
 Map<String, dynamic> _$$_PlaylistModifiedToJson(_$_PlaylistModified instance) =>

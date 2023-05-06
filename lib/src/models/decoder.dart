@@ -1,3 +1,5 @@
+import 'package:dart_mpd/dart_mpd.dart';
+import 'package:dart_mpd/src/parser/value_parser.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'decoder.freezed.dart';
@@ -10,14 +12,11 @@ class MpdDecoder with _$MpdDecoder {
     required List<String> mimeType,
   }) = _MpdDecoder;
 
-  factory MpdDecoder.fromValue(Map<String, dynamic> json) {
-    final suffixString = json['suffix'] as String?;
-    final mimeTypeString = json['mime_type'] as String?;
-
+  factory MpdDecoder.fromValue(Map<String, MpdValue> json) {
     return MpdDecoder(
-      plugin: json['plugin'] as String?,
-      suffix: suffixString?.split(',') ?? [],
-      mimeType: mimeTypeString?.split(',') ?? [],
+      plugin: parseString(json['plugin']),
+      suffix: json['suffix']?.asList() ?? const [],
+      mimeType: json['mime_type']?.asList() ?? const [],
     );
   }
 }

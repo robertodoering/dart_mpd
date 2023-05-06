@@ -7,18 +7,16 @@ part of 'song.dart';
 // **************************************************************************
 
 _$_MpdSong _$$_MpdSongFromJson(Map<String, dynamic> json) => _$_MpdSong(
-      file: json['file'] as String,
-      lastModified: json['Last-Modified'] == null
-          ? null
-          : DateTime.parse(json['Last-Modified'] as String),
-      artist: json['Artist'] as String?,
-      title: json['Title'] as String?,
-      genre: json['Genre'] as String?,
-      format: json['Format'] as String?,
-      time: parseInt(json['Time'] as String?),
-      duration: parseDuration(json['duration'] as String?),
-      pos: parseInt(json['Pos'] as String?),
-      id: parseInt(json['Id'] as String?),
+      file: parseStringOrEmpty(json['file'] as MpdValue?),
+      lastModified: parseDateTime(json['Last-Modified'] as MpdValue?),
+      artist: parseString(json['Artist'] as MpdValue?),
+      title: parseString(json['Title'] as MpdValue?),
+      genre: parseString(json['Genre'] as MpdValue?),
+      format: parseString(json['Format'] as MpdValue?),
+      time: parseInt(json['Time'] as MpdValue?),
+      duration: parseDuration(json['duration'] as MpdValue?),
+      pos: parseInt(json['Pos'] as MpdValue?),
+      id: parseInt(json['Id'] as MpdValue?),
     );
 
 Map<String, dynamic> _$$_MpdSongToJson(_$_MpdSong instance) =>

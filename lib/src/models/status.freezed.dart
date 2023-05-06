@@ -20,6 +20,7 @@ MpdStatus _$MpdStatusFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MpdStatus {
+  @JsonKey(fromJson: parseString)
   String? get partition => throw _privateConstructorUsedError;
   @JsonKey(fromJson: parseInt)
   int? get volume => throw _privateConstructorUsedError;
@@ -27,7 +28,7 @@ mixin _$MpdStatus {
   bool? get repeat => throw _privateConstructorUsedError;
   @JsonKey(fromJson: parseBool)
   bool? get random => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: MpdSingle.parse)
+  @JsonKey(fromJson: parseMpdSingle)
   MpdSingle? get single => throw _privateConstructorUsedError;
   @JsonKey(fromJson: parseBool)
   bool? get consume => throw _privateConstructorUsedError;
@@ -35,6 +36,7 @@ mixin _$MpdStatus {
   int? get playlist => throw _privateConstructorUsedError;
   @JsonKey(fromJson: parseInt)
   int? get playlistlength => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: parseMpdState)
   MpdState? get state => throw _privateConstructorUsedError;
   @JsonKey(fromJson: parseInt)
   int? get song => throw _privateConstructorUsedError;
@@ -56,9 +58,11 @@ mixin _$MpdStatus {
   double? get mixramp => throw _privateConstructorUsedError;
   @JsonKey(fromJson: parseDouble)
   double? get mixrampdelay => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: parseString)
   String? get audio => throw _privateConstructorUsedError;
   @JsonKey(fromJson: parseInt)
   int? get updatingDb => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: parseString)
   String? get error => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -73,15 +77,15 @@ abstract class $MpdStatusCopyWith<$Res> {
       _$MpdStatusCopyWithImpl<$Res, MpdStatus>;
   @useResult
   $Res call(
-      {String? partition,
+      {@JsonKey(fromJson: parseString) String? partition,
       @JsonKey(fromJson: parseInt) int? volume,
       @JsonKey(fromJson: parseBool) bool? repeat,
       @JsonKey(fromJson: parseBool) bool? random,
-      @JsonKey(fromJson: MpdSingle.parse) MpdSingle? single,
+      @JsonKey(fromJson: parseMpdSingle) MpdSingle? single,
       @JsonKey(fromJson: parseBool) bool? consume,
       @JsonKey(fromJson: parseInt) int? playlist,
       @JsonKey(fromJson: parseInt) int? playlistlength,
-      MpdState? state,
+      @JsonKey(fromJson: parseMpdState) MpdState? state,
       @JsonKey(fromJson: parseInt) int? song,
       @JsonKey(fromJson: parseInt) int? songid,
       @JsonKey(fromJson: parseInt) int? nextsong,
@@ -92,9 +96,9 @@ abstract class $MpdStatusCopyWith<$Res> {
       @JsonKey(fromJson: parseInt) int? crossfade,
       @JsonKey(fromJson: parseDouble) double? mixramp,
       @JsonKey(fromJson: parseDouble) double? mixrampdelay,
-      String? audio,
+      @JsonKey(fromJson: parseString) String? audio,
       @JsonKey(fromJson: parseInt) int? updatingDb,
-      String? error});
+      @JsonKey(fromJson: parseString) String? error});
 }
 
 /// @nodoc
@@ -234,15 +238,15 @@ abstract class _$$_MpdStatusCopyWith<$Res> implements $MpdStatusCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? partition,
+      {@JsonKey(fromJson: parseString) String? partition,
       @JsonKey(fromJson: parseInt) int? volume,
       @JsonKey(fromJson: parseBool) bool? repeat,
       @JsonKey(fromJson: parseBool) bool? random,
-      @JsonKey(fromJson: MpdSingle.parse) MpdSingle? single,
+      @JsonKey(fromJson: parseMpdSingle) MpdSingle? single,
       @JsonKey(fromJson: parseBool) bool? consume,
       @JsonKey(fromJson: parseInt) int? playlist,
       @JsonKey(fromJson: parseInt) int? playlistlength,
-      MpdState? state,
+      @JsonKey(fromJson: parseMpdState) MpdState? state,
       @JsonKey(fromJson: parseInt) int? song,
       @JsonKey(fromJson: parseInt) int? songid,
       @JsonKey(fromJson: parseInt) int? nextsong,
@@ -253,9 +257,9 @@ abstract class _$$_MpdStatusCopyWith<$Res> implements $MpdStatusCopyWith<$Res> {
       @JsonKey(fromJson: parseInt) int? crossfade,
       @JsonKey(fromJson: parseDouble) double? mixramp,
       @JsonKey(fromJson: parseDouble) double? mixrampdelay,
-      String? audio,
+      @JsonKey(fromJson: parseString) String? audio,
       @JsonKey(fromJson: parseInt) int? updatingDb,
-      String? error});
+      @JsonKey(fromJson: parseString) String? error});
 }
 
 /// @nodoc
@@ -389,15 +393,15 @@ class __$$_MpdStatusCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MpdStatus implements _MpdStatus {
   const _$_MpdStatus(
-      {this.partition,
+      {@JsonKey(fromJson: parseString) this.partition,
       @JsonKey(fromJson: parseInt) this.volume,
       @JsonKey(fromJson: parseBool) this.repeat,
       @JsonKey(fromJson: parseBool) this.random,
-      @JsonKey(fromJson: MpdSingle.parse) this.single,
+      @JsonKey(fromJson: parseMpdSingle) this.single,
       @JsonKey(fromJson: parseBool) this.consume,
       @JsonKey(fromJson: parseInt) this.playlist,
       @JsonKey(fromJson: parseInt) this.playlistlength,
-      this.state,
+      @JsonKey(fromJson: parseMpdState) this.state,
       @JsonKey(fromJson: parseInt) this.song,
       @JsonKey(fromJson: parseInt) this.songid,
       @JsonKey(fromJson: parseInt) this.nextsong,
@@ -408,14 +412,15 @@ class _$_MpdStatus implements _MpdStatus {
       @JsonKey(fromJson: parseInt) this.crossfade,
       @JsonKey(fromJson: parseDouble) this.mixramp,
       @JsonKey(fromJson: parseDouble) this.mixrampdelay,
-      this.audio,
+      @JsonKey(fromJson: parseString) this.audio,
       @JsonKey(fromJson: parseInt) this.updatingDb,
-      this.error});
+      @JsonKey(fromJson: parseString) this.error});
 
   factory _$_MpdStatus.fromJson(Map<String, dynamic> json) =>
       _$$_MpdStatusFromJson(json);
 
   @override
+  @JsonKey(fromJson: parseString)
   final String? partition;
   @override
   @JsonKey(fromJson: parseInt)
@@ -427,7 +432,7 @@ class _$_MpdStatus implements _MpdStatus {
   @JsonKey(fromJson: parseBool)
   final bool? random;
   @override
-  @JsonKey(fromJson: MpdSingle.parse)
+  @JsonKey(fromJson: parseMpdSingle)
   final MpdSingle? single;
   @override
   @JsonKey(fromJson: parseBool)
@@ -439,6 +444,7 @@ class _$_MpdStatus implements _MpdStatus {
   @JsonKey(fromJson: parseInt)
   final int? playlistlength;
   @override
+  @JsonKey(fromJson: parseMpdState)
   final MpdState? state;
   @override
   @JsonKey(fromJson: parseInt)
@@ -471,11 +477,13 @@ class _$_MpdStatus implements _MpdStatus {
   @JsonKey(fromJson: parseDouble)
   final double? mixrampdelay;
   @override
+  @JsonKey(fromJson: parseString)
   final String? audio;
   @override
   @JsonKey(fromJson: parseInt)
   final int? updatingDb;
   @override
+  @JsonKey(fromJson: parseString)
   final String? error;
 
   @override
@@ -565,15 +573,15 @@ class _$_MpdStatus implements _MpdStatus {
 
 abstract class _MpdStatus implements MpdStatus {
   const factory _MpdStatus(
-      {final String? partition,
+      {@JsonKey(fromJson: parseString) final String? partition,
       @JsonKey(fromJson: parseInt) final int? volume,
       @JsonKey(fromJson: parseBool) final bool? repeat,
       @JsonKey(fromJson: parseBool) final bool? random,
-      @JsonKey(fromJson: MpdSingle.parse) final MpdSingle? single,
+      @JsonKey(fromJson: parseMpdSingle) final MpdSingle? single,
       @JsonKey(fromJson: parseBool) final bool? consume,
       @JsonKey(fromJson: parseInt) final int? playlist,
       @JsonKey(fromJson: parseInt) final int? playlistlength,
-      final MpdState? state,
+      @JsonKey(fromJson: parseMpdState) final MpdState? state,
       @JsonKey(fromJson: parseInt) final int? song,
       @JsonKey(fromJson: parseInt) final int? songid,
       @JsonKey(fromJson: parseInt) final int? nextsong,
@@ -584,14 +592,15 @@ abstract class _MpdStatus implements MpdStatus {
       @JsonKey(fromJson: parseInt) final int? crossfade,
       @JsonKey(fromJson: parseDouble) final double? mixramp,
       @JsonKey(fromJson: parseDouble) final double? mixrampdelay,
-      final String? audio,
+      @JsonKey(fromJson: parseString) final String? audio,
       @JsonKey(fromJson: parseInt) final int? updatingDb,
-      final String? error}) = _$_MpdStatus;
+      @JsonKey(fromJson: parseString) final String? error}) = _$_MpdStatus;
 
   factory _MpdStatus.fromJson(Map<String, dynamic> json) =
       _$_MpdStatus.fromJson;
 
   @override
+  @JsonKey(fromJson: parseString)
   String? get partition;
   @override
   @JsonKey(fromJson: parseInt)
@@ -603,7 +612,7 @@ abstract class _MpdStatus implements MpdStatus {
   @JsonKey(fromJson: parseBool)
   bool? get random;
   @override
-  @JsonKey(fromJson: MpdSingle.parse)
+  @JsonKey(fromJson: parseMpdSingle)
   MpdSingle? get single;
   @override
   @JsonKey(fromJson: parseBool)
@@ -615,6 +624,7 @@ abstract class _MpdStatus implements MpdStatus {
   @JsonKey(fromJson: parseInt)
   int? get playlistlength;
   @override
+  @JsonKey(fromJson: parseMpdState)
   MpdState? get state;
   @override
   @JsonKey(fromJson: parseInt)
@@ -647,11 +657,13 @@ abstract class _MpdStatus implements MpdStatus {
   @JsonKey(fromJson: parseDouble)
   double? get mixrampdelay;
   @override
+  @JsonKey(fromJson: parseString)
   String? get audio;
   @override
   @JsonKey(fromJson: parseInt)
   int? get updatingDb;
   @override
+  @JsonKey(fromJson: parseString)
   String? get error;
   @override
   @JsonKey(ignore: true)

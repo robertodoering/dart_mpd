@@ -20,6 +20,7 @@ PlaylistModified _$PlaylistModifiedFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PlaylistModified {
+  @JsonKey(fromJson: parseStringOrEmpty)
   String get playlist => throw _privateConstructorUsedError;
   @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
   DateTime? get lastModified => throw _privateConstructorUsedError;
@@ -37,7 +38,8 @@ abstract class $PlaylistModifiedCopyWith<$Res> {
       _$PlaylistModifiedCopyWithImpl<$Res, PlaylistModified>;
   @useResult
   $Res call(
-      {String playlist,
+      {@JsonKey(fromJson: parseStringOrEmpty)
+          String playlist,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
           DateTime? lastModified});
 }
@@ -80,7 +82,8 @@ abstract class _$$_PlaylistModifiedCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String playlist,
+      {@JsonKey(fromJson: parseStringOrEmpty)
+          String playlist,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
           DateTime? lastModified});
 }
@@ -116,7 +119,8 @@ class __$$_PlaylistModifiedCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PlaylistModified implements _PlaylistModified {
   const _$_PlaylistModified(
-      {required this.playlist,
+      {@JsonKey(fromJson: parseStringOrEmpty)
+          required this.playlist,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
           this.lastModified});
 
@@ -124,6 +128,7 @@ class _$_PlaylistModified implements _PlaylistModified {
       _$$_PlaylistModifiedFromJson(json);
 
   @override
+  @JsonKey(fromJson: parseStringOrEmpty)
   final String playlist;
   @override
   @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
@@ -165,7 +170,8 @@ class _$_PlaylistModified implements _PlaylistModified {
 
 abstract class _PlaylistModified implements PlaylistModified {
   const factory _PlaylistModified(
-      {required final String playlist,
+      {@JsonKey(fromJson: parseStringOrEmpty)
+          required final String playlist,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
           final DateTime? lastModified}) = _$_PlaylistModified;
 
@@ -173,6 +179,7 @@ abstract class _PlaylistModified implements PlaylistModified {
       _$_PlaylistModified.fromJson;
 
   @override
+  @JsonKey(fromJson: parseStringOrEmpty)
   String get playlist;
   @override
   @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
