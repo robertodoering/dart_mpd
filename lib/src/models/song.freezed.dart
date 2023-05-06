@@ -24,12 +24,6 @@ mixin _$MpdSong {
   String get file => throw _privateConstructorUsedError;
   @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
   DateTime? get lastModified => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Artist', fromJson: parseString)
-  String? get artist => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Title', fromJson: parseString)
-  String? get title => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Genre', fromJson: parseString)
-  String? get genre => throw _privateConstructorUsedError;
   @JsonKey(name: 'Format', fromJson: parseString)
   String? get format => throw _privateConstructorUsedError;
   @JsonKey(name: 'Time', fromJson: parseInt)
@@ -41,7 +35,8 @@ mixin _$MpdSong {
   @JsonKey(name: 'Id', fromJson: parseInt)
   int? get id => throw _privateConstructorUsedError;
 
-  /// Any other arbitrary tags that are not explicitly parsed.
+  /// Tags as defined in
+  /// https://mpd.readthedocs.io/en/stable/protocol.html#tags.
   @JsonKey(ignore: true)
   Map<String, MpdValue> get tags => throw _privateConstructorUsedError;
 
@@ -60,12 +55,6 @@ abstract class $MpdSongCopyWith<$Res> {
           String file,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
           DateTime? lastModified,
-      @JsonKey(name: 'Artist', fromJson: parseString)
-          String? artist,
-      @JsonKey(name: 'Title', fromJson: parseString)
-          String? title,
-      @JsonKey(name: 'Genre', fromJson: parseString)
-          String? genre,
       @JsonKey(name: 'Format', fromJson: parseString)
           String? format,
       @JsonKey(name: 'Time', fromJson: parseInt)
@@ -95,9 +84,6 @@ class _$MpdSongCopyWithImpl<$Res, $Val extends MpdSong>
   $Res call({
     Object? file = null,
     Object? lastModified = freezed,
-    Object? artist = freezed,
-    Object? title = freezed,
-    Object? genre = freezed,
     Object? format = freezed,
     Object? time = freezed,
     Object? duration = freezed,
@@ -114,18 +100,6 @@ class _$MpdSongCopyWithImpl<$Res, $Val extends MpdSong>
           ? _value.lastModified
           : lastModified // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      artist: freezed == artist
-          ? _value.artist
-          : artist // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      genre: freezed == genre
-          ? _value.genre
-          : genre // ignore: cast_nullable_to_non_nullable
-              as String?,
       format: freezed == format
           ? _value.format
           : format // ignore: cast_nullable_to_non_nullable
@@ -166,12 +140,6 @@ abstract class _$$_MpdSongCopyWith<$Res> implements $MpdSongCopyWith<$Res> {
           String file,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
           DateTime? lastModified,
-      @JsonKey(name: 'Artist', fromJson: parseString)
-          String? artist,
-      @JsonKey(name: 'Title', fromJson: parseString)
-          String? title,
-      @JsonKey(name: 'Genre', fromJson: parseString)
-          String? genre,
       @JsonKey(name: 'Format', fromJson: parseString)
           String? format,
       @JsonKey(name: 'Time', fromJson: parseInt)
@@ -198,9 +166,6 @@ class __$$_MpdSongCopyWithImpl<$Res>
   $Res call({
     Object? file = null,
     Object? lastModified = freezed,
-    Object? artist = freezed,
-    Object? title = freezed,
-    Object? genre = freezed,
     Object? format = freezed,
     Object? time = freezed,
     Object? duration = freezed,
@@ -217,18 +182,6 @@ class __$$_MpdSongCopyWithImpl<$Res>
           ? _value.lastModified
           : lastModified // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      artist: freezed == artist
-          ? _value.artist
-          : artist // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      genre: freezed == genre
-          ? _value.genre
-          : genre // ignore: cast_nullable_to_non_nullable
-              as String?,
       format: freezed == format
           ? _value.format
           : format // ignore: cast_nullable_to_non_nullable
@@ -265,12 +218,6 @@ class _$_MpdSong implements _MpdSong {
           required this.file,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
           this.lastModified,
-      @JsonKey(name: 'Artist', fromJson: parseString)
-          this.artist,
-      @JsonKey(name: 'Title', fromJson: parseString)
-          this.title,
-      @JsonKey(name: 'Genre', fromJson: parseString)
-          this.genre,
       @JsonKey(name: 'Format', fromJson: parseString)
           this.format,
       @JsonKey(name: 'Time', fromJson: parseInt)
@@ -295,15 +242,6 @@ class _$_MpdSong implements _MpdSong {
   @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
   final DateTime? lastModified;
   @override
-  @JsonKey(name: 'Artist', fromJson: parseString)
-  final String? artist;
-  @override
-  @JsonKey(name: 'Title', fromJson: parseString)
-  final String? title;
-  @override
-  @JsonKey(name: 'Genre', fromJson: parseString)
-  final String? genre;
-  @override
   @JsonKey(name: 'Format', fromJson: parseString)
   final String? format;
   @override
@@ -319,10 +257,12 @@ class _$_MpdSong implements _MpdSong {
   @JsonKey(name: 'Id', fromJson: parseInt)
   final int? id;
 
-  /// Any other arbitrary tags that are not explicitly parsed.
+  /// Tags as defined in
+  /// https://mpd.readthedocs.io/en/stable/protocol.html#tags.
   final Map<String, MpdValue> _tags;
 
-  /// Any other arbitrary tags that are not explicitly parsed.
+  /// Tags as defined in
+  /// https://mpd.readthedocs.io/en/stable/protocol.html#tags.
   @override
   @JsonKey(ignore: true)
   Map<String, MpdValue> get tags {
@@ -333,7 +273,7 @@ class _$_MpdSong implements _MpdSong {
 
   @override
   String toString() {
-    return 'MpdSong(file: $file, lastModified: $lastModified, artist: $artist, title: $title, genre: $genre, format: $format, time: $time, duration: $duration, pos: $pos, id: $id, tags: $tags)';
+    return 'MpdSong(file: $file, lastModified: $lastModified, format: $format, time: $time, duration: $duration, pos: $pos, id: $id, tags: $tags)';
   }
 
   @override
@@ -344,9 +284,6 @@ class _$_MpdSong implements _MpdSong {
             (identical(other.file, file) || other.file == file) &&
             (identical(other.lastModified, lastModified) ||
                 other.lastModified == lastModified) &&
-            (identical(other.artist, artist) || other.artist == artist) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.genre, genre) || other.genre == genre) &&
             (identical(other.format, format) || other.format == format) &&
             (identical(other.time, time) || other.time == time) &&
             (identical(other.duration, duration) ||
@@ -358,19 +295,8 @@ class _$_MpdSong implements _MpdSong {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      file,
-      lastModified,
-      artist,
-      title,
-      genre,
-      format,
-      time,
-      duration,
-      pos,
-      id,
-      const DeepCollectionEquality().hash(_tags));
+  int get hashCode => Object.hash(runtimeType, file, lastModified, format, time,
+      duration, pos, id, const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
   @override
@@ -392,12 +318,6 @@ abstract class _MpdSong implements MpdSong {
           required final String file,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
           final DateTime? lastModified,
-      @JsonKey(name: 'Artist', fromJson: parseString)
-          final String? artist,
-      @JsonKey(name: 'Title', fromJson: parseString)
-          final String? title,
-      @JsonKey(name: 'Genre', fromJson: parseString)
-          final String? genre,
       @JsonKey(name: 'Format', fromJson: parseString)
           final String? format,
       @JsonKey(name: 'Time', fromJson: parseInt)
@@ -420,15 +340,6 @@ abstract class _MpdSong implements MpdSong {
   @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
   DateTime? get lastModified;
   @override
-  @JsonKey(name: 'Artist', fromJson: parseString)
-  String? get artist;
-  @override
-  @JsonKey(name: 'Title', fromJson: parseString)
-  String? get title;
-  @override
-  @JsonKey(name: 'Genre', fromJson: parseString)
-  String? get genre;
-  @override
   @JsonKey(name: 'Format', fromJson: parseString)
   String? get format;
   @override
@@ -445,7 +356,8 @@ abstract class _MpdSong implements MpdSong {
   int? get id;
   @override
 
-  /// Any other arbitrary tags that are not explicitly parsed.
+  /// Tags as defined in
+  /// https://mpd.readthedocs.io/en/stable/protocol.html#tags.
   @JsonKey(ignore: true)
   Map<String, MpdValue> get tags;
   @override

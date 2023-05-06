@@ -13,16 +13,14 @@ class MpdSong with _$MpdSong {
     @JsonKey(fromJson: parseStringOrEmpty) required String file,
     @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
         DateTime? lastModified,
-    @JsonKey(name: 'Artist', fromJson: parseString) String? artist,
-    @JsonKey(name: 'Title', fromJson: parseString) String? title,
-    @JsonKey(name: 'Genre', fromJson: parseString) String? genre,
     @JsonKey(name: 'Format', fromJson: parseString) String? format,
     @JsonKey(name: 'Time', fromJson: parseInt) int? time,
     @JsonKey(fromJson: parseDuration) Duration? duration,
     @JsonKey(name: 'Pos', fromJson: parseInt) int? pos,
     @JsonKey(name: 'Id', fromJson: parseInt) int? id,
 
-    /// Any other arbitrary tags that are not explicitly parsed.
+    /// Tags as defined in
+    /// https://mpd.readthedocs.io/en/stable/protocol.html#tags.
     @JsonKey(ignore: true) @Default({}) Map<String, MpdValue> tags,
   }) = _MpdSong;
 
@@ -35,9 +33,6 @@ class MpdSong with _$MpdSong {
           (key, _) => [
             'file',
             'Last-Modified',
-            'Artist',
-            'Title',
-            'Genre',
             'Format',
             'Time',
             'duration',

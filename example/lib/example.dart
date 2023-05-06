@@ -9,8 +9,8 @@ Future<void> main() async {
   final song = await client.currentsong();
 
   // responses are parsed into models
-  print(song?.artist);
-  print(song?.title);
+  print(song?.tags['Artist']?.asSingle());
+  print(song?.tags['Title']?.asSingle());
 
   // you can also manually connect and close the socket
   await client.connection.connect();
