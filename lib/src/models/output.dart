@@ -16,7 +16,7 @@ class MpdOutput with _$MpdOutput {
     @JsonKey(fromJson: parseString) String? plugin,
 
     /// Any other arbitrary values that are not explicitly parsed.
-    @JsonKey(ignore: true) @Default({}) Map<String, MpdValue> values,
+    @JsonKey(includeFromJson: false) @Default({}) Map<String, MpdValue> values,
   }) = _MpdOutput;
 
   factory MpdOutput.fromJson(Map<String, dynamic> json) =>

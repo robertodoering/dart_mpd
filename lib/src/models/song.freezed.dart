@@ -37,7 +37,7 @@ mixin _$MpdSong {
 
   /// Tags as defined in
   /// https://mpd.readthedocs.io/en/stable/protocol.html#tags.
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false)
   Map<String, MpdValue> get tags => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -65,7 +65,7 @@ abstract class $MpdSongCopyWith<$Res> {
           int? pos,
       @JsonKey(name: 'Id', fromJson: parseInt)
           int? id,
-      @JsonKey(ignore: true)
+      @JsonKey(includeFromJson: false)
           Map<String, MpdValue> tags});
 }
 
@@ -150,7 +150,7 @@ abstract class _$$_MpdSongCopyWith<$Res> implements $MpdSongCopyWith<$Res> {
           int? pos,
       @JsonKey(name: 'Id', fromJson: parseInt)
           int? id,
-      @JsonKey(ignore: true)
+      @JsonKey(includeFromJson: false)
           Map<String, MpdValue> tags});
 }
 
@@ -228,7 +228,7 @@ class _$_MpdSong implements _MpdSong {
           this.pos,
       @JsonKey(name: 'Id', fromJson: parseInt)
           this.id,
-      @JsonKey(ignore: true)
+      @JsonKey(includeFromJson: false)
           final Map<String, MpdValue> tags = const {}})
       : _tags = tags;
 
@@ -264,7 +264,7 @@ class _$_MpdSong implements _MpdSong {
   /// Tags as defined in
   /// https://mpd.readthedocs.io/en/stable/protocol.html#tags.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false)
   Map<String, MpdValue> get tags {
     if (_tags is EqualUnmodifiableMapView) return _tags;
     // ignore: implicit_dynamic_type
@@ -328,7 +328,7 @@ abstract class _MpdSong implements MpdSong {
           final int? pos,
       @JsonKey(name: 'Id', fromJson: parseInt)
           final int? id,
-      @JsonKey(ignore: true)
+      @JsonKey(includeFromJson: false)
           final Map<String, MpdValue> tags}) = _$_MpdSong;
 
   factory _MpdSong.fromJson(Map<String, dynamic> json) = _$_MpdSong.fromJson;
@@ -358,7 +358,7 @@ abstract class _MpdSong implements MpdSong {
 
   /// Tags as defined in
   /// https://mpd.readthedocs.io/en/stable/protocol.html#tags.
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false)
   Map<String, MpdValue> get tags;
   @override
   @JsonKey(ignore: true)

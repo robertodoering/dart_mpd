@@ -4,26 +4,19 @@ enum MpdSingle {
   oneshot;
 
   String toValue() {
-    switch (this) {
-      case MpdSingle.enabled:
-        return '1';
-      case MpdSingle.disabled:
-        return '0';
-      case MpdSingle.oneshot:
-        return 'oneshot';
-    }
+    return switch (this) {
+      MpdSingle.enabled => '1',
+      MpdSingle.disabled => '0',
+      MpdSingle.oneshot => 'oneshot'
+    };
   }
 
   static MpdSingle? parse(String? value) {
-    switch (value) {
-      case '0':
-        return MpdSingle.disabled;
-      case '1':
-        return MpdSingle.enabled;
-      case 'oneshot':
-        return MpdSingle.oneshot;
-      default:
-        return null;
-    }
+    return switch (value) {
+      '0' => MpdSingle.disabled,
+      '1' => MpdSingle.enabled,
+      'oneshot' => MpdSingle.oneshot,
+      _ => null,
+    };
   }
 }

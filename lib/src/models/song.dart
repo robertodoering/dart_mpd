@@ -10,18 +10,26 @@ part 'song.g.dart';
 @freezed
 class MpdSong with _$MpdSong {
   const factory MpdSong({
-    @JsonKey(fromJson: parseStringOrEmpty) required String file,
+    @JsonKey(fromJson: parseStringOrEmpty)
+        required String file,
     @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
         DateTime? lastModified,
-    @JsonKey(name: 'Format', fromJson: parseString) String? format,
-    @JsonKey(name: 'Time', fromJson: parseInt) int? time,
-    @JsonKey(fromJson: parseDuration) Duration? duration,
-    @JsonKey(name: 'Pos', fromJson: parseInt) int? pos,
-    @JsonKey(name: 'Id', fromJson: parseInt) int? id,
+    @JsonKey(name: 'Format', fromJson: parseString)
+        String? format,
+    @JsonKey(name: 'Time', fromJson: parseInt)
+        int? time,
+    @JsonKey(fromJson: parseDuration)
+        Duration? duration,
+    @JsonKey(name: 'Pos', fromJson: parseInt)
+        int? pos,
+    @JsonKey(name: 'Id', fromJson: parseInt)
+        int? id,
 
     /// Tags as defined in
     /// https://mpd.readthedocs.io/en/stable/protocol.html#tags.
-    @JsonKey(ignore: true) @Default({}) Map<String, MpdValue> tags,
+    @JsonKey(includeFromJson: false)
+    @Default({})
+        Map<String, MpdValue> tags,
   }) = _MpdSong;
 
   factory MpdSong.fromJson(Map<String, dynamic> json) =>

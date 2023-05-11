@@ -1,10 +1,10 @@
-abstract class MpdPositionOrRange {
+abstract mixin class MpdPositionOrRange {
   const factory MpdPositionOrRange.position(int position) = MpdPosition;
 
   const factory MpdPositionOrRange.range(int start, [int? end]) = MpdRange;
 }
 
-abstract class MpdPositionOrRelativePosition {
+abstract mixin class MpdPositionOrRelativePosition {
   const factory MpdPositionOrRelativePosition.position(int position) =
       MpdPosition;
 
@@ -49,11 +49,9 @@ class MpdRelativePosition with MpdPositionOrRelativePosition {
 
   @override
   String toString() {
-    switch (relativity) {
-      case Relativity.after:
-        return '+$position';
-      case Relativity.before:
-        return '-$position';
-    }
+    return switch (relativity) {
+      Relativity.after => '+$position',
+      Relativity.before => '-$position',
+    };
   }
 }

@@ -54,14 +54,7 @@ class MessageHandler {
       return;
     }
 
-    int endIndex = -1;
-    for (int i = index + 1; i < _dataBuffer.length; ++i) {
-      if (_dataBuffer[i] == 10) {
-        // newline - end of message
-        endIndex = i;
-        break;
-      }
-    }
+    final endIndex = _findEndOfLine(index);
 
     if (endIndex == -1) {
       // end of message line has only been partially received - wait for more
@@ -80,6 +73,20 @@ class MessageHandler {
       _dataBuffer.clear();
       onData(additionalData);
     }
+  }
+
+  int _findEndOfLine(int start) {
+    int endIndex = -1;
+
+    for (int i = start + 1; i < _dataBuffer.length; ++i) {
+      if (_dataBuffer[i] == 10) {
+        // newline - end of message
+        endIndex = i;
+        break;
+      }
+    }
+
+    return endIndex;
   }
 }
 

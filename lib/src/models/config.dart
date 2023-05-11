@@ -14,7 +14,8 @@ class MpdConfig with _$MpdConfig {
         String? musicDirectory,
     @JsonKey(name: 'playlist_directory', fromJson: parseString)
         String? playlistDirectory,
-    @JsonKey(fromJson: parseBool) bool? pcre,
+    @JsonKey(fromJson: parseBool)
+        bool? pcre,
   }) = _MpdConfig;
 
   factory MpdConfig.fromJson(Map<String, dynamic> json) =>

@@ -10,7 +10,8 @@ part 'playlist_modified.g.dart';
 @freezed
 class PlaylistModified with _$PlaylistModified {
   const factory PlaylistModified({
-    @JsonKey(fromJson: parseStringOrEmpty) required String playlist,
+    @JsonKey(fromJson: parseStringOrEmpty)
+        required String playlist,
     @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
         DateTime? lastModified,
   }) = _PlaylistModified;

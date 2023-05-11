@@ -48,12 +48,10 @@ enum MpdSubsystem {
   mount;
 
   String toValue() {
-    switch (this) {
-      case MpdSubsystem.storedPlaylist:
-        return 'stored_playlist';
-      default:
-        return name;
-    }
+    return switch (this) {
+      MpdSubsystem.storedPlaylist => 'stored_playlist',
+      _ => name,
+    };
   }
 
   static MpdSubsystem? parse(String? value) {

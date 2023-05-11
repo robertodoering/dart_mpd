@@ -30,7 +30,7 @@ mixin _$MpdOutput {
   String? get plugin => throw _privateConstructorUsedError;
 
   /// Any other arbitrary values that are not explicitly parsed.
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false)
   Map<String, MpdValue> get values => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +49,7 @@ abstract class $MpdOutputCopyWith<$Res> {
       @JsonKey(fromJson: parseString) String? outputname,
       @JsonKey(fromJson: parseBool) bool? outputenabled,
       @JsonKey(fromJson: parseString) String? plugin,
-      @JsonKey(ignore: true) Map<String, MpdValue> values});
+      @JsonKey(includeFromJson: false) Map<String, MpdValue> values});
 }
 
 /// @nodoc
@@ -108,7 +108,7 @@ abstract class _$$_MpdOutputCopyWith<$Res> implements $MpdOutputCopyWith<$Res> {
       @JsonKey(fromJson: parseString) String? outputname,
       @JsonKey(fromJson: parseBool) bool? outputenabled,
       @JsonKey(fromJson: parseString) String? plugin,
-      @JsonKey(ignore: true) Map<String, MpdValue> values});
+      @JsonKey(includeFromJson: false) Map<String, MpdValue> values});
 }
 
 /// @nodoc
@@ -157,11 +157,16 @@ class __$$_MpdOutputCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MpdOutput implements _MpdOutput {
   const _$_MpdOutput(
-      {@JsonKey(fromJson: parseInt) this.outputId,
-      @JsonKey(fromJson: parseString) this.outputname,
-      @JsonKey(fromJson: parseBool) this.outputenabled,
-      @JsonKey(fromJson: parseString) this.plugin,
-      @JsonKey(ignore: true) final Map<String, MpdValue> values = const {}})
+      {@JsonKey(fromJson: parseInt)
+          this.outputId,
+      @JsonKey(fromJson: parseString)
+          this.outputname,
+      @JsonKey(fromJson: parseBool)
+          this.outputenabled,
+      @JsonKey(fromJson: parseString)
+          this.plugin,
+      @JsonKey(includeFromJson: false)
+          final Map<String, MpdValue> values = const {}})
       : _values = values;
 
   factory _$_MpdOutput.fromJson(Map<String, dynamic> json) =>
@@ -185,7 +190,7 @@ class _$_MpdOutput implements _MpdOutput {
 
   /// Any other arbitrary values that are not explicitly parsed.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false)
   Map<String, MpdValue> get values {
     if (_values is EqualUnmodifiableMapView) return _values;
     // ignore: implicit_dynamic_type
@@ -233,12 +238,16 @@ class _$_MpdOutput implements _MpdOutput {
 
 abstract class _MpdOutput implements MpdOutput {
   const factory _MpdOutput(
-          {@JsonKey(fromJson: parseInt) final int? outputId,
-          @JsonKey(fromJson: parseString) final String? outputname,
-          @JsonKey(fromJson: parseBool) final bool? outputenabled,
-          @JsonKey(fromJson: parseString) final String? plugin,
-          @JsonKey(ignore: true) final Map<String, MpdValue> values}) =
-      _$_MpdOutput;
+      {@JsonKey(fromJson: parseInt)
+          final int? outputId,
+      @JsonKey(fromJson: parseString)
+          final String? outputname,
+      @JsonKey(fromJson: parseBool)
+          final bool? outputenabled,
+      @JsonKey(fromJson: parseString)
+          final String? plugin,
+      @JsonKey(includeFromJson: false)
+          final Map<String, MpdValue> values}) = _$_MpdOutput;
 
   factory _MpdOutput.fromJson(Map<String, dynamic> json) =
       _$_MpdOutput.fromJson;
@@ -258,7 +267,7 @@ abstract class _MpdOutput implements MpdOutput {
   @override
 
   /// Any other arbitrary values that are not explicitly parsed.
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false)
   Map<String, MpdValue> get values;
   @override
   @JsonKey(ignore: true)
