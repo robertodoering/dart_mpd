@@ -15,9 +15,10 @@ final client = MpdClient(
 // a request will automatically connect to the socket if not already connected
 final song = await client.currentsong();
 
-// responses are parsed into data models
-print(song.artist);
-print(song.title);
+// responses are parsed into models
+print(song?.file);
+print(song?.tags['Artist']?.asSingle());
+print(song?.tags['Title']?.asSingle());
 
 // you can also manually connect and close the socket
 await client.connection.connect();
