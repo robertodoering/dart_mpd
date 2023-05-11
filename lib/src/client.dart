@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dart_mpd/dart_mpd.dart';
 import 'package:dart_mpd/src/parser/value_parser.dart';
 
@@ -5,13 +7,15 @@ class MpdClient {
   MpdClient({
     required MpdConnectionDetails connectionDetails,
     void Function()? onConnect,
-    void Function(MpdResponse?)? onData,
+    void Function(Uint8List)? onData,
+    void Function(MpdResponse)? onResponse,
     void Function()? onDone,
     void Function(Object, StackTrace)? onError,
   }) : _connection = MpdConnection(
           connectionDetails: connectionDetails,
           onConnect: onConnect,
           onData: onData,
+          onResponse: onResponse,
           onDone: onDone,
           onError: onError,
         );
@@ -1277,7 +1281,7 @@ class MpdClient {
   Future<void> _sendEmpty(
     String cmd, {
     List<Object?> args = const [],
-  }) async {
+  }) {
     return _send(cmd, (response) {}, args: args);
   }
 
@@ -1286,9 +1290,14 @@ class MpdClient {
     T Function(MpdResponseOk response) parse, {
     List<Object?> args = const [],
   }) async {
-    return (await _connection.send(_buildCmd(cmd, args))).map(
+    final response = await _connection.send(_buildCmd(cmd, args));
+
+    return response.map(
       ok: parse,
-      error: Future.error,
+      error: (value) => Future.error(
+        MpdClientException(value.message),
+        StackTrace.current,
+      ),
       greeting: (response) => Future.error(
         MpdClientException('unexpected event after request: $response'),
         StackTrace.current,

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:dart_mpd/dart_mpd.dart';
 
@@ -39,7 +38,7 @@ const _commonKeys = ['suffix', 'mime_type'];
 ///   In that case, we append the new value to the existing value with a comma.
 ///
 /// See: https://mpd.readthedocs.io/en/stable/protocol.html#protocol-overview
-MpdResponse parseMpdResponse(Uint8List data) {
+MpdResponse parseMpdResponse(List<int> data) {
   final values = <Map<String, MpdValue>>[];
   final valuesBuffer = <String, MpdValue>{};
 
@@ -124,8 +123,8 @@ MpdResponse parseMpdResponse(Uint8List data) {
 }
 
 List<int> _parseBinary(Iterator<int> iterator, int bytes) {
-  final binary = <int>[
-    for (var i = 0; i < bytes && iterator.moveNext(); i++) iterator.current
+  final binary = [
+    for (var i = 0; i < bytes && iterator.moveNext(); i++) iterator.current,
   ];
 
   // skip newline

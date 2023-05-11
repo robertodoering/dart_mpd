@@ -9,6 +9,7 @@ Future<void> main() async {
   final song = await client.currentsong();
 
   // responses are parsed into models
+  print(song?.file);
   print(song?.tags['Artist']?.asSingle());
   print(song?.tags['Title']?.asSingle());
 

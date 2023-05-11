@@ -4,25 +4,29 @@ import 'dart:io' show Socket, InternetAddress, InternetAddressType;
 import 'dart:typed_data';
 
 import 'package:dart_mpd/dart_mpd.dart';
+import 'package:dart_mpd/src/message_handler.dart';
 import 'package:dart_mpd/src/parser/parse_response.dart';
 
 class MpdConnection {
   MpdConnection({
     required MpdConnectionDetails connectionDetails,
     void Function()? onConnect,
-    void Function(MpdResponse)? onData,
+    void Function(Uint8List)? onData,
+    void Function(MpdResponse)? onResponse,
     void Function()? onDone,
     void Function(Object, StackTrace)? onError,
   })  : _connectionDetails = connectionDetails,
         _onConnect = onConnect,
         _onData = onData,
+        _onResponse = onResponse,
         _onDone = onDone,
         _onError = onError;
 
   final MpdConnectionDetails _connectionDetails;
 
   final void Function()? _onConnect;
-  final void Function(MpdResponse data)? _onData;
+  final void Function(Uint8List)? _onData;
+  final void Function(MpdResponse)? _onResponse;
   final void Function()? _onDone;
   final void Function(Object error, StackTrace stackTrace)? _onError;
 
@@ -30,7 +34,8 @@ class MpdConnection {
   bool _isProcessingQueue = false;
 
   Socket? _socket;
-  StreamSubscription<MpdResponse>? _subscription;
+  MessageHandler? _messageHandler;
+
   Completer<MpdResponse> _responseCompleter = Completer();
   String? _protocolVersion;
 
@@ -61,39 +66,42 @@ class MpdConnection {
       _onError?.call(error, stackTrace);
     }
 
-    final stream =
-        _socket!.transform(const _MpdResponseTransformer()).asBroadcastStream()
-          ..listen(
-            _onData,
-            onDone: onDone,
-            onError: onError,
-          );
+    _messageHandler = MessageHandler();
 
-    _subscription = stream.listen((data) {
-      _responseCompleter.complete(data);
-      _responseCompleter = Completer();
-      _subscription!.pause();
-    });
+    _socket!.listen(
+      (data) {
+        _onData?.call(data);
+        _messageHandler!.onData(data);
+      },
+      onDone: onDone,
+      onError: onError,
+    );
+
+    _messageHandler!.messageStream
+        .transform(_MpdResponseTransformer())
+        .listen(_responseListener);
 
     final response = await _read();
 
-    await response.maybeWhen(
-      greeting: (protocolVersion) async => _protocolVersion = protocolVersion,
-      orElse: () async {
-        await close();
-        throw MpdClientException(
-          'unexpected event after connection: $response',
-        );
-      },
+    response.maybeWhen(
+      greeting: (protocolVersion) => _protocolVersion = protocolVersion,
+      orElse: () => throw MpdClientException('unexpected response: $response'),
     );
   }
 
+  void _responseListener(MpdResponse response) {
+    _onResponse?.call(response);
+
+    _responseCompleter.complete(response);
+    _responseCompleter = Completer();
+  }
+
   Future<void> close() async {
-    await _socket?.close();
+    _socket?.close().ignore();
     _socket = null;
 
-    await _subscription?.cancel();
-    _subscription = null;
+    _messageHandler?.close().ignore();
+    _messageHandler = null;
 
     // prevent potentially open futures from completing after re-connecting
     _responseCompleter = Completer();
@@ -110,7 +118,9 @@ class MpdConnection {
 
         _socket!.write('$event\n');
 
-        completer.complete(await _read());
+        final response = await _read();
+
+        completer.complete(response);
       } catch (e) {
         completer.completeError(e);
       }
@@ -124,8 +134,8 @@ class MpdConnection {
   Future<MpdResponse> _read() async {
     if (!isConnected) throw const MpdClientException('not connected');
 
-    _subscription!.resume();
-    return _responseCompleter.future;
+    final response = await _responseCompleter.future;
+    return response;
   }
 
   Future<void> _processQueue() async {
@@ -141,10 +151,10 @@ class MpdConnection {
 }
 
 class _MpdResponseTransformer
-    extends StreamTransformerBase<Uint8List, MpdResponse> {
+    extends StreamTransformerBase<List<int>, MpdResponse> {
   const _MpdResponseTransformer();
   @override
-  Stream<MpdResponse> bind(Stream<Uint8List> stream) {
+  Stream<MpdResponse> bind(Stream<List<int>> stream) {
     return stream.map(parseMpdResponse);
   }
 }
