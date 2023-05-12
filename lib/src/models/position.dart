@@ -1,10 +1,10 @@
-abstract mixin class MpdPositionOrRange {
+abstract interface class MpdPositionOrRange {
   const factory MpdPositionOrRange.position(int position) = MpdPosition;
 
   const factory MpdPositionOrRange.range(int start, [int? end]) = MpdRange;
 }
 
-abstract mixin class MpdPositionOrRelativePosition {
+abstract interface class MpdPositionOrRelativePosition {
   const factory MpdPositionOrRelativePosition.position(int position) =
       MpdPosition;
 
@@ -14,7 +14,7 @@ abstract mixin class MpdPositionOrRelativePosition {
   ]) = MpdRelativePosition;
 }
 
-class MpdPosition with MpdPositionOrRange, MpdPositionOrRelativePosition {
+class MpdPosition implements MpdPositionOrRange, MpdPositionOrRelativePosition {
   const MpdPosition(this.position);
 
   final int position;
@@ -23,7 +23,7 @@ class MpdPosition with MpdPositionOrRange, MpdPositionOrRelativePosition {
   String toString() => '$position';
 }
 
-class MpdRange with MpdPositionOrRange {
+class MpdRange implements MpdPositionOrRange {
   const MpdRange(this.start, [this.end]);
 
   final int start;
@@ -38,7 +38,7 @@ class MpdRange with MpdPositionOrRange {
 
 enum Relativity { after, before }
 
-class MpdRelativePosition with MpdPositionOrRelativePosition {
+class MpdRelativePosition implements MpdPositionOrRelativePosition {
   const MpdRelativePosition(
     this.position, [
     this.relativity = Relativity.after,
