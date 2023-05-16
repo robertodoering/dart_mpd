@@ -802,10 +802,13 @@ class MpdClient {
   ///
   /// If the song file was recognized, but there is no picture, the response is
   /// successful, but is otherwise empty.
-  Future<MpdImage> readpicture(String uri, int offset) {
+  ///
+  /// Returns `null` if the song has no image.
+  Future<MpdImage?> readpicture(String uri, int offset) {
     return _send(
       'readpicture',
-      MpdImage.fromResponse,
+      (response) =>
+          response.values.isEmpty ? null : MpdImage.fromResponse(response),
       args: [uri, offset],
     );
   }
