@@ -8,6 +8,8 @@ final _errorSequence = utf8.encode('ACK ');
 final _okSequence = utf8.encode('\nOK\n');
 final _okMessage = utf8.encode('OK\n');
 
+const _newlineKeyCode = 10;
+
 /// Frames the incoming data into complete mpd messages.
 ///
 /// This is needed to handle messages when the incoming packets are partially
@@ -79,7 +81,7 @@ class MessageHandler {
     int endIndex = -1;
 
     for (int i = start + 1; i < _dataBuffer.length; ++i) {
-      if (_dataBuffer[i] == 10) {
+      if (_dataBuffer[i] == _newlineKeyCode) {
         // newline - end of message
         endIndex = i;
         break;

@@ -2,8 +2,45 @@ import 'dart:convert';
 
 import 'package:dart_mpd/dart_mpd.dart';
 
+const _newlineKeyCode = 10;
 const _greetingPrefix = 'OK MPD ';
 const _errorPrefix = 'ACK ';
+
+// songfile tags as defined in
+// https://mpd.readthedocs.io/en/stable/protocol.html#tags
+const _tags = [
+  'artist',
+  'artistsort',
+  'album',
+  'albumsort',
+  'albumartist',
+  'albumartistsort',
+  'title',
+  'track',
+  'name',
+  'genre',
+  'date',
+  'originaldate',
+  'composer',
+  'composersort',
+  'performer',
+  'conductor',
+  'work',
+  'ensemble',
+  'movement',
+  'movementnumber',
+  'location',
+  'grouping',
+  'comment',
+  'disc',
+  'label',
+  'musicbrainz_artistid',
+  'musicbrainz_albumid',
+  'musicbrainz_albumartistid',
+  'musicbrainz_trackid',
+  'musicbrainz_releasetrackid',
+  'musicbrainz_workid',
+];
 
 // keys that can't appear in the same data set
 const _uniqueKeys = [
@@ -11,7 +48,7 @@ const _uniqueKeys = [
 ];
 
 // keys that can appear multiple times per data set
-const _commonKeys = ['suffix', 'mime_type'];
+const _commonKeys = ['suffix', 'mime_type', ..._tags];
 
 /// Parses the raw message from mpd into a [MpdResponse].
 ///
@@ -50,9 +87,7 @@ MpdResponse parseMpdResponse(List<int> data) {
   while (iterator.moveNext()) {
     final value = iterator.current;
 
-    if (value == 10) {
-      // newline
-
+    if (value == _newlineKeyCode) {
       final line = utf8.decode(byteBuffer);
       byteBuffer.clear();
 
