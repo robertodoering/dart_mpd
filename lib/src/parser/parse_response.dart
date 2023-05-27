@@ -115,7 +115,7 @@ MpdResponse parseMpdResponse(List<int> data) {
         final key = pair[0];
         final value = pair[1].substring(1);
 
-        if (valuesBuffer[key] != null && _commonKeys.contains(key)) {
+        if (valuesBuffer[key] != null && _commonKeys.containsIgnoreCase(key)) {
           // add to existing value
           final existingValue = valuesBuffer[key]!.asList();
           valuesBuffer[key] = MpdValueMultiple([...existingValue, value]);
@@ -166,4 +166,10 @@ List<int> _parseBinary(Iterator<int> iterator, int bytes) {
   iterator.moveNext();
 
   return binary;
+}
+
+extension on Iterable<String> {
+  bool containsIgnoreCase(String value) => any(
+        (e) => e.toLowerCase() == value.toLowerCase(),
+      );
 }
