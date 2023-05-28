@@ -36,7 +36,9 @@ void main() {
       expect(
         response.whenOrNull(ok: (values, _) => values),
         equals([
-          {'volume': MpdValue.single('100')}
+          {
+            'volume': ['100'],
+          }
         ]),
       );
       expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
@@ -51,7 +53,10 @@ void main() {
       expect(
         response.whenOrNull(ok: (values, _) => values),
         equals([
-          {'volume': MpdValue.single('100'), 'repeat': MpdValue.single('1')}
+          {
+            'volume': ['100'],
+            'repeat': ['1'],
+          }
         ]),
       );
       expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
@@ -70,8 +75,12 @@ void main() {
       expect(
         response.whenOrNull(ok: (values, _) => values),
         equals([
-          {'file': MpdValue.single('/home/foo/Music/bar.ogg')},
-          {'file': MpdValue.single('/home/foo/Music/bar2.ogg')},
+          {
+            'file': ['/home/foo/Music/bar.ogg'],
+          },
+          {
+            'file': ['/home/foo/Music/bar2.ogg'],
+          },
         ]),
       );
       expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
@@ -95,14 +104,14 @@ void main() {
         response.whenOrNull(ok: (values, _) => values),
         equals([
           {
-            'file': MpdValue.single('/home/foo/Music/bar.ogg'),
-            'Title': MpdValue.single('bar'),
-            'Artist': MpdValue.single('foo'),
+            'file': ['/home/foo/Music/bar.ogg'],
+            'Title': ['bar'],
+            'Artist': ['foo'],
           },
           {
-            'file': MpdValue.single('/home/foo/Music/bar2.ogg'),
-            'Title': MpdValue.single('bar2'),
-            'Artist': MpdValue.single('foo2'),
+            'file': ['/home/foo/Music/bar2.ogg'],
+            'Title': ['bar2'],
+            'Artist': ['foo2'],
           },
         ]),
       );
@@ -126,12 +135,16 @@ void main() {
         response.whenOrNull(ok: (values, _) => values),
         equals([
           {
-            'file': MpdValue.single('/home/foo/Music/bar.ogg'),
-            'Title': MpdValue.single('bar'),
-            'Artist': MpdValue.single('foo'),
+            'file': ['/home/foo/Music/bar.ogg'],
+            'Title': ['bar'],
+            'Artist': ['foo'],
           },
-          {'directory': MpdValue.single('/home/foo')},
-          {'directory': MpdValue.single('/home/foo/Music')},
+          {
+            'directory': ['/home/foo'],
+          },
+          {
+            'directory': ['/home/foo/Music'],
+          },
         ]),
       );
       expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
@@ -159,18 +172,18 @@ void main() {
         response.whenOrNull(ok: (values, _) => values),
         equals([
           {
-            'plugin': MpdValue.single('mad'),
-            'suffix': MpdValue.multiple(['mp3', 'mp2']),
-            'mime_type': MpdValue.single('audio/mpeg'),
+            'plugin': ['mad'],
+            'suffix': ['mp3', 'mp2'],
+            'mime_type': ['audio/mpeg'],
           },
           {
-            'plugin': MpdValue.single('vorbis'),
-            'suffix': MpdValue.multiple(['ogg', 'oga']),
-            'mime_type': MpdValue.multiple([
+            'plugin': ['vorbis'],
+            'suffix': ['ogg', 'oga'],
+            'mime_type': [
               'application/ogg',
               'audio/ogg',
               'audio/vorbis',
-            ]),
+            ],
           },
         ]),
       );
@@ -186,7 +199,9 @@ void main() {
       expect(
         response.whenOrNull(ok: (values, _) => values),
         equals([
-          {'binary': MpdValue.single('4')}
+          {
+            'binary': ['4'],
+          }
         ]),
       );
       expect(
@@ -224,30 +239,30 @@ void main() {
         response.whenOrNull(ok: (values, _) => values),
         equals([
           {
-            'file': MpdValue.single(
+            'file': [
               'NAS/NAS/Baroque/Guitar/Guitar_Concertos_-_DECCA_464_0132/01.Concerto_in_D_major_for_4_guitars_-_1._Allegro-Vivaldi,_Antonio.flac',
-            ),
-            'Last-Modified': MpdValue.single('2022-01-23T18:26:15Z'),
-            'Format': MpdValue.single('44100:16:2'),
-            'Performer': MpdValue.multiple([
+            ],
+            'Last-Modified': ['2022-01-23T18:26:15Z'],
+            'Format': ['44100:16:2'],
+            'Performer': [
               'Los Romeros',
               'Academy of St. Martin-in-the-Fields',
               'Brown, Iona',
-            ]),
-            'Album': MpdValue.single('Guitar Concertos - DECCA 464 0132'),
-            'Composer': MpdValue.single('Vivaldi, Antonio'),
-            'Artist': MpdValue.single('Vivaldi, Antonio'),
-            'Date': MpdValue.single('1990'),
-            'Title': MpdValue.single(
+            ],
+            'Album': ['Guitar Concertos - DECCA 464 0132'],
+            'Composer': ['Vivaldi, Antonio'],
+            'Artist': ['Vivaldi, Antonio'],
+            'Date': ['1990'],
+            'Title': [
               'Concerto in D major for 4 guitars - 1. Allegro',
-            ),
-            'Genre': MpdValue.single('Baroque'),
-            'Track': MpdValue.single('1'),
-            'Time': MpdValue.single('184'),
-            'duration': MpdValue.single('184.106'),
-            'Pos': MpdValue.single('0'),
-            'Id': MpdValue.single('160'),
-          }
+            ],
+            'Genre': ['Baroque'],
+            'Track': ['1'],
+            'Time': ['184'],
+            'duration': ['184.106'],
+            'Pos': ['0'],
+            'Id': ['160'],
+          },
         ]),
       );
       expect(response.whenOrNull(ok: (_, binary) => binary), isNull);

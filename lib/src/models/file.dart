@@ -21,11 +21,11 @@ class MpdFile with _$MpdFile {
     int? size,
   }) = MpdFileDirectory;
 
-  static MpdFile? fromValue(Map<String, MpdValue> value) {
+  static MpdFile? fromValue(Map<String, List<String>> value) {
     if (value['file'] != null) {
       return MpdFile.file(
-        file: parseStringOrEmpty(value['file']),
-        song: value.length > 3 ? MpdSong.fromValue(value) : null,
+        file: parseStringSafe(value['file']),
+        song: value.length > 3 ? MpdSong.fromJson(value) : null,
         lastModified: parseDateTime(value['Last-Modified']),
         size: parseInt(value['size']),
       );
@@ -33,7 +33,7 @@ class MpdFile with _$MpdFile {
 
     if (value['directory'] != null) {
       return MpdFile.directory(
-        directory: parseStringOrEmpty(value['directory']),
+        directory: parseStringSafe(value['directory']),
         lastModified: parseDateTime(value['Last-Modified']),
         size: parseInt(value['size']),
       );

@@ -7,8 +7,8 @@ part of 'mount.dart';
 // **************************************************************************
 
 _$_MpdMount _$$_MpdMountFromJson(Map<String, dynamic> json) => _$_MpdMount(
-      mount: parseString(json['mount'] as MpdValue?),
-      storage: parseString(json['storage'] as MpdValue?),
+      mount: parseString(json['mount'] as List<String>?),
+      storage: parseString(json['storage'] as List<String>?),
     );
 
 Map<String, dynamic> _$$_MpdMountToJson(_$_MpdMount instance) =>

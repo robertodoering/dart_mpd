@@ -1,54 +1,54 @@
 import 'package:dart_mpd/dart_mpd.dart';
 
-String? parseString(MpdValue? value) {
+String? parseString(List<String>? value) {
   if (value == null) return null;
 
-  return value.asSingle();
+  return value.single;
 }
 
-String parseStringOrEmpty(MpdValue? value) {
+String parseStringSafe(List<String>? value) {
   return parseString(value) ?? '';
 }
 
-int? parseInt(MpdValue? value) {
+int? parseInt(List<String>? value) {
   if (value == null) return null;
 
-  return int.tryParse(value.asSingle());
+  return int.tryParse(value.single);
 }
 
-double? parseDouble(MpdValue? value) {
+double? parseDouble(List<String>? value) {
   if (value == null) return null;
 
-  return double.tryParse(value.asSingle());
+  return double.tryParse(value.single);
 }
 
-bool? parseBool(MpdValue? value) {
+bool? parseBool(List<String>? value) {
   if (value == null) return null;
 
-  return value.asSingle() == '1';
+  return value.single == '1';
 }
 
-Duration? parseSeconds(MpdValue? value) {
+Duration? parseSeconds(List<String>? value) {
   final intValue = parseInt(value);
   if (intValue == null) return null;
 
   return Duration(seconds: intValue);
 }
 
-DateTime? parseDateTime(MpdValue? value) {
+DateTime? parseDateTime(List<String>? value) {
   if (value == null) return null;
 
-  return DateTime.tryParse(value.asSingle());
+  return DateTime.tryParse(value.single);
 }
 
-DateTime? parseTimestamp(MpdValue? value) {
+DateTime? parseTimestamp(List<String>? value) {
   final intValue = parseInt(value);
   if (intValue == null) return null;
 
   return DateTime.fromMillisecondsSinceEpoch(intValue * 1000);
 }
 
-Duration? parseDuration(MpdValue? value) {
+Duration? parseDuration(List<String>? value) {
   final doubleValue = parseDouble(value);
   if (doubleValue == null) return null;
 
@@ -58,23 +58,23 @@ Duration? parseDuration(MpdValue? value) {
   return Duration(seconds: seconds, milliseconds: milliseconds.toInt());
 }
 
-MapEntry<String, String>? parseSticker(MpdValue? value) {
+MapEntry<String, String>? parseSticker(List<String>? value) {
   if (value == null) return null;
 
-  final pair = value.asSingle().split('=');
+  final pair = value.single.split('=');
   if (pair.length != 2) return null;
 
   return MapEntry(pair[0], pair[1]);
 }
 
-MpdSingle? parseMpdSingle(MpdValue? value) {
+MpdSingle? parseMpdSingle(List<String>? value) {
   if (value == null) return null;
 
-  return MpdSingle.parse(value.asSingle());
+  return MpdSingle.parse(value.single);
 }
 
-MpdState? parseMpdState(MpdValue? value) {
+MpdState? parseMpdState(List<String>? value) {
   if (value == null) return null;
 
-  return MpdState.values.byName(value.asSingle());
+  return MpdState.values.byName(value.single);
 }

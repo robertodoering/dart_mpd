@@ -7,13 +7,13 @@ part of 'stats.dart';
 // **************************************************************************
 
 _$_MpdStats _$$_MpdStatsFromJson(Map<String, dynamic> json) => _$_MpdStats(
-      artists: parseInt(json['artists'] as MpdValue?),
-      albums: parseInt(json['albums'] as MpdValue?),
-      songs: parseInt(json['songs'] as MpdValue?),
-      uptime: parseSeconds(json['uptime'] as MpdValue?),
-      dbPlaytime: parseSeconds(json['db_playtime'] as MpdValue?),
-      dbUpdate: parseTimestamp(json['db_update'] as MpdValue?),
-      playtime: parseSeconds(json['playtime'] as MpdValue?),
+      artists: parseInt(json['artists'] as List<String>?),
+      albums: parseInt(json['albums'] as List<String>?),
+      songs: parseInt(json['songs'] as List<String>?),
+      uptime: parseSeconds(json['uptime'] as List<String>?),
+      dbPlaytime: parseSeconds(json['db_playtime'] as List<String>?),
+      dbUpdate: parseTimestamp(json['db_update'] as List<String>?),
+      playtime: parseSeconds(json['playtime'] as List<String>?),
     );
 
 Map<String, dynamic> _$$_MpdStatsToJson(_$_MpdStats instance) =>

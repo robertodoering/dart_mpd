@@ -1,4 +1,3 @@
-import 'package:dart_mpd/dart_mpd.dart';
 import 'package:dart_mpd/src/parser/value_parser.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,7 +11,7 @@ class MpdCount with _$MpdCount {
     int? playtime,
   }) = _MpdCount;
 
-  factory MpdCount.fromValue(Map<String, MpdValue> value) {
+  factory MpdCount.fromValue(Map<String, List<String>> value) {
     String? group;
 
     final filtered = {...value}

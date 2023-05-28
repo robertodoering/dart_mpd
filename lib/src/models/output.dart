@@ -1,6 +1,5 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:dart_mpd/dart_mpd.dart';
 import 'package:dart_mpd/src/parser/value_parser.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -16,13 +15,15 @@ class MpdOutput with _$MpdOutput {
     @JsonKey(fromJson: parseString) String? plugin,
 
     /// Any other arbitrary values that are not explicitly parsed.
-    @JsonKey(includeFromJson: false) @Default({}) Map<String, MpdValue> values,
+    @JsonKey(includeFromJson: false)
+    @Default({})
+    Map<String, List<String>> values,
   }) = _MpdOutput;
 
   factory MpdOutput.fromJson(Map<String, dynamic> json) =>
       _$MpdOutputFromJson(json);
 
-  factory MpdOutput.fromValue(Map<String, MpdValue> value) {
+  factory MpdOutput.fromValue(Map<String, List<String>> value) {
     return MpdOutput.fromJson(value).copyWith(
       values: {...value}..removeWhere(
           (key, _) => [

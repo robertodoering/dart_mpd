@@ -70,7 +70,7 @@ class MpdConnectionDetails {
 
   /// File system interface used to read files from.
   ///
-  /// Used to check if the socket file exists.
+  /// Used to check if the unix socket file exists.
   @visibleForTesting
   static FileSystem fileSystem = LocalFileSystem();
 }

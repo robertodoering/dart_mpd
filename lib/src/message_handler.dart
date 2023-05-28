@@ -37,6 +37,7 @@ class MessageHandler {
       // only OK received
       _messageController.add([..._dataBuffer]);
       _dataBuffer.clear();
+      return;
     }
 
     final greeting = _findSequence(_dataBuffer, _greetingSequence);

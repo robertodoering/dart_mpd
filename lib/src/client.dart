@@ -40,7 +40,7 @@ class MpdClient {
     return _send(
       'currentsong',
       (response) => response.values.isNotEmpty
-          ? MpdSong.fromValue(response.values.single)
+          ? MpdSong.fromJson(response.values.single)
           : null,
     );
   }
@@ -93,7 +93,7 @@ class MpdClient {
     return _send(
       'idle',
       (response) => response.values
-          .map((value) => MpdSubsystem.parse(value['changed']?.asSingle()))
+          .map((value) => MpdSubsystem.parse(value['changed']?.single))
           .whereType<MpdSubsystem>()
           .toSet(),
       args: [...?subsystems?.map((e) => e.toValue())],
@@ -209,7 +209,7 @@ class MpdClient {
     return _send(
       'replay_gain_status',
       (response) => ReplayGainMode.parse(
-        response.values.single['replay_gain_mode']?.asSingle(),
+        response.values.single['replay_gain_mode']?.single,
       ),
     );
   }
@@ -356,7 +356,7 @@ class MpdClient {
     return _send(
       'playlistfind',
       (response) =>
-          response.values.map(MpdSong.fromValue).whereType<MpdSong>().toList(),
+          response.values.map(MpdSong.fromJson).whereType<MpdSong>().toList(),
       args: [
         filter,
         if (sort != null) ...['sort', sort],
@@ -372,7 +372,7 @@ class MpdClient {
     return _send(
       'playlistid',
       (response) =>
-          response.values.map(MpdSong.fromValue).whereType<MpdSong>().toList(),
+          response.values.map(MpdSong.fromJson).whereType<MpdSong>().toList(),
       args: [songId],
     );
   }
@@ -383,7 +383,7 @@ class MpdClient {
     return _send(
       'playlistinfo',
       (response) =>
-          response.values.map(MpdSong.fromValue).whereType<MpdSong>().toList(),
+          response.values.map(MpdSong.fromJson).whereType<MpdSong>().toList(),
       args: [positionOrRange],
     );
   }
@@ -402,7 +402,7 @@ class MpdClient {
     return _send(
       'playlistsearch',
       (response) =>
-          response.values.map(MpdSong.fromValue).whereType<MpdSong>().toList(),
+          response.values.map(MpdSong.fromJson).whereType<MpdSong>().toList(),
       args: [
         filter,
         if (sort != null) ...['sort', sort],
@@ -422,7 +422,7 @@ class MpdClient {
     return _send(
       'plchanges',
       (response) =>
-          response.values.map(MpdSong.fromValue).whereType<MpdSong>().toList(),
+          response.values.map(MpdSong.fromJson).whereType<MpdSong>().toList(),
       args: [version, positionOrRange],
     );
   }
@@ -542,7 +542,7 @@ class MpdClient {
     return _send(
       'listplaylistinfo',
       (response) =>
-          response.values.map(MpdSong.fromValue).whereType<MpdSong>().toList(),
+          response.values.map(MpdSong.fromJson).whereType<MpdSong>().toList(),
       args: [name],
     );
   }
@@ -668,7 +668,7 @@ class MpdClient {
   Future<String?> getfingerprint(String uri) {
     return _send(
       'getfingerprint',
-      (response) => response.values.single['chromaprint']?.asSingle(),
+      (response) => response.values.single['chromaprint']?.single,
       args: [uri],
     );
   }
@@ -681,7 +681,7 @@ class MpdClient {
   Future<List<MpdSong>> find(String filter, {String? sort, MpdRange? window}) {
     return _send(
       'find',
-      (response) => response.values.map(MpdSong.fromValue).toList(),
+      (response) => response.values.map(MpdSong.fromJson).toList(),
       args: [
         filter,
         if (sort != null) ...['sort', sort],
@@ -723,7 +723,7 @@ class MpdClient {
   /// `list('album', groups: ['albumartist'])`
   ///
   /// For filters, see https://mpd.readthedocs.io/en/stable/protocol.html#filter-syntax.
-  Future<List<Map<String, MpdValue>>> list(
+  Future<List<Map<String, List<String>>>> list(
     String type, {
     String? filter,
     List<String> groups = const [],
@@ -786,7 +786,7 @@ class MpdClient {
   ///
   /// The meaning of these depends on the codec, and not all decoder plugins
   /// support it. For example, on Ogg files, this lists the Vorbis comments.
-  Future<Map<String, MpdValue>> readcomments(String uri) {
+  Future<Map<String, List<String>>> readcomments(String uri) {
     return _send(
       'readcomments',
       (response) => response.values.single,
@@ -826,7 +826,7 @@ class MpdClient {
   }) {
     return _send(
       'search',
-      (response) => response.values.map(MpdSong.fromValue).toList(),
+      (response) => response.values.map(MpdSong.fromJson).toList(),
       args: [
         filter,
         if (sort != null) ...['sort', sort],

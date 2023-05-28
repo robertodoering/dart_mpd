@@ -10,8 +10,8 @@ Future<void> main() async {
 
   // responses are parsed into models
   print(song?.file);
-  print(song?.tags['Artist']?.asSingle());
-  print(song?.tags['Title']?.asSingle());
+  print(song?.artist);
+  print(song?.title);
 
   // you can also manually connect and close the socket
   await client.connection.connect();

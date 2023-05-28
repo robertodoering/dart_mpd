@@ -4,6 +4,7 @@
 
 dart_mpd is a dart package which implements the [Music Player Daemon](https://www.musicpd.org/) protocol.
 
+Supports Linux, macOS, Windows and web.
 
 ## Example
 
@@ -16,9 +17,10 @@ final client = MpdClient(
 final song = await client.currentsong();
 
 // responses are parsed into models
-print(song?.file);
-print(song?.tags['Artist']?.asSingle());
-print(song?.tags['Title']?.asSingle());
+print(song?.file); // -> String
+print(song?.duration); // -> Duration
+print(song?.artist); // -> List<String>
+print(song?.title); // -> List<String>
 
 // you can also manually connect and close the socket
 await client.connection.connect();
@@ -32,20 +34,22 @@ MpdClient(
 );
 ```
 
-### Requests
+## Requests
 
 To handle concurrent request, each request gets queued. That means you can use use one client to make simultanious requests.
 
 Keep in mind that using `idle` will block the socket until an `idle` response has been received.
 
-### Connection details
+## Connection details
 
 `MpdConnectionDetails.resolve` will resolve the connection details from
 environment variables and fallback to the default values as described in
-https://mpd.readthedocs.io/en/stable/client.html#connecting-to-mpd
+https://mpd.readthedocs.io/en/stable/client.html#connecting-to-mpd.
+
+You can also manually set the host and port using the default constructor.
 
 
-### Error handling
+## Error handling
 
 A request can throw the following errors:
 - `SocketException` if the host-lookup or connection fails

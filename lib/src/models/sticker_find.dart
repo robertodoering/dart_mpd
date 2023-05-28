@@ -1,4 +1,3 @@
-import 'package:dart_mpd/dart_mpd.dart';
 import 'package:dart_mpd/src/parser/value_parser.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -11,7 +10,7 @@ class MpdStickerFind with _$MpdStickerFind {
     required MapEntry<String, String> sticker,
   }) = _MpdStickerFind;
 
-  static MpdStickerFind? fromValue(Map<String, MpdValue> value) {
+  static MpdStickerFind? fromValue(Map<String, List<String>> value) {
     final file = parseString(value['file']);
     if (file == null) return null;
 

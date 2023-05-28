@@ -8,8 +8,8 @@ part of 'message.dart';
 
 _$_MpdMessage _$$_MpdMessageFromJson(Map<String, dynamic> json) =>
     _$_MpdMessage(
-      channel: parseStringOrEmpty(json['channel'] as MpdValue?),
-      message: parseStringOrEmpty(json['message'] as MpdValue?),
+      channel: parseStringSafe(json['channel'] as List<String>?),
+      message: parseStringSafe(json['message'] as List<String>?),
     );
 
 Map<String, dynamic> _$$_MpdMessageToJson(_$_MpdMessage instance) =>

@@ -20,9 +20,9 @@ MpdMessage _$MpdMessageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MpdMessage {
-  @JsonKey(fromJson: parseStringOrEmpty)
+  @JsonKey(fromJson: parseStringSafe)
   String get channel => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: parseStringOrEmpty)
+  @JsonKey(fromJson: parseStringSafe)
   String get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,8 +38,8 @@ abstract class $MpdMessageCopyWith<$Res> {
       _$MpdMessageCopyWithImpl<$Res, MpdMessage>;
   @useResult
   $Res call(
-      {@JsonKey(fromJson: parseStringOrEmpty) String channel,
-      @JsonKey(fromJson: parseStringOrEmpty) String message});
+      {@JsonKey(fromJson: parseStringSafe) String channel,
+      @JsonKey(fromJson: parseStringSafe) String message});
 }
 
 /// @nodoc
@@ -80,8 +80,8 @@ abstract class _$$_MpdMessageCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(fromJson: parseStringOrEmpty) String channel,
-      @JsonKey(fromJson: parseStringOrEmpty) String message});
+      {@JsonKey(fromJson: parseStringSafe) String channel,
+      @JsonKey(fromJson: parseStringSafe) String message});
 }
 
 /// @nodoc
@@ -115,17 +115,17 @@ class __$$_MpdMessageCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MpdMessage implements _MpdMessage {
   const _$_MpdMessage(
-      {@JsonKey(fromJson: parseStringOrEmpty) required this.channel,
-      @JsonKey(fromJson: parseStringOrEmpty) required this.message});
+      {@JsonKey(fromJson: parseStringSafe) required this.channel,
+      @JsonKey(fromJson: parseStringSafe) required this.message});
 
   factory _$_MpdMessage.fromJson(Map<String, dynamic> json) =>
       _$$_MpdMessageFromJson(json);
 
   @override
-  @JsonKey(fromJson: parseStringOrEmpty)
+  @JsonKey(fromJson: parseStringSafe)
   final String channel;
   @override
-  @JsonKey(fromJson: parseStringOrEmpty)
+  @JsonKey(fromJson: parseStringSafe)
   final String message;
 
   @override
@@ -162,19 +162,18 @@ class _$_MpdMessage implements _MpdMessage {
 
 abstract class _MpdMessage implements MpdMessage {
   const factory _MpdMessage(
-      {@JsonKey(fromJson: parseStringOrEmpty)
-          required final String channel,
-      @JsonKey(fromJson: parseStringOrEmpty)
-          required final String message}) = _$_MpdMessage;
+          {@JsonKey(fromJson: parseStringSafe) required final String channel,
+          @JsonKey(fromJson: parseStringSafe) required final String message}) =
+      _$_MpdMessage;
 
   factory _MpdMessage.fromJson(Map<String, dynamic> json) =
       _$_MpdMessage.fromJson;
 
   @override
-  @JsonKey(fromJson: parseStringOrEmpty)
+  @JsonKey(fromJson: parseStringSafe)
   String get channel;
   @override
-  @JsonKey(fromJson: parseStringOrEmpty)
+  @JsonKey(fromJson: parseStringSafe)
   String get message;
   @override
   @JsonKey(ignore: true)
