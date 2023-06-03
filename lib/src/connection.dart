@@ -71,7 +71,7 @@ class MpdConnection {
     _socket!.listen(
       (data) {
         _onData?.call(data);
-        _messageHandler!.onData(data);
+        _messageHandler?.onData(data);
       },
       onDone: onDone,
       onError: onError,
