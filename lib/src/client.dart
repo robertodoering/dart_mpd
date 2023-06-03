@@ -7,6 +7,7 @@ class MpdClient {
   MpdClient({
     required MpdConnectionDetails connectionDetails,
     void Function()? onConnect,
+    void Function(String)? onSend,
     void Function(Uint8List)? onData,
     void Function(MpdResponse)? onResponse,
     void Function()? onDone,
@@ -14,6 +15,7 @@ class MpdClient {
   }) : _connection = MpdConnection(
           connectionDetails: connectionDetails,
           onConnect: onConnect,
+          onSend: onSend,
           onData: onData,
           onResponse: onResponse,
           onDone: onDone,

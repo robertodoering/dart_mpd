@@ -10,13 +10,15 @@ import 'package:dart_mpd/src/parser/parse_response.dart';
 class MpdConnection {
   MpdConnection({
     required MpdConnectionDetails connectionDetails,
-    void Function()? onConnect,
-    void Function(Uint8List)? onData,
-    void Function(MpdResponse)? onResponse,
-    void Function()? onDone,
-    void Function(Object, StackTrace)? onError,
+    required void Function()? onConnect,
+    required void Function(String)? onSend,
+    required void Function(Uint8List)? onData,
+    required void Function(MpdResponse)? onResponse,
+    required void Function()? onDone,
+    required void Function(Object, StackTrace)? onError,
   })  : _connectionDetails = connectionDetails,
         _onConnect = onConnect,
+        _onSend = onSend,
         _onData = onData,
         _onResponse = onResponse,
         _onDone = onDone,
@@ -25,6 +27,7 @@ class MpdConnection {
   final MpdConnectionDetails _connectionDetails;
 
   final void Function()? _onConnect;
+  final void Function(String)? _onSend;
   final void Function(Uint8List)? _onData;
   final void Function(MpdResponse)? _onResponse;
   final void Function()? _onDone;
@@ -116,6 +119,7 @@ class MpdConnection {
       try {
         if (!isConnected) await connect();
 
+        _onSend?.call(event);
         _socket!.write('$event\n');
 
         final response = await _read();
