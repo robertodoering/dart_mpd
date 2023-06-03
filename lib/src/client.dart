@@ -26,7 +26,7 @@ class MpdClient {
   MpdConnection get connection => _connection;
 
   // querying mpd's status
-  // https://mpd.readthedocs.io/en/stable/protocol.html#the-queue
+  // https://mpd.readthedocs.io/en/stable/protocol.html#querying-mpd-s-status
 
   /// Clears the current error message in status (this is also accomplished by
   /// any command that starts playback).
@@ -124,7 +124,7 @@ class MpdClient {
   }
 
   // playback options
-  // https://mpd.readthedocs.io/en/stable/protocol.html#the-queue
+  // https://mpd.readthedocs.io/en/stable/protocol.html#playback-options
 
   /// Sets consume state to [state].
   ///
@@ -217,7 +217,7 @@ class MpdClient {
   }
 
   // controlling playback
-  // https://mpd.readthedocs.io/en/stable/protocol.html#the-queue
+  // https://mpd.readthedocs.io/en/stable/protocol.html#controlling-playback
 
   /// Plays next song in the playlist.
   Future<void> next() {
