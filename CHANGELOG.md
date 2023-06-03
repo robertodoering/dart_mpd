@@ -1,3 +1,13 @@
+## 0.3.0
+- Added fields for all possible tags in `MpdSong`
+  - E.g. you can now use `MpdSong.artist` instead of `MpdSong.tags['Artist']`.
+- Added `MpdClient.onSend` callback
+  - Called with the event that is sent to MPD
+- Fixed multiple values for a tag in a song didn't get parsed correctly
+- Fixed `readpicture` threw an exception when the current song had no picture
+  - Returns `null` now.
+- Removed `MpdValue` union type in favor of a `List<String>` to store the values of a key in `MpdResponse`
+
 ## 0.2.0
 
 - Upgraded to dart 3
