@@ -10,6 +10,7 @@ Supports Linux, macOS, Windows and web.
 
 ```dart
 final client = MpdClient(
+  // resolves connection details from environment variables and defaults
   connectionDetails: MpdConnectionDetails.resolve(),
 );
 
@@ -22,15 +23,15 @@ print(song?.duration); // -> Duration
 print(song?.artist); // -> List<String>
 print(song?.title); // -> List<String>
 
-// you can also manually connect and close the socket
-await client.connection.connect();
-await client.connection.close();
-
 // you can hook into the connection lifecycle through callbacks on the client
-MpdClient(
+final client = MpdClient(
   connectionDetails: MpdConnectionDetails.resolve(),
   onConnect: () => print('connected'),
+  onSend: (event) => print('sent: $event'),
+  onData: (data) => print('received: $data'),
+  onResponse: (response) => print('response: $response'),
   onDone: () => print('closed'),
+  onError: (e, st) => print('error: $e'),
 );
 ```
 
@@ -52,10 +53,10 @@ You can also manually set the host and port using the default constructor.
 ## Error handling
 
 A request can throw the following errors:
-- `SocketException` if the host-lookup or connection fails
-- `MpdClientException` if an unexpected response is received
 - `MpdResponseError` if the server returns with an error
-- any other error that may be thrown when trying to parse the response
+- `SocketException` if the host-lookup or connection fails
+- `MpdUnexpectedResponse` if an unexpected response is received
+- `MpdClientException` and any other error that may be thrown when trying to parse the response
   (this indicates a bug in the library and should be reported)
 
 ```dart
@@ -76,11 +77,11 @@ If a command has not yet been added to the `MpdClient`, a request can be made ma
 
 ```dart
 final response = await client.connection.send('currentsong');
-final values = response.mapOrNull(
-  ok: (responseOk) => responseOk.values,
-  error: (responseError) => print(responseError.message),
-);
-// values is a list of the received key-value pairs
+final values = switch (response) {
+  MpdResponseOk(:final values) => values,
+  _ => null,
+};
+// values is a list of the received key-value pairs (or null on error)
 ```
 
 If a command is in the stable release and has not been added to dart_mpd, please file an [issue](https://github.com/robertodoering/twitter_api/issues).

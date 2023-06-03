@@ -9,9 +9,10 @@ Future<void> main() async {
   final song = await client.currentsong();
 
   // responses are parsed into models
-  print(song?.file);
-  print(song?.artist);
-  print(song?.title);
+  print(song?.file); // -> String
+  print(song?.duration); // -> Duration
+  print(song?.artist); // -> List<String>
+  print(song?.title); // -> List<String>
 
   // you can also manually connect and close the socket
   await client.connection.connect();
@@ -21,7 +22,11 @@ Future<void> main() async {
   MpdClient(
     connectionDetails: MpdConnectionDetails.resolve(),
     onConnect: () => print('connected'),
+    onSend: (event) => print('sent: $event'),
+    onData: (data) => print('received: $data'),
+    onResponse: (response) => print('response: $response'),
     onDone: () => print('closed'),
+    onError: (e, st) => print('error: $e'),
   );
 
   // `MpdConnectionDetails.resolve` will resolve the connection details from
