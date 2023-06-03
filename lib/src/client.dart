@@ -1297,17 +1297,11 @@ class MpdClient {
   }) async {
     final response = await _connection.send(_buildCmd(cmd, args));
 
-    return response.map(
-      ok: parse,
-      error: (value) => Future.error(
-        MpdClientException(value.message),
-        StackTrace.current,
-      ),
-      greeting: (response) => Future.error(
-        MpdClientException('unexpected event after request: $response'),
-        StackTrace.current,
-      ),
-    );
+    return switch (response) {
+      MpdResponseOk ok => parse(ok),
+      MpdResponseError _ => throw response,
+      MpdResponseGreeting _ => throw MpdUnexpectedResponse(response),
+    };
   }
 }
 

@@ -86,10 +86,11 @@ class MpdConnection {
 
     final response = await _read();
 
-    response.maybeWhen(
-      greeting: (protocolVersion) => _protocolVersion = protocolVersion,
-      orElse: () => throw MpdClientException('unexpected response: $response'),
-    );
+    _protocolVersion = switch (response) {
+      MpdResponseGreeting(:final protocolVersion) => protocolVersion,
+      MpdResponseOk _ => throw MpdUnexpectedResponse(response),
+      MpdResponseError _ => throw response,
+    };
   }
 
   void _responseListener(MpdResponse response) {
