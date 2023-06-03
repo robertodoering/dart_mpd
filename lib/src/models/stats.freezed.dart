@@ -47,14 +47,20 @@ abstract class $MpdStatsCopyWith<$Res> {
       _$MpdStatsCopyWithImpl<$Res, MpdStats>;
   @useResult
   $Res call(
-      {@JsonKey(fromJson: parseInt) int? artists,
-      @JsonKey(fromJson: parseInt) int? albums,
-      @JsonKey(fromJson: parseInt) int? songs,
-      @JsonKey(fromJson: parseSeconds) Duration? uptime,
+      {@JsonKey(fromJson: parseInt)
+          int? artists,
+      @JsonKey(fromJson: parseInt)
+          int? albums,
+      @JsonKey(fromJson: parseInt)
+          int? songs,
+      @JsonKey(fromJson: parseSeconds)
+          Duration? uptime,
       @JsonKey(name: 'db_playtime', fromJson: parseSeconds)
-      Duration? dbPlaytime,
-      @JsonKey(name: 'db_update', fromJson: parseTimestamp) DateTime? dbUpdate,
-      @JsonKey(fromJson: parseSeconds) Duration? playtime});
+          Duration? dbPlaytime,
+      @JsonKey(name: 'db_update', fromJson: parseTimestamp)
+          DateTime? dbUpdate,
+      @JsonKey(fromJson: parseSeconds)
+          Duration? playtime});
 }
 
 /// @nodoc
@@ -119,14 +125,20 @@ abstract class _$$_MpdStatsCopyWith<$Res> implements $MpdStatsCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(fromJson: parseInt) int? artists,
-      @JsonKey(fromJson: parseInt) int? albums,
-      @JsonKey(fromJson: parseInt) int? songs,
-      @JsonKey(fromJson: parseSeconds) Duration? uptime,
+      {@JsonKey(fromJson: parseInt)
+          int? artists,
+      @JsonKey(fromJson: parseInt)
+          int? albums,
+      @JsonKey(fromJson: parseInt)
+          int? songs,
+      @JsonKey(fromJson: parseSeconds)
+          Duration? uptime,
       @JsonKey(name: 'db_playtime', fromJson: parseSeconds)
-      Duration? dbPlaytime,
-      @JsonKey(name: 'db_update', fromJson: parseTimestamp) DateTime? dbUpdate,
-      @JsonKey(fromJson: parseSeconds) Duration? playtime});
+          Duration? dbPlaytime,
+      @JsonKey(name: 'db_update', fromJson: parseTimestamp)
+          DateTime? dbUpdate,
+      @JsonKey(fromJson: parseSeconds)
+          Duration? playtime});
 }
 
 /// @nodoc
@@ -261,15 +273,20 @@ class _$_MpdStats implements _MpdStats {
 
 abstract class _MpdStats implements MpdStats {
   const factory _MpdStats(
-      {@JsonKey(fromJson: parseInt) final int? artists,
-      @JsonKey(fromJson: parseInt) final int? albums,
-      @JsonKey(fromJson: parseInt) final int? songs,
-      @JsonKey(fromJson: parseSeconds) final Duration? uptime,
+      {@JsonKey(fromJson: parseInt)
+          final int? artists,
+      @JsonKey(fromJson: parseInt)
+          final int? albums,
+      @JsonKey(fromJson: parseInt)
+          final int? songs,
+      @JsonKey(fromJson: parseSeconds)
+          final Duration? uptime,
       @JsonKey(name: 'db_playtime', fromJson: parseSeconds)
-      final Duration? dbPlaytime,
+          final Duration? dbPlaytime,
       @JsonKey(name: 'db_update', fromJson: parseTimestamp)
-      final DateTime? dbUpdate,
-      @JsonKey(fromJson: parseSeconds) final Duration? playtime}) = _$_MpdStats;
+          final DateTime? dbUpdate,
+      @JsonKey(fromJson: parseSeconds)
+          final Duration? playtime}) = _$_MpdStats;
 
   factory _MpdStats.fromJson(Map<String, dynamic> json) = _$_MpdStats.fromJson;
 

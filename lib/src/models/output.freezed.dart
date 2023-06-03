@@ -157,12 +157,16 @@ class __$$_MpdOutputCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MpdOutput implements _MpdOutput {
   const _$_MpdOutput(
-      {@JsonKey(fromJson: parseInt) this.outputId,
-      @JsonKey(fromJson: parseString) this.outputname,
-      @JsonKey(fromJson: parseBool) this.outputenabled,
-      @JsonKey(fromJson: parseString) this.plugin,
+      {@JsonKey(fromJson: parseInt)
+          this.outputId,
+      @JsonKey(fromJson: parseString)
+          this.outputname,
+      @JsonKey(fromJson: parseBool)
+          this.outputenabled,
+      @JsonKey(fromJson: parseString)
+          this.plugin,
       @JsonKey(includeFromJson: false)
-      final Map<String, List<String>> values = const {}})
+          final Map<String, List<String>> values = const {}})
       : _values = values;
 
   factory _$_MpdOutput.fromJson(Map<String, dynamic> json) =>
@@ -234,12 +238,16 @@ class _$_MpdOutput implements _MpdOutput {
 
 abstract class _MpdOutput implements MpdOutput {
   const factory _MpdOutput(
-      {@JsonKey(fromJson: parseInt) final int? outputId,
-      @JsonKey(fromJson: parseString) final String? outputname,
-      @JsonKey(fromJson: parseBool) final bool? outputenabled,
-      @JsonKey(fromJson: parseString) final String? plugin,
+      {@JsonKey(fromJson: parseInt)
+          final int? outputId,
+      @JsonKey(fromJson: parseString)
+          final String? outputname,
+      @JsonKey(fromJson: parseBool)
+          final bool? outputenabled,
+      @JsonKey(fromJson: parseString)
+          final String? plugin,
       @JsonKey(includeFromJson: false)
-      final Map<String, List<String>> values}) = _$_MpdOutput;
+          final Map<String, List<String>> values}) = _$_MpdOutput;
 
   factory _MpdOutput.fromJson(Map<String, dynamic> json) =
       _$_MpdOutput.fromJson;

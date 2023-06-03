@@ -117,48 +117,84 @@ abstract class $MpdSongCopyWith<$Res> {
       _$MpdSongCopyWithImpl<$Res, MpdSong>;
   @useResult
   $Res call(
-      {@JsonKey(fromJson: parseStringSafe) String file,
+      {@JsonKey(fromJson: parseStringSafe)
+          String file,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
-      DateTime? lastModified,
-      @JsonKey(name: 'Format', fromJson: parseString) String? format,
-      @JsonKey(name: 'Time', fromJson: parseInt) int? time,
-      @JsonKey(fromJson: parseDuration) Duration? duration,
-      @JsonKey(name: 'Pos', fromJson: parseInt) int? pos,
-      @JsonKey(name: 'Id', fromJson: parseInt) int? id,
-      @JsonKey(name: 'Artist') List<String>? artist,
-      @JsonKey(name: 'ArtistSort') List<String>? artistSort,
-      @JsonKey(name: 'Album') List<String>? album,
-      @JsonKey(name: 'AlbumSort') List<String>? albumSort,
-      @JsonKey(name: 'AlbumArtist') List<String>? albumArtist,
-      @JsonKey(name: 'AlbumArtistSort') List<String>? albumArtistSort,
-      @JsonKey(name: 'Title') List<String>? title,
-      @JsonKey(name: 'TitleSort') List<String>? titleSort,
-      @JsonKey(name: 'Name') List<String>? name,
-      @JsonKey(name: 'Genre') List<String>? genre,
-      @JsonKey(name: 'Mood') List<String>? mood,
-      @JsonKey(name: 'Date') List<String>? date,
-      @JsonKey(name: 'OriginalDate') List<String>? originalDate,
-      @JsonKey(name: 'Composer') List<String>? composer,
-      @JsonKey(name: 'ComposerSort') List<String>? composerSort,
-      @JsonKey(name: 'Performer') List<String>? performer,
-      @JsonKey(name: 'Conductor') List<String>? conductor,
-      @JsonKey(name: 'Work') List<String>? work,
-      @JsonKey(name: 'Ensemble') List<String>? ensemble,
-      @JsonKey(name: 'Movement') List<String>? movement,
-      @JsonKey(name: 'MovementNumber') List<String>? movementNumber,
-      @JsonKey(name: 'Location') List<String>? location,
-      @JsonKey(name: 'Grouping') List<String>? grouping,
-      @JsonKey(name: 'Comment') List<String>? comment,
-      @JsonKey(name: 'Disc') List<String>? disc,
-      @JsonKey(name: 'Label') List<String>? label,
-      @JsonKey(name: 'MUSICBRAINZ_ARTISTID') List<String>? musicbrainzArtistid,
-      @JsonKey(name: 'MUSICBRAINZ_ALBUMID') List<String>? musicbrainzAlbumid,
+          DateTime? lastModified,
+      @JsonKey(name: 'Format', fromJson: parseString)
+          String? format,
+      @JsonKey(name: 'Time', fromJson: parseInt)
+          int? time,
+      @JsonKey(fromJson: parseDuration)
+          Duration? duration,
+      @JsonKey(name: 'Pos', fromJson: parseInt)
+          int? pos,
+      @JsonKey(name: 'Id', fromJson: parseInt)
+          int? id,
+      @JsonKey(name: 'Artist')
+          List<String>? artist,
+      @JsonKey(name: 'ArtistSort')
+          List<String>? artistSort,
+      @JsonKey(name: 'Album')
+          List<String>? album,
+      @JsonKey(name: 'AlbumSort')
+          List<String>? albumSort,
+      @JsonKey(name: 'AlbumArtist')
+          List<String>? albumArtist,
+      @JsonKey(name: 'AlbumArtistSort')
+          List<String>? albumArtistSort,
+      @JsonKey(name: 'Title')
+          List<String>? title,
+      @JsonKey(name: 'TitleSort')
+          List<String>? titleSort,
+      @JsonKey(name: 'Name')
+          List<String>? name,
+      @JsonKey(name: 'Genre')
+          List<String>? genre,
+      @JsonKey(name: 'Mood')
+          List<String>? mood,
+      @JsonKey(name: 'Date')
+          List<String>? date,
+      @JsonKey(name: 'OriginalDate')
+          List<String>? originalDate,
+      @JsonKey(name: 'Composer')
+          List<String>? composer,
+      @JsonKey(name: 'ComposerSort')
+          List<String>? composerSort,
+      @JsonKey(name: 'Performer')
+          List<String>? performer,
+      @JsonKey(name: 'Conductor')
+          List<String>? conductor,
+      @JsonKey(name: 'Work')
+          List<String>? work,
+      @JsonKey(name: 'Ensemble')
+          List<String>? ensemble,
+      @JsonKey(name: 'Movement')
+          List<String>? movement,
+      @JsonKey(name: 'MovementNumber')
+          List<String>? movementNumber,
+      @JsonKey(name: 'Location')
+          List<String>? location,
+      @JsonKey(name: 'Grouping')
+          List<String>? grouping,
+      @JsonKey(name: 'Comment')
+          List<String>? comment,
+      @JsonKey(name: 'Disc')
+          List<String>? disc,
+      @JsonKey(name: 'Label')
+          List<String>? label,
+      @JsonKey(name: 'MUSICBRAINZ_ARTISTID')
+          List<String>? musicbrainzArtistid,
+      @JsonKey(name: 'MUSICBRAINZ_ALBUMID')
+          List<String>? musicbrainzAlbumid,
       @JsonKey(name: 'MUSICBRAINZ_ALBUMARTISTID')
-      List<String>? musicbrainzAlbumartistid,
-      @JsonKey(name: 'MUSICBRAINZ_TRACKID') List<String>? musicbrainzTrackid,
+          List<String>? musicbrainzAlbumartistid,
+      @JsonKey(name: 'MUSICBRAINZ_TRACKID')
+          List<String>? musicbrainzTrackid,
       @JsonKey(name: 'MUSICBRAINZ_RELEASETRACKID')
-      List<String>? musicbrainzReleasetrackid,
-      @JsonKey(name: 'MUSICBRAINZ_WORKID') List<String>? musicbrainzWorkid});
+          List<String>? musicbrainzReleasetrackid,
+      @JsonKey(name: 'MUSICBRAINZ_WORKID')
+          List<String>? musicbrainzWorkid});
 }
 
 /// @nodoc
@@ -383,48 +419,84 @@ abstract class _$$_MpdSongCopyWith<$Res> implements $MpdSongCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(fromJson: parseStringSafe) String file,
+      {@JsonKey(fromJson: parseStringSafe)
+          String file,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
-      DateTime? lastModified,
-      @JsonKey(name: 'Format', fromJson: parseString) String? format,
-      @JsonKey(name: 'Time', fromJson: parseInt) int? time,
-      @JsonKey(fromJson: parseDuration) Duration? duration,
-      @JsonKey(name: 'Pos', fromJson: parseInt) int? pos,
-      @JsonKey(name: 'Id', fromJson: parseInt) int? id,
-      @JsonKey(name: 'Artist') List<String>? artist,
-      @JsonKey(name: 'ArtistSort') List<String>? artistSort,
-      @JsonKey(name: 'Album') List<String>? album,
-      @JsonKey(name: 'AlbumSort') List<String>? albumSort,
-      @JsonKey(name: 'AlbumArtist') List<String>? albumArtist,
-      @JsonKey(name: 'AlbumArtistSort') List<String>? albumArtistSort,
-      @JsonKey(name: 'Title') List<String>? title,
-      @JsonKey(name: 'TitleSort') List<String>? titleSort,
-      @JsonKey(name: 'Name') List<String>? name,
-      @JsonKey(name: 'Genre') List<String>? genre,
-      @JsonKey(name: 'Mood') List<String>? mood,
-      @JsonKey(name: 'Date') List<String>? date,
-      @JsonKey(name: 'OriginalDate') List<String>? originalDate,
-      @JsonKey(name: 'Composer') List<String>? composer,
-      @JsonKey(name: 'ComposerSort') List<String>? composerSort,
-      @JsonKey(name: 'Performer') List<String>? performer,
-      @JsonKey(name: 'Conductor') List<String>? conductor,
-      @JsonKey(name: 'Work') List<String>? work,
-      @JsonKey(name: 'Ensemble') List<String>? ensemble,
-      @JsonKey(name: 'Movement') List<String>? movement,
-      @JsonKey(name: 'MovementNumber') List<String>? movementNumber,
-      @JsonKey(name: 'Location') List<String>? location,
-      @JsonKey(name: 'Grouping') List<String>? grouping,
-      @JsonKey(name: 'Comment') List<String>? comment,
-      @JsonKey(name: 'Disc') List<String>? disc,
-      @JsonKey(name: 'Label') List<String>? label,
-      @JsonKey(name: 'MUSICBRAINZ_ARTISTID') List<String>? musicbrainzArtistid,
-      @JsonKey(name: 'MUSICBRAINZ_ALBUMID') List<String>? musicbrainzAlbumid,
+          DateTime? lastModified,
+      @JsonKey(name: 'Format', fromJson: parseString)
+          String? format,
+      @JsonKey(name: 'Time', fromJson: parseInt)
+          int? time,
+      @JsonKey(fromJson: parseDuration)
+          Duration? duration,
+      @JsonKey(name: 'Pos', fromJson: parseInt)
+          int? pos,
+      @JsonKey(name: 'Id', fromJson: parseInt)
+          int? id,
+      @JsonKey(name: 'Artist')
+          List<String>? artist,
+      @JsonKey(name: 'ArtistSort')
+          List<String>? artistSort,
+      @JsonKey(name: 'Album')
+          List<String>? album,
+      @JsonKey(name: 'AlbumSort')
+          List<String>? albumSort,
+      @JsonKey(name: 'AlbumArtist')
+          List<String>? albumArtist,
+      @JsonKey(name: 'AlbumArtistSort')
+          List<String>? albumArtistSort,
+      @JsonKey(name: 'Title')
+          List<String>? title,
+      @JsonKey(name: 'TitleSort')
+          List<String>? titleSort,
+      @JsonKey(name: 'Name')
+          List<String>? name,
+      @JsonKey(name: 'Genre')
+          List<String>? genre,
+      @JsonKey(name: 'Mood')
+          List<String>? mood,
+      @JsonKey(name: 'Date')
+          List<String>? date,
+      @JsonKey(name: 'OriginalDate')
+          List<String>? originalDate,
+      @JsonKey(name: 'Composer')
+          List<String>? composer,
+      @JsonKey(name: 'ComposerSort')
+          List<String>? composerSort,
+      @JsonKey(name: 'Performer')
+          List<String>? performer,
+      @JsonKey(name: 'Conductor')
+          List<String>? conductor,
+      @JsonKey(name: 'Work')
+          List<String>? work,
+      @JsonKey(name: 'Ensemble')
+          List<String>? ensemble,
+      @JsonKey(name: 'Movement')
+          List<String>? movement,
+      @JsonKey(name: 'MovementNumber')
+          List<String>? movementNumber,
+      @JsonKey(name: 'Location')
+          List<String>? location,
+      @JsonKey(name: 'Grouping')
+          List<String>? grouping,
+      @JsonKey(name: 'Comment')
+          List<String>? comment,
+      @JsonKey(name: 'Disc')
+          List<String>? disc,
+      @JsonKey(name: 'Label')
+          List<String>? label,
+      @JsonKey(name: 'MUSICBRAINZ_ARTISTID')
+          List<String>? musicbrainzArtistid,
+      @JsonKey(name: 'MUSICBRAINZ_ALBUMID')
+          List<String>? musicbrainzAlbumid,
       @JsonKey(name: 'MUSICBRAINZ_ALBUMARTISTID')
-      List<String>? musicbrainzAlbumartistid,
-      @JsonKey(name: 'MUSICBRAINZ_TRACKID') List<String>? musicbrainzTrackid,
+          List<String>? musicbrainzAlbumartistid,
+      @JsonKey(name: 'MUSICBRAINZ_TRACKID')
+          List<String>? musicbrainzTrackid,
       @JsonKey(name: 'MUSICBRAINZ_RELEASETRACKID')
-      List<String>? musicbrainzReleasetrackid,
-      @JsonKey(name: 'MUSICBRAINZ_WORKID') List<String>? musicbrainzWorkid});
+          List<String>? musicbrainzReleasetrackid,
+      @JsonKey(name: 'MUSICBRAINZ_WORKID')
+          List<String>? musicbrainzWorkid});
 }
 
 /// @nodoc
@@ -642,52 +714,84 @@ class __$$_MpdSongCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MpdSong implements _MpdSong {
   const _$_MpdSong(
-      {@JsonKey(fromJson: parseStringSafe) required this.file,
+      {@JsonKey(fromJson: parseStringSafe)
+          required this.file,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
-      this.lastModified,
-      @JsonKey(name: 'Format', fromJson: parseString) this.format,
-      @JsonKey(name: 'Time', fromJson: parseInt) this.time,
-      @JsonKey(fromJson: parseDuration) this.duration,
-      @JsonKey(name: 'Pos', fromJson: parseInt) this.pos,
-      @JsonKey(name: 'Id', fromJson: parseInt) this.id,
-      @JsonKey(name: 'Artist') final List<String>? artist,
-      @JsonKey(name: 'ArtistSort') final List<String>? artistSort,
-      @JsonKey(name: 'Album') final List<String>? album,
-      @JsonKey(name: 'AlbumSort') final List<String>? albumSort,
-      @JsonKey(name: 'AlbumArtist') final List<String>? albumArtist,
-      @JsonKey(name: 'AlbumArtistSort') final List<String>? albumArtistSort,
-      @JsonKey(name: 'Title') final List<String>? title,
-      @JsonKey(name: 'TitleSort') final List<String>? titleSort,
-      @JsonKey(name: 'Name') final List<String>? name,
-      @JsonKey(name: 'Genre') final List<String>? genre,
-      @JsonKey(name: 'Mood') final List<String>? mood,
-      @JsonKey(name: 'Date') final List<String>? date,
-      @JsonKey(name: 'OriginalDate') final List<String>? originalDate,
-      @JsonKey(name: 'Composer') final List<String>? composer,
-      @JsonKey(name: 'ComposerSort') final List<String>? composerSort,
-      @JsonKey(name: 'Performer') final List<String>? performer,
-      @JsonKey(name: 'Conductor') final List<String>? conductor,
-      @JsonKey(name: 'Work') final List<String>? work,
-      @JsonKey(name: 'Ensemble') final List<String>? ensemble,
-      @JsonKey(name: 'Movement') final List<String>? movement,
-      @JsonKey(name: 'MovementNumber') final List<String>? movementNumber,
-      @JsonKey(name: 'Location') final List<String>? location,
-      @JsonKey(name: 'Grouping') final List<String>? grouping,
-      @JsonKey(name: 'Comment') final List<String>? comment,
-      @JsonKey(name: 'Disc') final List<String>? disc,
-      @JsonKey(name: 'Label') final List<String>? label,
+          this.lastModified,
+      @JsonKey(name: 'Format', fromJson: parseString)
+          this.format,
+      @JsonKey(name: 'Time', fromJson: parseInt)
+          this.time,
+      @JsonKey(fromJson: parseDuration)
+          this.duration,
+      @JsonKey(name: 'Pos', fromJson: parseInt)
+          this.pos,
+      @JsonKey(name: 'Id', fromJson: parseInt)
+          this.id,
+      @JsonKey(name: 'Artist')
+          final List<String>? artist,
+      @JsonKey(name: 'ArtistSort')
+          final List<String>? artistSort,
+      @JsonKey(name: 'Album')
+          final List<String>? album,
+      @JsonKey(name: 'AlbumSort')
+          final List<String>? albumSort,
+      @JsonKey(name: 'AlbumArtist')
+          final List<String>? albumArtist,
+      @JsonKey(name: 'AlbumArtistSort')
+          final List<String>? albumArtistSort,
+      @JsonKey(name: 'Title')
+          final List<String>? title,
+      @JsonKey(name: 'TitleSort')
+          final List<String>? titleSort,
+      @JsonKey(name: 'Name')
+          final List<String>? name,
+      @JsonKey(name: 'Genre')
+          final List<String>? genre,
+      @JsonKey(name: 'Mood')
+          final List<String>? mood,
+      @JsonKey(name: 'Date')
+          final List<String>? date,
+      @JsonKey(name: 'OriginalDate')
+          final List<String>? originalDate,
+      @JsonKey(name: 'Composer')
+          final List<String>? composer,
+      @JsonKey(name: 'ComposerSort')
+          final List<String>? composerSort,
+      @JsonKey(name: 'Performer')
+          final List<String>? performer,
+      @JsonKey(name: 'Conductor')
+          final List<String>? conductor,
+      @JsonKey(name: 'Work')
+          final List<String>? work,
+      @JsonKey(name: 'Ensemble')
+          final List<String>? ensemble,
+      @JsonKey(name: 'Movement')
+          final List<String>? movement,
+      @JsonKey(name: 'MovementNumber')
+          final List<String>? movementNumber,
+      @JsonKey(name: 'Location')
+          final List<String>? location,
+      @JsonKey(name: 'Grouping')
+          final List<String>? grouping,
+      @JsonKey(name: 'Comment')
+          final List<String>? comment,
+      @JsonKey(name: 'Disc')
+          final List<String>? disc,
+      @JsonKey(name: 'Label')
+          final List<String>? label,
       @JsonKey(name: 'MUSICBRAINZ_ARTISTID')
-      final List<String>? musicbrainzArtistid,
+          final List<String>? musicbrainzArtistid,
       @JsonKey(name: 'MUSICBRAINZ_ALBUMID')
-      final List<String>? musicbrainzAlbumid,
+          final List<String>? musicbrainzAlbumid,
       @JsonKey(name: 'MUSICBRAINZ_ALBUMARTISTID')
-      final List<String>? musicbrainzAlbumartistid,
+          final List<String>? musicbrainzAlbumartistid,
       @JsonKey(name: 'MUSICBRAINZ_TRACKID')
-      final List<String>? musicbrainzTrackid,
+          final List<String>? musicbrainzTrackid,
       @JsonKey(name: 'MUSICBRAINZ_RELEASETRACKID')
-      final List<String>? musicbrainzReleasetrackid,
+          final List<String>? musicbrainzReleasetrackid,
       @JsonKey(name: 'MUSICBRAINZ_WORKID')
-      final List<String>? musicbrainzWorkid})
+          final List<String>? musicbrainzWorkid})
       : _artist = artist,
         _artistSort = artistSort,
         _album = album,
@@ -1243,52 +1347,84 @@ class _$_MpdSong implements _MpdSong {
 
 abstract class _MpdSong implements MpdSong {
   const factory _MpdSong(
-      {@JsonKey(fromJson: parseStringSafe) required final String file,
+      {@JsonKey(fromJson: parseStringSafe)
+          required final String file,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
-      final DateTime? lastModified,
-      @JsonKey(name: 'Format', fromJson: parseString) final String? format,
-      @JsonKey(name: 'Time', fromJson: parseInt) final int? time,
-      @JsonKey(fromJson: parseDuration) final Duration? duration,
-      @JsonKey(name: 'Pos', fromJson: parseInt) final int? pos,
-      @JsonKey(name: 'Id', fromJson: parseInt) final int? id,
-      @JsonKey(name: 'Artist') final List<String>? artist,
-      @JsonKey(name: 'ArtistSort') final List<String>? artistSort,
-      @JsonKey(name: 'Album') final List<String>? album,
-      @JsonKey(name: 'AlbumSort') final List<String>? albumSort,
-      @JsonKey(name: 'AlbumArtist') final List<String>? albumArtist,
-      @JsonKey(name: 'AlbumArtistSort') final List<String>? albumArtistSort,
-      @JsonKey(name: 'Title') final List<String>? title,
-      @JsonKey(name: 'TitleSort') final List<String>? titleSort,
-      @JsonKey(name: 'Name') final List<String>? name,
-      @JsonKey(name: 'Genre') final List<String>? genre,
-      @JsonKey(name: 'Mood') final List<String>? mood,
-      @JsonKey(name: 'Date') final List<String>? date,
-      @JsonKey(name: 'OriginalDate') final List<String>? originalDate,
-      @JsonKey(name: 'Composer') final List<String>? composer,
-      @JsonKey(name: 'ComposerSort') final List<String>? composerSort,
-      @JsonKey(name: 'Performer') final List<String>? performer,
-      @JsonKey(name: 'Conductor') final List<String>? conductor,
-      @JsonKey(name: 'Work') final List<String>? work,
-      @JsonKey(name: 'Ensemble') final List<String>? ensemble,
-      @JsonKey(name: 'Movement') final List<String>? movement,
-      @JsonKey(name: 'MovementNumber') final List<String>? movementNumber,
-      @JsonKey(name: 'Location') final List<String>? location,
-      @JsonKey(name: 'Grouping') final List<String>? grouping,
-      @JsonKey(name: 'Comment') final List<String>? comment,
-      @JsonKey(name: 'Disc') final List<String>? disc,
-      @JsonKey(name: 'Label') final List<String>? label,
+          final DateTime? lastModified,
+      @JsonKey(name: 'Format', fromJson: parseString)
+          final String? format,
+      @JsonKey(name: 'Time', fromJson: parseInt)
+          final int? time,
+      @JsonKey(fromJson: parseDuration)
+          final Duration? duration,
+      @JsonKey(name: 'Pos', fromJson: parseInt)
+          final int? pos,
+      @JsonKey(name: 'Id', fromJson: parseInt)
+          final int? id,
+      @JsonKey(name: 'Artist')
+          final List<String>? artist,
+      @JsonKey(name: 'ArtistSort')
+          final List<String>? artistSort,
+      @JsonKey(name: 'Album')
+          final List<String>? album,
+      @JsonKey(name: 'AlbumSort')
+          final List<String>? albumSort,
+      @JsonKey(name: 'AlbumArtist')
+          final List<String>? albumArtist,
+      @JsonKey(name: 'AlbumArtistSort')
+          final List<String>? albumArtistSort,
+      @JsonKey(name: 'Title')
+          final List<String>? title,
+      @JsonKey(name: 'TitleSort')
+          final List<String>? titleSort,
+      @JsonKey(name: 'Name')
+          final List<String>? name,
+      @JsonKey(name: 'Genre')
+          final List<String>? genre,
+      @JsonKey(name: 'Mood')
+          final List<String>? mood,
+      @JsonKey(name: 'Date')
+          final List<String>? date,
+      @JsonKey(name: 'OriginalDate')
+          final List<String>? originalDate,
+      @JsonKey(name: 'Composer')
+          final List<String>? composer,
+      @JsonKey(name: 'ComposerSort')
+          final List<String>? composerSort,
+      @JsonKey(name: 'Performer')
+          final List<String>? performer,
+      @JsonKey(name: 'Conductor')
+          final List<String>? conductor,
+      @JsonKey(name: 'Work')
+          final List<String>? work,
+      @JsonKey(name: 'Ensemble')
+          final List<String>? ensemble,
+      @JsonKey(name: 'Movement')
+          final List<String>? movement,
+      @JsonKey(name: 'MovementNumber')
+          final List<String>? movementNumber,
+      @JsonKey(name: 'Location')
+          final List<String>? location,
+      @JsonKey(name: 'Grouping')
+          final List<String>? grouping,
+      @JsonKey(name: 'Comment')
+          final List<String>? comment,
+      @JsonKey(name: 'Disc')
+          final List<String>? disc,
+      @JsonKey(name: 'Label')
+          final List<String>? label,
       @JsonKey(name: 'MUSICBRAINZ_ARTISTID')
-      final List<String>? musicbrainzArtistid,
+          final List<String>? musicbrainzArtistid,
       @JsonKey(name: 'MUSICBRAINZ_ALBUMID')
-      final List<String>? musicbrainzAlbumid,
+          final List<String>? musicbrainzAlbumid,
       @JsonKey(name: 'MUSICBRAINZ_ALBUMARTISTID')
-      final List<String>? musicbrainzAlbumartistid,
+          final List<String>? musicbrainzAlbumartistid,
       @JsonKey(name: 'MUSICBRAINZ_TRACKID')
-      final List<String>? musicbrainzTrackid,
+          final List<String>? musicbrainzTrackid,
       @JsonKey(name: 'MUSICBRAINZ_RELEASETRACKID')
-      final List<String>? musicbrainzReleasetrackid,
+          final List<String>? musicbrainzReleasetrackid,
       @JsonKey(name: 'MUSICBRAINZ_WORKID')
-      final List<String>? musicbrainzWorkid}) = _$_MpdSong;
+          final List<String>? musicbrainzWorkid}) = _$_MpdSong;
 
   factory _MpdSong.fromJson(Map<String, dynamic> json) = _$_MpdSong.fromJson;
 

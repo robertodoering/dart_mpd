@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'response.freezed.dart';
 
 @freezed
-class MpdResponse with _$MpdResponse {
+sealed class MpdResponse with _$MpdResponse {
   const factory MpdResponse.ok({
     required List<Map<String, List<String>>> values,
     required List<int>? binary,
