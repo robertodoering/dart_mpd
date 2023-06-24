@@ -1,3 +1,7 @@
+## 0.3.1
+- Fixed incoming mpd message sometimes got parsed incorrectly, causing responses to be associated with the wrong request
+- Fixed values containing a `:` got parsed incorrectly
+
 ## 0.3.0
 - Added fields for all possible tags in `MpdSong`
   - E.g. you can now use `MpdSong.artist` instead of `MpdSong.tags['Artist']`.
