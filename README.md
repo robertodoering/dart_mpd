@@ -37,7 +37,7 @@ final client = MpdClient(
 
 ## Requests
 
-To handle concurrent request, each request gets queued. That means you can use use one client to make simultanious requests.
+To handle concurrent request, each request gets queued, so you can use use one client to make simultanious requests.
 
 Keep in mind that using `idle` will block the socket until an `idle` response has been received.
 
@@ -48,7 +48,6 @@ environment variables and fallback to the default values as described in
 https://mpd.readthedocs.io/en/stable/client.html#connecting-to-mpd.
 
 You can also manually set the host and port using the default constructor.
-
 
 ## Error handling
 
