@@ -20,7 +20,7 @@ class MpdImage with _$MpdImage {
       size: parseInt(response.values.single['size']),
       type: parseString(response.values.single['type']),
       binary: parseInt(response.values.single['binary']),
-      bytes: response.binary ?? const [],
+      bytes: response.binary,
     );
   }
 }
