@@ -1,14 +1,14 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:dart_mpd/dart_mpd.dart';
+import 'package:dart_mpd/src/parser/message_handler.dart';
 import 'package:dart_mpd/src/parser/parse_response.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('$parseMpdResponse', () {
     test('parses greeting message', () {
-      final response = parseMpdResponse(_asUtf8('OK MPD 0.21.0\n'));
+      final response = parseMpdResponse(
+        MpdRawMessage(lines: ['OK MPD 0.21.0'], binary: const []),
+      );
 
       expect(response, isA<MpdResponseGreeting>());
       expect(
@@ -19,7 +19,10 @@ void main() {
 
     test('parses error message', () {
       final response = parseMpdResponse(
-        _asUtf8('ACK [50@0] {play} No such song\n'),
+        MpdRawMessage(
+          lines: ['ACK [50@0] {play} No such song'],
+          binary: const [],
+        ),
       );
 
       expect(response, isA<MpdResponseError>());
@@ -30,7 +33,12 @@ void main() {
     });
 
     test('parses single value with one key value pair', () {
-      final response = parseMpdResponse(_asUtf8('volume: 100\nOK\n'));
+      final response = parseMpdResponse(
+        MpdRawMessage(
+          lines: ['volume: 100', 'OK'],
+          binary: const [],
+        ),
+      );
 
       expect(response, isA<MpdResponseOk>());
       expect(
@@ -38,15 +46,18 @@ void main() {
         equals([
           {
             'volume': ['100'],
-          }
+          },
         ]),
       );
-      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
+      expect(response.whenOrNull(ok: (_, binary) => binary), isEmpty);
     });
 
     test('parses single value with multiple key value pairs', () {
       final response = parseMpdResponse(
-        _asUtf8('volume: 100\nrepeat: 1\nOK\n'),
+        MpdRawMessage(
+          lines: ['volume: 100', 'repeat: 1', 'OK'],
+          binary: const [],
+        ),
       );
 
       expect(response, isA<MpdResponseOk>());
@@ -59,15 +70,18 @@ void main() {
           }
         ]),
       );
-      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
+      expect(response.whenOrNull(ok: (_, binary) => binary), isEmpty);
     });
 
     test('parses list of values with one key value pair', () {
       final response = parseMpdResponse(
-        _asUtf8(
-          'file: /home/foo/Music/bar.ogg\n'
-          'file: /home/foo/Music/bar2.ogg\n'
-          'OK\n',
+        MpdRawMessage(
+          lines: [
+            'file: /home/foo/Music/bar.ogg',
+            'file: /home/foo/Music/bar2.ogg',
+            'OK',
+          ],
+          binary: const [],
         ),
       );
 
@@ -83,19 +97,22 @@ void main() {
           },
         ]),
       );
-      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
+      expect(response.whenOrNull(ok: (_, binary) => binary), isEmpty);
     });
 
     test('parses list of values with multiple key value pairs', () {
       final response = parseMpdResponse(
-        _asUtf8(
-          'file: /home/foo/Music/bar.ogg\n'
-          'Title: bar\n'
-          'Artist: foo\n'
-          'file: /home/foo/Music/bar2.ogg\n'
-          'Title: bar2\n'
-          'Artist: foo2\n'
-          'OK\n',
+        MpdRawMessage(
+          lines: [
+            'file: /home/foo/Music/bar.ogg',
+            'Title: bar',
+            'Artist: foo',
+            'file: /home/foo/Music/bar2.ogg',
+            'Title: bar2',
+            'Artist: foo2',
+            'OK',
+          ],
+          binary: const [],
         ),
       );
 
@@ -115,18 +132,21 @@ void main() {
           },
         ]),
       );
-      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
+      expect(response.whenOrNull(ok: (_, binary) => binary), isEmpty);
     });
 
     test('parses list of values with unique keys', () {
       final response = parseMpdResponse(
-        _asUtf8(
-          'file: /home/foo/Music/bar.ogg\n'
-          'Title: bar\n'
-          'Artist: foo\n'
-          'directory: /home/foo\n'
-          'directory: /home/foo/Music\n'
-          'OK\n',
+        MpdRawMessage(
+          lines: [
+            'file: /home/foo/Music/bar.ogg',
+            'Title: bar',
+            'Artist: foo',
+            'directory: /home/foo',
+            'directory: /home/foo/Music',
+            'OK',
+          ],
+          binary: const [],
         ),
       );
 
@@ -147,23 +167,26 @@ void main() {
           },
         ]),
       );
-      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
+      expect(response.whenOrNull(ok: (_, binary) => binary), isEmpty);
     });
 
     test('parses list of values with multiple common keys', () {
       final response = parseMpdResponse(
-        _asUtf8(
-          'plugin: mad\n'
-          'suffix: mp3\n'
-          'suffix: mp2\n'
-          'mime_type: audio/mpeg\n'
-          'plugin: vorbis\n'
-          'suffix: ogg\n'
-          'suffix: oga\n'
-          'mime_type: application/ogg\n'
-          'mime_type: audio/ogg\n'
-          'mime_type: audio/vorbis\n'
-          'OK\n',
+        MpdRawMessage(
+          lines: [
+            'plugin: mad',
+            'suffix: mp3',
+            'suffix: mp2',
+            'mime_type: audio/mpeg',
+            'plugin: vorbis',
+            'suffix: ogg',
+            'suffix: oga',
+            'mime_type: application/ogg',
+            'mime_type: audio/ogg',
+            'mime_type: audio/vorbis',
+            'OK',
+          ],
+          binary: const [],
         ),
       );
 
@@ -187,12 +210,18 @@ void main() {
           },
         ]),
       );
-      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
+      expect(response.whenOrNull(ok: (_, binary) => binary), isEmpty);
     });
 
     test('parses binary data', () {
       final response = parseMpdResponse(
-        Uint8List.fromList('binary: 4\n1234\nOK\n'.codeUnits),
+        MpdRawMessage(
+          lines: [
+            'binary: 4',
+            'OK',
+          ],
+          binary: const [69, 69, 69, 69],
+        ),
       );
 
       expect(response, isA<MpdResponseOk>());
@@ -206,31 +235,34 @@ void main() {
       );
       expect(
         response.whenOrNull(ok: (_, binary) => binary),
-        equals('1234'.codeUnits),
+        equals(const [69, 69, 69, 69]),
       );
     });
 
     test('parses currentsong with multiple custom tags', () {
       final response = parseMpdResponse(
-        _asUtf8(
-          'file: NAS/NAS/Baroque/Guitar/Guitar_Concertos_-_DECCA_464_0132/01.Concerto_in_D_major_for_4_guitars_-_1._Allegro-Vivaldi,_Antonio.flac\n'
-          'Last-Modified: 2022-01-23T18:26:15Z\n'
-          'Format: 44100:16:2\n'
-          'Performer: Los Romeros\n'
-          'Performer: Academy of St. Martin-in-the-Fields\n'
-          'Performer: Brown, Iona\n'
-          'Album: Guitar Concertos - DECCA 464 0132\n'
-          'Composer: Vivaldi, Antonio\n'
-          'Artist: Vivaldi, Antonio\n'
-          'Date: 1990\n'
-          'Title: Concerto in D major for 4 guitars - 1. Allegro\n'
-          'Genre: Baroque\n'
-          'Track: 1\n'
-          'Time: 184\n'
-          'duration: 184.106\n'
-          'Pos: 0\n'
-          'Id: 160\n'
-          'OK\n',
+        MpdRawMessage(
+          lines: [
+            'file: NAS/NAS/Baroque/Guitar/Guitar_Concertos_-_DECCA_464_0132/01.Concerto_in_D_major_for_4_guitars_-_1._Allegro-Vivaldi,_Antonio.flac',
+            'Last-Modified: 2022-01-23T18:26:15Z',
+            'Format: 44100:16:2',
+            'Performer: Los Romeros',
+            'Performer: Academy of St. Martin-in-the-Fields',
+            'Performer: Brown, Iona',
+            'Album: Guitar Concertos - DECCA 464 0132',
+            'Composer: Vivaldi, Antonio',
+            'Artist: Vivaldi, Antonio',
+            'Date: 1990',
+            'Title: Concerto in D major for 4 guitars - 1. Allegro',
+            'Genre: Baroque',
+            'Track: 1',
+            'Time: 184',
+            'duration: 184.106',
+            'Pos: 0',
+            'Id: 160',
+            'OK',
+          ],
+          binary: const [],
         ),
       );
 
@@ -265,9 +297,7 @@ void main() {
           },
         ]),
       );
-      expect(response.whenOrNull(ok: (_, binary) => binary), isNull);
+      expect(response.whenOrNull(ok: (_, binary) => binary), isEmpty);
     });
   });
 }
-
-Uint8List _asUtf8(String value) => Uint8List.fromList(utf8.encode(value));

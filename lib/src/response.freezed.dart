@@ -19,7 +19,7 @@ mixin _$MpdResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            List<Map<String, List<String>>> values, List<int>? binary)
+            List<Map<String, List<String>>> values, List<int> binary)
         ok,
     required TResult Function(String message) error,
     required TResult Function(String protocolVersion) greeting,
@@ -27,8 +27,7 @@ mixin _$MpdResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<Map<String, List<String>>> values, List<int>? binary)?
+    TResult? Function(List<Map<String, List<String>>> values, List<int> binary)?
         ok,
     TResult? Function(String message)? error,
     TResult? Function(String protocolVersion)? greeting,
@@ -36,7 +35,7 @@ mixin _$MpdResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Map<String, List<String>>> values, List<int>? binary)?
+    TResult Function(List<Map<String, List<String>>> values, List<int> binary)?
         ok,
     TResult Function(String message)? error,
     TResult Function(String protocolVersion)? greeting,
@@ -91,7 +90,7 @@ abstract class _$$MpdResponseOkCopyWith<$Res> {
           _$MpdResponseOk value, $Res Function(_$MpdResponseOk) then) =
       __$$MpdResponseOkCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Map<String, List<String>>> values, List<int>? binary});
+  $Res call({List<Map<String, List<String>>> values, List<int> binary});
 }
 
 /// @nodoc
@@ -106,17 +105,17 @@ class __$$MpdResponseOkCopyWithImpl<$Res>
   @override
   $Res call({
     Object? values = null,
-    Object? binary = freezed,
+    Object? binary = null,
   }) {
     return _then(_$MpdResponseOk(
       values: null == values
           ? _value._values
           : values // ignore: cast_nullable_to_non_nullable
               as List<Map<String, List<String>>>,
-      binary: freezed == binary
+      binary: null == binary
           ? _value._binary
           : binary // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+              as List<int>,
     ));
   }
 }
@@ -126,7 +125,7 @@ class __$$MpdResponseOkCopyWithImpl<$Res>
 class _$MpdResponseOk implements MpdResponseOk {
   const _$MpdResponseOk(
       {required final List<Map<String, List<String>>> values,
-      required final List<int>? binary})
+      required final List<int> binary})
       : _values = values,
         _binary = binary;
 
@@ -138,14 +137,12 @@ class _$MpdResponseOk implements MpdResponseOk {
     return EqualUnmodifiableListView(_values);
   }
 
-  final List<int>? _binary;
+  final List<int> _binary;
   @override
-  List<int>? get binary {
-    final value = _binary;
-    if (value == null) return null;
+  List<int> get binary {
     if (_binary is EqualUnmodifiableListView) return _binary;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_binary);
   }
 
   @override
@@ -178,7 +175,7 @@ class _$MpdResponseOk implements MpdResponseOk {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            List<Map<String, List<String>>> values, List<int>? binary)
+            List<Map<String, List<String>>> values, List<int> binary)
         ok,
     required TResult Function(String message) error,
     required TResult Function(String protocolVersion) greeting,
@@ -189,8 +186,7 @@ class _$MpdResponseOk implements MpdResponseOk {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<Map<String, List<String>>> values, List<int>? binary)?
+    TResult? Function(List<Map<String, List<String>>> values, List<int> binary)?
         ok,
     TResult? Function(String message)? error,
     TResult? Function(String protocolVersion)? greeting,
@@ -201,7 +197,7 @@ class _$MpdResponseOk implements MpdResponseOk {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Map<String, List<String>>> values, List<int>? binary)?
+    TResult Function(List<Map<String, List<String>>> values, List<int> binary)?
         ok,
     TResult Function(String message)? error,
     TResult Function(String protocolVersion)? greeting,
@@ -251,10 +247,10 @@ class _$MpdResponseOk implements MpdResponseOk {
 abstract class MpdResponseOk implements MpdResponse {
   const factory MpdResponseOk(
       {required final List<Map<String, List<String>>> values,
-      required final List<int>? binary}) = _$MpdResponseOk;
+      required final List<int> binary}) = _$MpdResponseOk;
 
   List<Map<String, List<String>>> get values;
-  List<int>? get binary;
+  List<int> get binary;
   @JsonKey(ignore: true)
   _$$MpdResponseOkCopyWith<_$MpdResponseOk> get copyWith =>
       throw _privateConstructorUsedError;
@@ -325,7 +321,7 @@ class _$MpdResponseError implements MpdResponseError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            List<Map<String, List<String>>> values, List<int>? binary)
+            List<Map<String, List<String>>> values, List<int> binary)
         ok,
     required TResult Function(String message) error,
     required TResult Function(String protocolVersion) greeting,
@@ -336,8 +332,7 @@ class _$MpdResponseError implements MpdResponseError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<Map<String, List<String>>> values, List<int>? binary)?
+    TResult? Function(List<Map<String, List<String>>> values, List<int> binary)?
         ok,
     TResult? Function(String message)? error,
     TResult? Function(String protocolVersion)? greeting,
@@ -348,7 +343,7 @@ class _$MpdResponseError implements MpdResponseError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Map<String, List<String>>> values, List<int>? binary)?
+    TResult Function(List<Map<String, List<String>>> values, List<int> binary)?
         ok,
     TResult Function(String message)? error,
     TResult Function(String protocolVersion)? greeting,
@@ -472,7 +467,7 @@ class _$MpdResponseGreeting implements MpdResponseGreeting {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            List<Map<String, List<String>>> values, List<int>? binary)
+            List<Map<String, List<String>>> values, List<int> binary)
         ok,
     required TResult Function(String message) error,
     required TResult Function(String protocolVersion) greeting,
@@ -483,8 +478,7 @@ class _$MpdResponseGreeting implements MpdResponseGreeting {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<Map<String, List<String>>> values, List<int>? binary)?
+    TResult? Function(List<Map<String, List<String>>> values, List<int> binary)?
         ok,
     TResult? Function(String message)? error,
     TResult? Function(String protocolVersion)? greeting,
@@ -495,7 +489,7 @@ class _$MpdResponseGreeting implements MpdResponseGreeting {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Map<String, List<String>>> values, List<int>? binary)?
+    TResult Function(List<Map<String, List<String>>> values, List<int> binary)?
         ok,
     TResult Function(String message)? error,
     TResult Function(String protocolVersion)? greeting,

@@ -6,7 +6,7 @@ part 'response.freezed.dart';
 sealed class MpdResponse with _$MpdResponse {
   const factory MpdResponse.ok({
     required List<Map<String, List<String>>> values,
-    required List<int>? binary,
+    required List<int> binary,
   }) = MpdResponseOk;
 
   const factory MpdResponse.error({

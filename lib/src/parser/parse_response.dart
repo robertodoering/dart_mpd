@@ -1,10 +1,6 @@
-import 'dart:convert';
-
 import 'package:dart_mpd/dart_mpd.dart';
-
-const _newlineKeyCode = 10;
-const _greetingPrefix = 'OK MPD ';
-const _errorPrefix = 'ACK ';
+import 'package:dart_mpd/src/parser/message_handler.dart';
+import 'package:dart_mpd/src/parser/parser_util.dart';
 
 // songfile tags as defined in
 // https://mpd.readthedocs.io/en/stable/protocol.html#tags
@@ -71,63 +67,42 @@ const _commonKeys = ['suffix', 'mime_type', ..._tags];
 /// - Responses listing files/directories where a new set is assumed when either
 ///  'file' or 'directory' is received (e.g. `lsinfo`).
 /// - Responses where a set can contain multiple values for the a single key
-///   (e.g. `decoders`).
+///   (e.g. `decoders`, any tags in a song, etc.).
 ///   In that case, we append the new value to the existing value.
 ///
 /// See: https://mpd.readthedocs.io/en/stable/protocol.html#protocol-overview
-MpdResponse parseMpdResponse(List<int> data) {
+MpdResponse parseMpdResponse(MpdRawMessage data) {
   final values = <Map<String, List<String>>>[];
   final valuesBuffer = <String, List<String>>{};
 
-  List<int>? binary;
+  for (final line in data.lines) {
+    if (line == messageEnd) {
+      if (valuesBuffer.isNotEmpty) values.add(valuesBuffer);
 
-  final iterator = data.iterator;
-  final byteBuffer = <int>[];
-
-  while (iterator.moveNext()) {
-    final value = iterator.current;
-
-    if (value != _newlineKeyCode) {
-      byteBuffer.add(value);
-      continue;
+      return MpdResponse.ok(
+        values: values,
+        binary: data.binary,
+      );
     }
 
-    final line = utf8.decode(byteBuffer);
-    byteBuffer.clear();
+    if (line.startsWith(greetingPrefix)) {
+      _debugAssertNoResponseValues(data);
 
-    // message end
-    if (line == 'OK') {
-      break;
-    }
-
-    // greeting
-    if (line.startsWith(_greetingPrefix)) {
       return MpdResponse.greeting(
-        protocolVersion: line.substring(_greetingPrefix.length),
+        protocolVersion: line.substring(greetingPrefix.length),
       );
     }
 
-    // error
-    if (line.startsWith(_errorPrefix)) {
+    if (line.startsWith(errorPrefix)) {
+      _debugAssertNoResponseValues(data);
+
       return MpdResponse.error(
-        message: line.substring(_errorPrefix.length),
+        message: line.substring(errorPrefix.length),
       );
-    }
-
-    // key value pair
-    if (line.contains(':')) {
-      final (key, value) = _parseKeyValuePair(line, valuesBuffer, values);
-
-      // binary data follows
-      if (key == 'binary') {
-        binary = _parseBinary(iterator, int.parse(value));
-      }
-
-      continue;
     }
 
     assert(
-      false,
+      line.contains(':'),
       'Unhandled line in mpd response.\n'
       'This likely indicates an issue in dart_mpd. Please create an issue at '
       'https://github.com/robertodoering/dart_mpd/issues\n\n'
@@ -135,53 +110,38 @@ MpdResponse parseMpdResponse(List<int> data) {
       'valuesBuffer: $valuesBuffer\n'
       'values: $values\n',
     );
+
+    final (key, value) = parseKeyValuePair(line);
+
+    if (valuesBuffer[key] != null && _commonKeys.containsIgnoreCase(key)) {
+      // add to existing value
+      valuesBuffer[key]?.add(value);
+    } else if (_isAdditionalDataSet(key, valuesBuffer)) {
+      // create new set of values
+      values.add({...valuesBuffer});
+      valuesBuffer.clear();
+      valuesBuffer[key] = [value];
+    } else {
+      valuesBuffer[key] = [value];
+    }
   }
 
-  if (valuesBuffer.isNotEmpty) {
-    values.add(valuesBuffer);
-  }
-
-  return MpdResponse.ok(
-    values: values,
-    binary: binary,
+  throw MpdClientException(
+    'Incorrectly parsed mpd response.\n'
+    'This likely indicates an issue in dart_mpd. Please create an issue at '
+    'https://github.com/robertodoering/dart_mpd/issues',
   );
 }
 
-(String, String) _parseKeyValuePair(
-  String line,
-  Map<String, List<String>> valuesBuffer,
-  List<Map<String, List<String>>> values,
-) {
-  // split on first colon
-  final pair = line.split(RegExp('(?<!:.*):'));
-
-  final key = pair[0];
-  final value = pair[1].substring(1);
-
-  if (valuesBuffer[key] != null && _commonKeys.containsIgnoreCase(key)) {
-    // add to existing value
-    valuesBuffer[key]?.add(value);
-  } else if (_isAdditionalDataSet(key, valuesBuffer)) {
-    // create new set of values
-    values.add({...valuesBuffer});
-    valuesBuffer.clear();
-    valuesBuffer[key] = [value];
-  } else {
-    valuesBuffer[key] = [value];
-  }
-
-  return (key, value);
-}
-
-List<int> _parseBinary(Iterator<int> iterator, int bytes) {
-  final binary = [
-    for (var i = 0; i < bytes && iterator.moveNext(); i++) iterator.current,
-  ];
-
-  // skip following newline
-  iterator.moveNext();
-
-  return binary;
+void _debugAssertNoResponseValues(MpdRawMessage data) {
+  assert(
+    data.lines.length == 1 && data.binary.isEmpty,
+    'Incorrectly parsed mpd response.\n'
+    'This likely indicates an issue in dart_mpd. Please create an issue at '
+    'https://github.com/robertodoering/dart_mpd/issues\n\n'
+    'lines: ${data.lines}\n'
+    'binary: ${data.binary}',
+  );
 }
 
 bool _isAdditionalDataSet(String key, Map<String, List<String>> valuesBuffer) {

@@ -4,7 +4,7 @@ import 'dart:io' show Socket, InternetAddress, InternetAddressType;
 import 'dart:typed_data';
 
 import 'package:dart_mpd/dart_mpd.dart';
-import 'package:dart_mpd/src/message_handler.dart';
+import 'package:dart_mpd/src/parser/message_handler.dart';
 import 'package:dart_mpd/src/parser/parse_response.dart';
 
 class MpdConnection {
@@ -156,10 +156,10 @@ class MpdConnection {
 }
 
 class _MpdResponseTransformer
-    extends StreamTransformerBase<List<int>, MpdResponse> {
+    extends StreamTransformerBase<MpdRawMessage, MpdResponse> {
   const _MpdResponseTransformer();
   @override
-  Stream<MpdResponse> bind(Stream<List<int>> stream) {
+  Stream<MpdResponse> bind(Stream<MpdRawMessage> stream) {
     return stream.map(parseMpdResponse);
   }
 }
