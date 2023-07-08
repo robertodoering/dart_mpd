@@ -1,3 +1,7 @@
+## 0.3.2
+- Fixed `getvol` threw an exception when there was no mixer
+  - Returns `null` now.
+
 ## 0.3.1
 - Fixed incoming mpd message sometimes got parsed incorrectly, causing responses to be associated with the wrong request
 - Fixed values containing a `:` got parsed incorrectly
