@@ -185,7 +185,9 @@ class MpdClient {
   Future<int?> getvol() {
     return _send(
       'getvol',
-      (response) => parseInt(response.values.single['volume']),
+      (response) => response.values.isNotEmpty
+          ? parseInt(response.values.single['volume'])
+          : null,
     );
   }
 
