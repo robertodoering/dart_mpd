@@ -4,7 +4,7 @@
 
 dart_mpd is a dart package which implements the [Music Player Daemon](https://www.musicpd.org/) protocol.
 
-Supports Linux, macOS, Windows and web.
+Supports Linux, macOS and Windows.
 
 ## Example
 
