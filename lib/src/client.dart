@@ -1307,6 +1307,8 @@ class MpdClient {
   }
 }
 
+// TODO: move to client_utils file and write tests
+
 String _buildCmd(String cmd, List<Object?> args) {
   if (args.isEmpty) return cmd;
 
@@ -1319,19 +1321,37 @@ String _formatArgs(List<Object?> args) {
   final filtered = args.where((e) => e != null).toList();
 
   for (var i = 0; i < filtered.length; ++i) {
-    final arg = filtered[i];
+    var arg = filtered[i];
 
     if (arg is bool) {
-      buffer.write(arg ? 1 : 0);
+      arg = arg ? '1' : '0';
     } else if (arg is MpdSingle) {
-      buffer.write(arg.toValue());
+      arg = arg.toValue();
     } else if (arg is Enum) {
-      buffer.write(arg.name);
-    } else {
-      buffer.write(arg);
+      arg = arg.name;
     }
 
+    arg = _escapeArg('$arg');
+    buffer.write('"$arg"');
+
     if (i != filtered.length - 1) buffer.write(' ');
+  }
+
+  return buffer.toString();
+}
+
+/// Escapes the argument.
+///
+/// See https://mpd.readthedocs.io/en/stable/protocol.html#escaping-string-values.
+String _escapeArg(String arg) {
+  final buffer = StringBuffer();
+
+  for (final char in arg.split('')) {
+    if (char == '"' || char == r'\\') {
+      buffer.write(r'\\');
+    }
+
+    buffer.write(char);
   }
 
   return buffer.toString();
