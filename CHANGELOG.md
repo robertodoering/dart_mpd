@@ -1,6 +1,10 @@
+## 0.4.0
+- Added automatically escaping & wrapping arguments in double quotation marks in client calls 
+  - This is a breaking change and requires any manually wrapped arguments and escaped  characters to be updated (Remove wrapping quotes and escaping backslashes from client calls)
+
 ## 0.3.2
 - Fixed `getvol` threw an exception when there was no mixer
-  - Returns `null` now.
+  - Returns `null` now
 
 ## 0.3.1
 - Fixed incoming mpd message sometimes got parsed incorrectly, causing responses to be associated with the wrong request
@@ -13,7 +17,7 @@
   - Called with the event that is sent to MPD
 - Fixed multiple values for a tag in a song didn't get parsed correctly
 - Fixed `readpicture` threw an exception when the current song had no picture
-  - Returns `null` now.
+  - Returns `null` now
 - Removed `MpdValue` union type in favor of a `List<String>` to store the values of a key in `MpdResponse`
 
 ## 0.2.0
