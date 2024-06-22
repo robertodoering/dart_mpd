@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:dart_mpd/dart_mpd.dart';
+import 'package:dart_mpd/src/client/client_utils.dart';
 import 'package:dart_mpd/src/parser/value_parser.dart';
 
 class MpdClient {
@@ -1297,7 +1298,7 @@ class MpdClient {
     T Function(MpdResponseOk response) parse, {
     List<Object?> args = const [],
   }) async {
-    final response = await _connection.send(_buildCmd(cmd, args));
+    final response = await _connection.send(buildClientCmd(cmd, args));
 
     return switch (response) {
       MpdResponseOk ok => parse(ok),
@@ -1305,54 +1306,4 @@ class MpdClient {
       MpdResponseGreeting _ => throw MpdUnexpectedResponse(response),
     };
   }
-}
-
-// TODO: move to client_utils file and write tests
-
-String _buildCmd(String cmd, List<Object?> args) {
-  if (args.isEmpty) return cmd;
-
-  return '$cmd ${_formatArgs(args)}';
-}
-
-String _formatArgs(List<Object?> args) {
-  final buffer = StringBuffer();
-
-  final filtered = args.where((e) => e != null).toList();
-
-  for (var i = 0; i < filtered.length; ++i) {
-    var arg = filtered[i];
-
-    if (arg is bool) {
-      arg = arg ? '1' : '0';
-    } else if (arg is MpdSingle) {
-      arg = arg.toValue();
-    } else if (arg is Enum) {
-      arg = arg.name;
-    }
-
-    arg = _escapeArg('$arg');
-    buffer.write('"$arg"');
-
-    if (i != filtered.length - 1) buffer.write(' ');
-  }
-
-  return buffer.toString();
-}
-
-/// Escapes the argument.
-///
-/// See https://mpd.readthedocs.io/en/stable/protocol.html#escaping-string-values.
-String _escapeArg(String arg) {
-  final buffer = StringBuffer();
-
-  for (final char in arg.split('')) {
-    if (char == '"' || char == r'\\') {
-      buffer.write(r'\\');
-    }
-
-    buffer.write(char);
-  }
-
-  return buffer.toString();
 }
