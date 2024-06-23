@@ -12,7 +12,7 @@ part of 'stats.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 MpdStats _$MpdStatsFromJson(Map<String, dynamic> json) {
   return _MpdStats.fromJson(json);
@@ -47,20 +47,14 @@ abstract class $MpdStatsCopyWith<$Res> {
       _$MpdStatsCopyWithImpl<$Res, MpdStats>;
   @useResult
   $Res call(
-      {@JsonKey(fromJson: parseInt)
-          int? artists,
-      @JsonKey(fromJson: parseInt)
-          int? albums,
-      @JsonKey(fromJson: parseInt)
-          int? songs,
-      @JsonKey(fromJson: parseSeconds)
-          Duration? uptime,
+      {@JsonKey(fromJson: parseInt) int? artists,
+      @JsonKey(fromJson: parseInt) int? albums,
+      @JsonKey(fromJson: parseInt) int? songs,
+      @JsonKey(fromJson: parseSeconds) Duration? uptime,
       @JsonKey(name: 'db_playtime', fromJson: parseSeconds)
-          Duration? dbPlaytime,
-      @JsonKey(name: 'db_update', fromJson: parseTimestamp)
-          DateTime? dbUpdate,
-      @JsonKey(fromJson: parseSeconds)
-          Duration? playtime});
+      Duration? dbPlaytime,
+      @JsonKey(name: 'db_update', fromJson: parseTimestamp) DateTime? dbUpdate,
+      @JsonKey(fromJson: parseSeconds) Duration? playtime});
 }
 
 /// @nodoc
@@ -118,35 +112,30 @@ class _$MpdStatsCopyWithImpl<$Res, $Val extends MpdStats>
 }
 
 /// @nodoc
-abstract class _$$_MpdStatsCopyWith<$Res> implements $MpdStatsCopyWith<$Res> {
-  factory _$$_MpdStatsCopyWith(
-          _$_MpdStats value, $Res Function(_$_MpdStats) then) =
-      __$$_MpdStatsCopyWithImpl<$Res>;
+abstract class _$$MpdStatsImplCopyWith<$Res>
+    implements $MpdStatsCopyWith<$Res> {
+  factory _$$MpdStatsImplCopyWith(
+          _$MpdStatsImpl value, $Res Function(_$MpdStatsImpl) then) =
+      __$$MpdStatsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(fromJson: parseInt)
-          int? artists,
-      @JsonKey(fromJson: parseInt)
-          int? albums,
-      @JsonKey(fromJson: parseInt)
-          int? songs,
-      @JsonKey(fromJson: parseSeconds)
-          Duration? uptime,
+      {@JsonKey(fromJson: parseInt) int? artists,
+      @JsonKey(fromJson: parseInt) int? albums,
+      @JsonKey(fromJson: parseInt) int? songs,
+      @JsonKey(fromJson: parseSeconds) Duration? uptime,
       @JsonKey(name: 'db_playtime', fromJson: parseSeconds)
-          Duration? dbPlaytime,
-      @JsonKey(name: 'db_update', fromJson: parseTimestamp)
-          DateTime? dbUpdate,
-      @JsonKey(fromJson: parseSeconds)
-          Duration? playtime});
+      Duration? dbPlaytime,
+      @JsonKey(name: 'db_update', fromJson: parseTimestamp) DateTime? dbUpdate,
+      @JsonKey(fromJson: parseSeconds) Duration? playtime});
 }
 
 /// @nodoc
-class __$$_MpdStatsCopyWithImpl<$Res>
-    extends _$MpdStatsCopyWithImpl<$Res, _$_MpdStats>
-    implements _$$_MpdStatsCopyWith<$Res> {
-  __$$_MpdStatsCopyWithImpl(
-      _$_MpdStats _value, $Res Function(_$_MpdStats) _then)
+class __$$MpdStatsImplCopyWithImpl<$Res>
+    extends _$MpdStatsCopyWithImpl<$Res, _$MpdStatsImpl>
+    implements _$$MpdStatsImplCopyWith<$Res> {
+  __$$MpdStatsImplCopyWithImpl(
+      _$MpdStatsImpl _value, $Res Function(_$MpdStatsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -160,7 +149,7 @@ class __$$_MpdStatsCopyWithImpl<$Res>
     Object? dbUpdate = freezed,
     Object? playtime = freezed,
   }) {
-    return _then(_$_MpdStats(
+    return _then(_$MpdStatsImpl(
       artists: freezed == artists
           ? _value.artists
           : artists // ignore: cast_nullable_to_non_nullable
@@ -195,8 +184,8 @@ class __$$_MpdStatsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MpdStats implements _MpdStats {
-  const _$_MpdStats(
+class _$MpdStatsImpl implements _MpdStats {
+  const _$MpdStatsImpl(
       {@JsonKey(fromJson: parseInt) this.artists,
       @JsonKey(fromJson: parseInt) this.albums,
       @JsonKey(fromJson: parseInt) this.songs,
@@ -205,8 +194,8 @@ class _$_MpdStats implements _MpdStats {
       @JsonKey(name: 'db_update', fromJson: parseTimestamp) this.dbUpdate,
       @JsonKey(fromJson: parseSeconds) this.playtime});
 
-  factory _$_MpdStats.fromJson(Map<String, dynamic> json) =>
-      _$$_MpdStatsFromJson(json);
+  factory _$MpdStatsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MpdStatsImplFromJson(json);
 
   @override
   @JsonKey(fromJson: parseInt)
@@ -236,10 +225,10 @@ class _$_MpdStats implements _MpdStats {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MpdStats &&
+            other is _$MpdStatsImpl &&
             (identical(other.artists, artists) || other.artists == artists) &&
             (identical(other.albums, albums) || other.albums == albums) &&
             (identical(other.songs, songs) || other.songs == songs) &&
@@ -260,12 +249,12 @@ class _$_MpdStats implements _MpdStats {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MpdStatsCopyWith<_$_MpdStats> get copyWith =>
-      __$$_MpdStatsCopyWithImpl<_$_MpdStats>(this, _$identity);
+  _$$MpdStatsImplCopyWith<_$MpdStatsImpl> get copyWith =>
+      __$$MpdStatsImplCopyWithImpl<_$MpdStatsImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MpdStatsToJson(
+    return _$$MpdStatsImplToJson(
       this,
     );
   }
@@ -273,22 +262,19 @@ class _$_MpdStats implements _MpdStats {
 
 abstract class _MpdStats implements MpdStats {
   const factory _MpdStats(
-      {@JsonKey(fromJson: parseInt)
-          final int? artists,
-      @JsonKey(fromJson: parseInt)
-          final int? albums,
-      @JsonKey(fromJson: parseInt)
-          final int? songs,
-      @JsonKey(fromJson: parseSeconds)
-          final Duration? uptime,
-      @JsonKey(name: 'db_playtime', fromJson: parseSeconds)
+          {@JsonKey(fromJson: parseInt) final int? artists,
+          @JsonKey(fromJson: parseInt) final int? albums,
+          @JsonKey(fromJson: parseInt) final int? songs,
+          @JsonKey(fromJson: parseSeconds) final Duration? uptime,
+          @JsonKey(name: 'db_playtime', fromJson: parseSeconds)
           final Duration? dbPlaytime,
-      @JsonKey(name: 'db_update', fromJson: parseTimestamp)
+          @JsonKey(name: 'db_update', fromJson: parseTimestamp)
           final DateTime? dbUpdate,
-      @JsonKey(fromJson: parseSeconds)
-          final Duration? playtime}) = _$_MpdStats;
+          @JsonKey(fromJson: parseSeconds) final Duration? playtime}) =
+      _$MpdStatsImpl;
 
-  factory _MpdStats.fromJson(Map<String, dynamic> json) = _$_MpdStats.fromJson;
+  factory _MpdStats.fromJson(Map<String, dynamic> json) =
+      _$MpdStatsImpl.fromJson;
 
   @override
   @JsonKey(fromJson: parseInt)
@@ -313,6 +299,6 @@ abstract class _MpdStats implements MpdStats {
   Duration? get playtime;
   @override
   @JsonKey(ignore: true)
-  _$$_MpdStatsCopyWith<_$_MpdStats> get copyWith =>
+  _$$MpdStatsImplCopyWith<_$MpdStatsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

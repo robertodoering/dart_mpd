@@ -12,7 +12,7 @@ part of 'mount.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 MpdMount _$MpdMountFromJson(Map<String, dynamic> json) {
   return _MpdMount.fromJson(json);
@@ -71,10 +71,11 @@ class _$MpdMountCopyWithImpl<$Res, $Val extends MpdMount>
 }
 
 /// @nodoc
-abstract class _$$_MpdMountCopyWith<$Res> implements $MpdMountCopyWith<$Res> {
-  factory _$$_MpdMountCopyWith(
-          _$_MpdMount value, $Res Function(_$_MpdMount) then) =
-      __$$_MpdMountCopyWithImpl<$Res>;
+abstract class _$$MpdMountImplCopyWith<$Res>
+    implements $MpdMountCopyWith<$Res> {
+  factory _$$MpdMountImplCopyWith(
+          _$MpdMountImpl value, $Res Function(_$MpdMountImpl) then) =
+      __$$MpdMountImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -83,11 +84,11 @@ abstract class _$$_MpdMountCopyWith<$Res> implements $MpdMountCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_MpdMountCopyWithImpl<$Res>
-    extends _$MpdMountCopyWithImpl<$Res, _$_MpdMount>
-    implements _$$_MpdMountCopyWith<$Res> {
-  __$$_MpdMountCopyWithImpl(
-      _$_MpdMount _value, $Res Function(_$_MpdMount) _then)
+class __$$MpdMountImplCopyWithImpl<$Res>
+    extends _$MpdMountCopyWithImpl<$Res, _$MpdMountImpl>
+    implements _$$MpdMountImplCopyWith<$Res> {
+  __$$MpdMountImplCopyWithImpl(
+      _$MpdMountImpl _value, $Res Function(_$MpdMountImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -96,7 +97,7 @@ class __$$_MpdMountCopyWithImpl<$Res>
     Object? mount = freezed,
     Object? storage = freezed,
   }) {
-    return _then(_$_MpdMount(
+    return _then(_$MpdMountImpl(
       mount: freezed == mount
           ? _value.mount
           : mount // ignore: cast_nullable_to_non_nullable
@@ -111,13 +112,13 @@ class __$$_MpdMountCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MpdMount implements _MpdMount {
-  const _$_MpdMount(
+class _$MpdMountImpl implements _MpdMount {
+  const _$MpdMountImpl(
       {@JsonKey(fromJson: parseString) this.mount,
       @JsonKey(fromJson: parseString) this.storage});
 
-  factory _$_MpdMount.fromJson(Map<String, dynamic> json) =>
-      _$$_MpdMountFromJson(json);
+  factory _$MpdMountImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MpdMountImplFromJson(json);
 
   @override
   @JsonKey(fromJson: parseString)
@@ -132,10 +133,10 @@ class _$_MpdMount implements _MpdMount {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MpdMount &&
+            other is _$MpdMountImpl &&
             (identical(other.mount, mount) || other.mount == mount) &&
             (identical(other.storage, storage) || other.storage == storage));
   }
@@ -147,12 +148,12 @@ class _$_MpdMount implements _MpdMount {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MpdMountCopyWith<_$_MpdMount> get copyWith =>
-      __$$_MpdMountCopyWithImpl<_$_MpdMount>(this, _$identity);
+  _$$MpdMountImplCopyWith<_$MpdMountImpl> get copyWith =>
+      __$$MpdMountImplCopyWithImpl<_$MpdMountImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MpdMountToJson(
+    return _$$MpdMountImplToJson(
       this,
     );
   }
@@ -161,9 +162,10 @@ class _$_MpdMount implements _MpdMount {
 abstract class _MpdMount implements MpdMount {
   const factory _MpdMount(
       {@JsonKey(fromJson: parseString) final String? mount,
-      @JsonKey(fromJson: parseString) final String? storage}) = _$_MpdMount;
+      @JsonKey(fromJson: parseString) final String? storage}) = _$MpdMountImpl;
 
-  factory _MpdMount.fromJson(Map<String, dynamic> json) = _$_MpdMount.fromJson;
+  factory _MpdMount.fromJson(Map<String, dynamic> json) =
+      _$MpdMountImpl.fromJson;
 
   @override
   @JsonKey(fromJson: parseString)
@@ -173,6 +175,6 @@ abstract class _MpdMount implements MpdMount {
   String? get storage;
   @override
   @JsonKey(ignore: true)
-  _$$_MpdMountCopyWith<_$_MpdMount> get copyWith =>
+  _$$MpdMountImplCopyWith<_$MpdMountImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

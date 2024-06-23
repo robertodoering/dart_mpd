@@ -12,7 +12,7 @@ part of 'image.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MpdImage {
@@ -74,21 +74,22 @@ class _$MpdImageCopyWithImpl<$Res, $Val extends MpdImage>
 }
 
 /// @nodoc
-abstract class _$$_MpdImageCopyWith<$Res> implements $MpdImageCopyWith<$Res> {
-  factory _$$_MpdImageCopyWith(
-          _$_MpdImage value, $Res Function(_$_MpdImage) then) =
-      __$$_MpdImageCopyWithImpl<$Res>;
+abstract class _$$MpdImageImplCopyWith<$Res>
+    implements $MpdImageCopyWith<$Res> {
+  factory _$$MpdImageImplCopyWith(
+          _$MpdImageImpl value, $Res Function(_$MpdImageImpl) then) =
+      __$$MpdImageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? size, String? type, int? binary, List<int> bytes});
 }
 
 /// @nodoc
-class __$$_MpdImageCopyWithImpl<$Res>
-    extends _$MpdImageCopyWithImpl<$Res, _$_MpdImage>
-    implements _$$_MpdImageCopyWith<$Res> {
-  __$$_MpdImageCopyWithImpl(
-      _$_MpdImage _value, $Res Function(_$_MpdImage) _then)
+class __$$MpdImageImplCopyWithImpl<$Res>
+    extends _$MpdImageCopyWithImpl<$Res, _$MpdImageImpl>
+    implements _$$MpdImageImplCopyWith<$Res> {
+  __$$MpdImageImplCopyWithImpl(
+      _$MpdImageImpl _value, $Res Function(_$MpdImageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +100,7 @@ class __$$_MpdImageCopyWithImpl<$Res>
     Object? binary = freezed,
     Object? bytes = null,
   }) {
-    return _then(_$_MpdImage(
+    return _then(_$MpdImageImpl(
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -122,8 +123,8 @@ class __$$_MpdImageCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MpdImage implements _MpdImage {
-  const _$_MpdImage(
+class _$MpdImageImpl implements _MpdImage {
+  const _$MpdImageImpl(
       {this.size, this.type, this.binary, required final List<int> bytes})
       : _bytes = bytes;
 
@@ -147,10 +148,10 @@ class _$_MpdImage implements _MpdImage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MpdImage &&
+            other is _$MpdImageImpl &&
             (identical(other.size, size) || other.size == size) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.binary, binary) || other.binary == binary) &&
@@ -164,8 +165,8 @@ class _$_MpdImage implements _MpdImage {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MpdImageCopyWith<_$_MpdImage> get copyWith =>
-      __$$_MpdImageCopyWithImpl<_$_MpdImage>(this, _$identity);
+  _$$MpdImageImplCopyWith<_$MpdImageImpl> get copyWith =>
+      __$$MpdImageImplCopyWithImpl<_$MpdImageImpl>(this, _$identity);
 }
 
 abstract class _MpdImage implements MpdImage {
@@ -173,7 +174,7 @@ abstract class _MpdImage implements MpdImage {
       {final int? size,
       final String? type,
       final int? binary,
-      required final List<int> bytes}) = _$_MpdImage;
+      required final List<int> bytes}) = _$MpdImageImpl;
 
   @override
   int? get size;
@@ -185,6 +186,6 @@ abstract class _MpdImage implements MpdImage {
   List<int> get bytes;
   @override
   @JsonKey(ignore: true)
-  _$$_MpdImageCopyWith<_$_MpdImage> get copyWith =>
+  _$$MpdImageImplCopyWith<_$MpdImageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

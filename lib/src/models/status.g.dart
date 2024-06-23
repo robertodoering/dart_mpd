@@ -6,7 +6,8 @@ part of 'status.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MpdStatus _$$_MpdStatusFromJson(Map<String, dynamic> json) => _$_MpdStatus(
+_$MpdStatusImpl _$$MpdStatusImplFromJson(Map<String, dynamic> json) =>
+    _$MpdStatusImpl(
       partition: parseString(json['partition'] as List<String>?),
       volume: parseInt(json['volume'] as List<String>?),
       repeat: parseBool(json['repeat'] as List<String>?),
@@ -31,7 +32,7 @@ _$_MpdStatus _$$_MpdStatusFromJson(Map<String, dynamic> json) => _$_MpdStatus(
       error: parseString(json['error'] as List<String>?),
     );
 
-Map<String, dynamic> _$$_MpdStatusToJson(_$_MpdStatus instance) =>
+Map<String, dynamic> _$$MpdStatusImplToJson(_$MpdStatusImpl instance) =>
     <String, dynamic>{
       'partition': instance.partition,
       'volume': instance.volume,

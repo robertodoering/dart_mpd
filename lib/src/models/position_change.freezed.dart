@@ -12,7 +12,7 @@ part of 'position_change.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 MpdPositionChange _$MpdPositionChangeFromJson(Map<String, dynamic> json) {
   return _MpdPositionChange.fromJson(json);
@@ -72,11 +72,11 @@ class _$MpdPositionChangeCopyWithImpl<$Res, $Val extends MpdPositionChange>
 }
 
 /// @nodoc
-abstract class _$$_MpdPositionChangeCopyWith<$Res>
+abstract class _$$MpdPositionChangeImplCopyWith<$Res>
     implements $MpdPositionChangeCopyWith<$Res> {
-  factory _$$_MpdPositionChangeCopyWith(_$_MpdPositionChange value,
-          $Res Function(_$_MpdPositionChange) then) =
-      __$$_MpdPositionChangeCopyWithImpl<$Res>;
+  factory _$$MpdPositionChangeImplCopyWith(_$MpdPositionChangeImpl value,
+          $Res Function(_$MpdPositionChangeImpl) then) =
+      __$$MpdPositionChangeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -85,11 +85,11 @@ abstract class _$$_MpdPositionChangeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MpdPositionChangeCopyWithImpl<$Res>
-    extends _$MpdPositionChangeCopyWithImpl<$Res, _$_MpdPositionChange>
-    implements _$$_MpdPositionChangeCopyWith<$Res> {
-  __$$_MpdPositionChangeCopyWithImpl(
-      _$_MpdPositionChange _value, $Res Function(_$_MpdPositionChange) _then)
+class __$$MpdPositionChangeImplCopyWithImpl<$Res>
+    extends _$MpdPositionChangeCopyWithImpl<$Res, _$MpdPositionChangeImpl>
+    implements _$$MpdPositionChangeImplCopyWith<$Res> {
+  __$$MpdPositionChangeImplCopyWithImpl(_$MpdPositionChangeImpl _value,
+      $Res Function(_$MpdPositionChangeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -98,7 +98,7 @@ class __$$_MpdPositionChangeCopyWithImpl<$Res>
     Object? id = freezed,
     Object? cpos = freezed,
   }) {
-    return _then(_$_MpdPositionChange(
+    return _then(_$MpdPositionChangeImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -113,13 +113,13 @@ class __$$_MpdPositionChangeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MpdPositionChange implements _MpdPositionChange {
-  const _$_MpdPositionChange(
+class _$MpdPositionChangeImpl implements _MpdPositionChange {
+  const _$MpdPositionChangeImpl(
       {@JsonKey(name: 'Id', fromJson: parseInt) this.id,
       @JsonKey(fromJson: parseInt) this.cpos});
 
-  factory _$_MpdPositionChange.fromJson(Map<String, dynamic> json) =>
-      _$$_MpdPositionChangeFromJson(json);
+  factory _$MpdPositionChangeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MpdPositionChangeImplFromJson(json);
 
   @override
   @JsonKey(name: 'Id', fromJson: parseInt)
@@ -134,10 +134,10 @@ class _$_MpdPositionChange implements _MpdPositionChange {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MpdPositionChange &&
+            other is _$MpdPositionChangeImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.cpos, cpos) || other.cpos == cpos));
   }
@@ -149,13 +149,13 @@ class _$_MpdPositionChange implements _MpdPositionChange {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MpdPositionChangeCopyWith<_$_MpdPositionChange> get copyWith =>
-      __$$_MpdPositionChangeCopyWithImpl<_$_MpdPositionChange>(
+  _$$MpdPositionChangeImplCopyWith<_$MpdPositionChangeImpl> get copyWith =>
+      __$$MpdPositionChangeImplCopyWithImpl<_$MpdPositionChangeImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MpdPositionChangeToJson(
+    return _$$MpdPositionChangeImplToJson(
       this,
     );
   }
@@ -164,10 +164,10 @@ class _$_MpdPositionChange implements _MpdPositionChange {
 abstract class _MpdPositionChange implements MpdPositionChange {
   const factory _MpdPositionChange(
       {@JsonKey(name: 'Id', fromJson: parseInt) final int? id,
-      @JsonKey(fromJson: parseInt) final int? cpos}) = _$_MpdPositionChange;
+      @JsonKey(fromJson: parseInt) final int? cpos}) = _$MpdPositionChangeImpl;
 
   factory _MpdPositionChange.fromJson(Map<String, dynamic> json) =
-      _$_MpdPositionChange.fromJson;
+      _$MpdPositionChangeImpl.fromJson;
 
   @override
   @JsonKey(name: 'Id', fromJson: parseInt)
@@ -177,6 +177,6 @@ abstract class _MpdPositionChange implements MpdPositionChange {
   int? get cpos;
   @override
   @JsonKey(ignore: true)
-  _$$_MpdPositionChangeCopyWith<_$_MpdPositionChange> get copyWith =>
+  _$$MpdPositionChangeImplCopyWith<_$MpdPositionChangeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MpdResponse {
@@ -85,20 +85,20 @@ class _$MpdResponseCopyWithImpl<$Res, $Val extends MpdResponse>
 }
 
 /// @nodoc
-abstract class _$$MpdResponseOkCopyWith<$Res> {
-  factory _$$MpdResponseOkCopyWith(
-          _$MpdResponseOk value, $Res Function(_$MpdResponseOk) then) =
-      __$$MpdResponseOkCopyWithImpl<$Res>;
+abstract class _$$MpdResponseOkImplCopyWith<$Res> {
+  factory _$$MpdResponseOkImplCopyWith(
+          _$MpdResponseOkImpl value, $Res Function(_$MpdResponseOkImpl) then) =
+      __$$MpdResponseOkImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<Map<String, List<String>>> values, List<int> binary});
 }
 
 /// @nodoc
-class __$$MpdResponseOkCopyWithImpl<$Res>
-    extends _$MpdResponseCopyWithImpl<$Res, _$MpdResponseOk>
-    implements _$$MpdResponseOkCopyWith<$Res> {
-  __$$MpdResponseOkCopyWithImpl(
-      _$MpdResponseOk _value, $Res Function(_$MpdResponseOk) _then)
+class __$$MpdResponseOkImplCopyWithImpl<$Res>
+    extends _$MpdResponseCopyWithImpl<$Res, _$MpdResponseOkImpl>
+    implements _$$MpdResponseOkImplCopyWith<$Res> {
+  __$$MpdResponseOkImplCopyWithImpl(
+      _$MpdResponseOkImpl _value, $Res Function(_$MpdResponseOkImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -107,7 +107,7 @@ class __$$MpdResponseOkCopyWithImpl<$Res>
     Object? values = null,
     Object? binary = null,
   }) {
-    return _then(_$MpdResponseOk(
+    return _then(_$MpdResponseOkImpl(
       values: null == values
           ? _value._values
           : values // ignore: cast_nullable_to_non_nullable
@@ -122,8 +122,8 @@ class __$$MpdResponseOkCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MpdResponseOk implements MpdResponseOk {
-  const _$MpdResponseOk(
+class _$MpdResponseOkImpl implements MpdResponseOk {
+  const _$MpdResponseOkImpl(
       {required final List<Map<String, List<String>>> values,
       required final List<int> binary})
       : _values = values,
@@ -151,10 +151,10 @@ class _$MpdResponseOk implements MpdResponseOk {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MpdResponseOk &&
+            other is _$MpdResponseOkImpl &&
             const DeepCollectionEquality().equals(other._values, _values) &&
             const DeepCollectionEquality().equals(other._binary, _binary));
   }
@@ -168,8 +168,8 @@ class _$MpdResponseOk implements MpdResponseOk {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MpdResponseOkCopyWith<_$MpdResponseOk> get copyWith =>
-      __$$MpdResponseOkCopyWithImpl<_$MpdResponseOk>(this, _$identity);
+  _$$MpdResponseOkImplCopyWith<_$MpdResponseOkImpl> get copyWith =>
+      __$$MpdResponseOkImplCopyWithImpl<_$MpdResponseOkImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -247,30 +247,30 @@ class _$MpdResponseOk implements MpdResponseOk {
 abstract class MpdResponseOk implements MpdResponse {
   const factory MpdResponseOk(
       {required final List<Map<String, List<String>>> values,
-      required final List<int> binary}) = _$MpdResponseOk;
+      required final List<int> binary}) = _$MpdResponseOkImpl;
 
   List<Map<String, List<String>>> get values;
   List<int> get binary;
   @JsonKey(ignore: true)
-  _$$MpdResponseOkCopyWith<_$MpdResponseOk> get copyWith =>
+  _$$MpdResponseOkImplCopyWith<_$MpdResponseOkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$MpdResponseErrorCopyWith<$Res> {
-  factory _$$MpdResponseErrorCopyWith(
-          _$MpdResponseError value, $Res Function(_$MpdResponseError) then) =
-      __$$MpdResponseErrorCopyWithImpl<$Res>;
+abstract class _$$MpdResponseErrorImplCopyWith<$Res> {
+  factory _$$MpdResponseErrorImplCopyWith(_$MpdResponseErrorImpl value,
+          $Res Function(_$MpdResponseErrorImpl) then) =
+      __$$MpdResponseErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$MpdResponseErrorCopyWithImpl<$Res>
-    extends _$MpdResponseCopyWithImpl<$Res, _$MpdResponseError>
-    implements _$$MpdResponseErrorCopyWith<$Res> {
-  __$$MpdResponseErrorCopyWithImpl(
-      _$MpdResponseError _value, $Res Function(_$MpdResponseError) _then)
+class __$$MpdResponseErrorImplCopyWithImpl<$Res>
+    extends _$MpdResponseCopyWithImpl<$Res, _$MpdResponseErrorImpl>
+    implements _$$MpdResponseErrorImplCopyWith<$Res> {
+  __$$MpdResponseErrorImplCopyWithImpl(_$MpdResponseErrorImpl _value,
+      $Res Function(_$MpdResponseErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -278,7 +278,7 @@ class __$$MpdResponseErrorCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$MpdResponseError(
+    return _then(_$MpdResponseErrorImpl(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -289,8 +289,8 @@ class __$$MpdResponseErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MpdResponseError implements MpdResponseError {
-  const _$MpdResponseError({required this.message});
+class _$MpdResponseErrorImpl implements MpdResponseError {
+  const _$MpdResponseErrorImpl({required this.message});
 
   @override
   final String message;
@@ -301,10 +301,10 @@ class _$MpdResponseError implements MpdResponseError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MpdResponseError &&
+            other is _$MpdResponseErrorImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -314,8 +314,9 @@ class _$MpdResponseError implements MpdResponseError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MpdResponseErrorCopyWith<_$MpdResponseError> get copyWith =>
-      __$$MpdResponseErrorCopyWithImpl<_$MpdResponseError>(this, _$identity);
+  _$$MpdResponseErrorImplCopyWith<_$MpdResponseErrorImpl> get copyWith =>
+      __$$MpdResponseErrorImplCopyWithImpl<_$MpdResponseErrorImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -392,29 +393,29 @@ class _$MpdResponseError implements MpdResponseError {
 
 abstract class MpdResponseError implements MpdResponse {
   const factory MpdResponseError({required final String message}) =
-      _$MpdResponseError;
+      _$MpdResponseErrorImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$MpdResponseErrorCopyWith<_$MpdResponseError> get copyWith =>
+  _$$MpdResponseErrorImplCopyWith<_$MpdResponseErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$MpdResponseGreetingCopyWith<$Res> {
-  factory _$$MpdResponseGreetingCopyWith(_$MpdResponseGreeting value,
-          $Res Function(_$MpdResponseGreeting) then) =
-      __$$MpdResponseGreetingCopyWithImpl<$Res>;
+abstract class _$$MpdResponseGreetingImplCopyWith<$Res> {
+  factory _$$MpdResponseGreetingImplCopyWith(_$MpdResponseGreetingImpl value,
+          $Res Function(_$MpdResponseGreetingImpl) then) =
+      __$$MpdResponseGreetingImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String protocolVersion});
 }
 
 /// @nodoc
-class __$$MpdResponseGreetingCopyWithImpl<$Res>
-    extends _$MpdResponseCopyWithImpl<$Res, _$MpdResponseGreeting>
-    implements _$$MpdResponseGreetingCopyWith<$Res> {
-  __$$MpdResponseGreetingCopyWithImpl(
-      _$MpdResponseGreeting _value, $Res Function(_$MpdResponseGreeting) _then)
+class __$$MpdResponseGreetingImplCopyWithImpl<$Res>
+    extends _$MpdResponseCopyWithImpl<$Res, _$MpdResponseGreetingImpl>
+    implements _$$MpdResponseGreetingImplCopyWith<$Res> {
+  __$$MpdResponseGreetingImplCopyWithImpl(_$MpdResponseGreetingImpl _value,
+      $Res Function(_$MpdResponseGreetingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -422,7 +423,7 @@ class __$$MpdResponseGreetingCopyWithImpl<$Res>
   $Res call({
     Object? protocolVersion = null,
   }) {
-    return _then(_$MpdResponseGreeting(
+    return _then(_$MpdResponseGreetingImpl(
       protocolVersion: null == protocolVersion
           ? _value.protocolVersion
           : protocolVersion // ignore: cast_nullable_to_non_nullable
@@ -433,8 +434,8 @@ class __$$MpdResponseGreetingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MpdResponseGreeting implements MpdResponseGreeting {
-  const _$MpdResponseGreeting({required this.protocolVersion});
+class _$MpdResponseGreetingImpl implements MpdResponseGreeting {
+  const _$MpdResponseGreetingImpl({required this.protocolVersion});
 
   @override
   final String protocolVersion;
@@ -445,10 +446,10 @@ class _$MpdResponseGreeting implements MpdResponseGreeting {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MpdResponseGreeting &&
+            other is _$MpdResponseGreetingImpl &&
             (identical(other.protocolVersion, protocolVersion) ||
                 other.protocolVersion == protocolVersion));
   }
@@ -459,8 +460,8 @@ class _$MpdResponseGreeting implements MpdResponseGreeting {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MpdResponseGreetingCopyWith<_$MpdResponseGreeting> get copyWith =>
-      __$$MpdResponseGreetingCopyWithImpl<_$MpdResponseGreeting>(
+  _$$MpdResponseGreetingImplCopyWith<_$MpdResponseGreetingImpl> get copyWith =>
+      __$$MpdResponseGreetingImplCopyWithImpl<_$MpdResponseGreetingImpl>(
           this, _$identity);
 
   @override
@@ -538,10 +539,10 @@ class _$MpdResponseGreeting implements MpdResponseGreeting {
 
 abstract class MpdResponseGreeting implements MpdResponse {
   const factory MpdResponseGreeting({required final String protocolVersion}) =
-      _$MpdResponseGreeting;
+      _$MpdResponseGreetingImpl;
 
   String get protocolVersion;
   @JsonKey(ignore: true)
-  _$$MpdResponseGreetingCopyWith<_$MpdResponseGreeting> get copyWith =>
+  _$$MpdResponseGreetingImplCopyWith<_$MpdResponseGreetingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

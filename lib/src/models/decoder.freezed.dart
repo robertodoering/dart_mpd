@@ -12,7 +12,7 @@ part of 'decoder.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MpdDecoder {
@@ -69,22 +69,22 @@ class _$MpdDecoderCopyWithImpl<$Res, $Val extends MpdDecoder>
 }
 
 /// @nodoc
-abstract class _$$_MpdDecoderCopyWith<$Res>
+abstract class _$$MpdDecoderImplCopyWith<$Res>
     implements $MpdDecoderCopyWith<$Res> {
-  factory _$$_MpdDecoderCopyWith(
-          _$_MpdDecoder value, $Res Function(_$_MpdDecoder) then) =
-      __$$_MpdDecoderCopyWithImpl<$Res>;
+  factory _$$MpdDecoderImplCopyWith(
+          _$MpdDecoderImpl value, $Res Function(_$MpdDecoderImpl) then) =
+      __$$MpdDecoderImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? plugin, List<String> suffix, List<String> mimeType});
 }
 
 /// @nodoc
-class __$$_MpdDecoderCopyWithImpl<$Res>
-    extends _$MpdDecoderCopyWithImpl<$Res, _$_MpdDecoder>
-    implements _$$_MpdDecoderCopyWith<$Res> {
-  __$$_MpdDecoderCopyWithImpl(
-      _$_MpdDecoder _value, $Res Function(_$_MpdDecoder) _then)
+class __$$MpdDecoderImplCopyWithImpl<$Res>
+    extends _$MpdDecoderCopyWithImpl<$Res, _$MpdDecoderImpl>
+    implements _$$MpdDecoderImplCopyWith<$Res> {
+  __$$MpdDecoderImplCopyWithImpl(
+      _$MpdDecoderImpl _value, $Res Function(_$MpdDecoderImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -94,7 +94,7 @@ class __$$_MpdDecoderCopyWithImpl<$Res>
     Object? suffix = null,
     Object? mimeType = null,
   }) {
-    return _then(_$_MpdDecoder(
+    return _then(_$MpdDecoderImpl(
       plugin: freezed == plugin
           ? _value.plugin
           : plugin // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ class __$$_MpdDecoderCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MpdDecoder implements _MpdDecoder {
-  const _$_MpdDecoder(
+class _$MpdDecoderImpl implements _MpdDecoder {
+  const _$MpdDecoderImpl(
       {this.plugin,
       required final List<String> suffix,
       required final List<String> mimeType})
@@ -145,10 +145,10 @@ class _$_MpdDecoder implements _MpdDecoder {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MpdDecoder &&
+            other is _$MpdDecoderImpl &&
             (identical(other.plugin, plugin) || other.plugin == plugin) &&
             const DeepCollectionEquality().equals(other._suffix, _suffix) &&
             const DeepCollectionEquality().equals(other._mimeType, _mimeType));
@@ -164,15 +164,15 @@ class _$_MpdDecoder implements _MpdDecoder {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MpdDecoderCopyWith<_$_MpdDecoder> get copyWith =>
-      __$$_MpdDecoderCopyWithImpl<_$_MpdDecoder>(this, _$identity);
+  _$$MpdDecoderImplCopyWith<_$MpdDecoderImpl> get copyWith =>
+      __$$MpdDecoderImplCopyWithImpl<_$MpdDecoderImpl>(this, _$identity);
 }
 
 abstract class _MpdDecoder implements MpdDecoder {
   const factory _MpdDecoder(
       {final String? plugin,
       required final List<String> suffix,
-      required final List<String> mimeType}) = _$_MpdDecoder;
+      required final List<String> mimeType}) = _$MpdDecoderImpl;
 
   @override
   String? get plugin;
@@ -182,6 +182,6 @@ abstract class _MpdDecoder implements MpdDecoder {
   List<String> get mimeType;
   @override
   @JsonKey(ignore: true)
-  _$$_MpdDecoderCopyWith<_$_MpdDecoder> get copyWith =>
+  _$$MpdDecoderImplCopyWith<_$MpdDecoderImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

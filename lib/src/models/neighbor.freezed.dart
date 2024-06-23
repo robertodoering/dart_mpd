@@ -12,7 +12,7 @@ part of 'neighbor.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 MpdNeighbor _$MpdNeighborFromJson(Map<String, dynamic> json) {
   return _MpdNeighbor.fromJson(json);
@@ -72,11 +72,11 @@ class _$MpdNeighborCopyWithImpl<$Res, $Val extends MpdNeighbor>
 }
 
 /// @nodoc
-abstract class _$$_MpdNeighborCopyWith<$Res>
+abstract class _$$MpdNeighborImplCopyWith<$Res>
     implements $MpdNeighborCopyWith<$Res> {
-  factory _$$_MpdNeighborCopyWith(
-          _$_MpdNeighbor value, $Res Function(_$_MpdNeighbor) then) =
-      __$$_MpdNeighborCopyWithImpl<$Res>;
+  factory _$$MpdNeighborImplCopyWith(
+          _$MpdNeighborImpl value, $Res Function(_$MpdNeighborImpl) then) =
+      __$$MpdNeighborImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -85,11 +85,11 @@ abstract class _$$_MpdNeighborCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MpdNeighborCopyWithImpl<$Res>
-    extends _$MpdNeighborCopyWithImpl<$Res, _$_MpdNeighbor>
-    implements _$$_MpdNeighborCopyWith<$Res> {
-  __$$_MpdNeighborCopyWithImpl(
-      _$_MpdNeighbor _value, $Res Function(_$_MpdNeighbor) _then)
+class __$$MpdNeighborImplCopyWithImpl<$Res>
+    extends _$MpdNeighborCopyWithImpl<$Res, _$MpdNeighborImpl>
+    implements _$$MpdNeighborImplCopyWith<$Res> {
+  __$$MpdNeighborImplCopyWithImpl(
+      _$MpdNeighborImpl _value, $Res Function(_$MpdNeighborImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -98,7 +98,7 @@ class __$$_MpdNeighborCopyWithImpl<$Res>
     Object? neighbor = freezed,
     Object? name = freezed,
   }) {
-    return _then(_$_MpdNeighbor(
+    return _then(_$MpdNeighborImpl(
       neighbor: freezed == neighbor
           ? _value.neighbor
           : neighbor // ignore: cast_nullable_to_non_nullable
@@ -113,13 +113,13 @@ class __$$_MpdNeighborCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MpdNeighbor implements _MpdNeighbor {
-  const _$_MpdNeighbor(
+class _$MpdNeighborImpl implements _MpdNeighbor {
+  const _$MpdNeighborImpl(
       {@JsonKey(fromJson: parseString) this.neighbor,
       @JsonKey(fromJson: parseString) this.name});
 
-  factory _$_MpdNeighbor.fromJson(Map<String, dynamic> json) =>
-      _$$_MpdNeighborFromJson(json);
+  factory _$MpdNeighborImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MpdNeighborImplFromJson(json);
 
   @override
   @JsonKey(fromJson: parseString)
@@ -134,10 +134,10 @@ class _$_MpdNeighbor implements _MpdNeighbor {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MpdNeighbor &&
+            other is _$MpdNeighborImpl &&
             (identical(other.neighbor, neighbor) ||
                 other.neighbor == neighbor) &&
             (identical(other.name, name) || other.name == name));
@@ -150,12 +150,12 @@ class _$_MpdNeighbor implements _MpdNeighbor {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MpdNeighborCopyWith<_$_MpdNeighbor> get copyWith =>
-      __$$_MpdNeighborCopyWithImpl<_$_MpdNeighbor>(this, _$identity);
+  _$$MpdNeighborImplCopyWith<_$MpdNeighborImpl> get copyWith =>
+      __$$MpdNeighborImplCopyWithImpl<_$MpdNeighborImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MpdNeighborToJson(
+    return _$$MpdNeighborImplToJson(
       this,
     );
   }
@@ -164,10 +164,10 @@ class _$_MpdNeighbor implements _MpdNeighbor {
 abstract class _MpdNeighbor implements MpdNeighbor {
   const factory _MpdNeighbor(
       {@JsonKey(fromJson: parseString) final String? neighbor,
-      @JsonKey(fromJson: parseString) final String? name}) = _$_MpdNeighbor;
+      @JsonKey(fromJson: parseString) final String? name}) = _$MpdNeighborImpl;
 
   factory _MpdNeighbor.fromJson(Map<String, dynamic> json) =
-      _$_MpdNeighbor.fromJson;
+      _$MpdNeighborImpl.fromJson;
 
   @override
   @JsonKey(fromJson: parseString)
@@ -177,6 +177,6 @@ abstract class _MpdNeighbor implements MpdNeighbor {
   String? get name;
   @override
   @JsonKey(ignore: true)
-  _$$_MpdNeighborCopyWith<_$_MpdNeighbor> get copyWith =>
+  _$$MpdNeighborImplCopyWith<_$MpdNeighborImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,7 +6,8 @@ part of 'song.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MpdSong _$$_MpdSongFromJson(Map<String, dynamic> json) => _$_MpdSong(
+_$MpdSongImpl _$$MpdSongImplFromJson(Map<String, dynamic> json) =>
+    _$MpdSongImpl(
       file: parseStringSafe(json['file'] as List<String>?),
       lastModified: parseDateTime(json['Last-Modified'] as List<String>?),
       format: parseString(json['Format'] as List<String>?),
@@ -35,6 +36,8 @@ _$_MpdSong _$$_MpdSongFromJson(Map<String, dynamic> json) => _$_MpdSong(
       titleSort: (json['TitleSort'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
+      track:
+          (json['Track'] as List<dynamic>?)?.map((e) => e as String).toList(),
       name: (json['Name'] as List<dynamic>?)?.map((e) => e as String).toList(),
       genre:
           (json['Genre'] as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -56,13 +59,13 @@ _$_MpdSong _$$_MpdSongFromJson(Map<String, dynamic> json) => _$_MpdSong(
           ?.map((e) => e as String)
           .toList(),
       work: (json['Work'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      ensemble: (json['Ensemble'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
       movement: (json['Movement'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
       movementNumber: (json['MovementNumber'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      ensemble: (json['Ensemble'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
       location: (json['Location'] as List<dynamic>?)
@@ -98,7 +101,7 @@ _$_MpdSong _$$_MpdSongFromJson(Map<String, dynamic> json) => _$_MpdSong(
           .toList(),
     );
 
-Map<String, dynamic> _$$_MpdSongToJson(_$_MpdSong instance) =>
+Map<String, dynamic> _$$MpdSongImplToJson(_$MpdSongImpl instance) =>
     <String, dynamic>{
       'file': instance.file,
       'Last-Modified': instance.lastModified?.toIso8601String(),
@@ -115,6 +118,7 @@ Map<String, dynamic> _$$_MpdSongToJson(_$_MpdSong instance) =>
       'AlbumArtistSort': instance.albumArtistSort,
       'Title': instance.title,
       'TitleSort': instance.titleSort,
+      'Track': instance.track,
       'Name': instance.name,
       'Genre': instance.genre,
       'Mood': instance.mood,
@@ -125,9 +129,9 @@ Map<String, dynamic> _$$_MpdSongToJson(_$_MpdSong instance) =>
       'Performer': instance.performer,
       'Conductor': instance.conductor,
       'Work': instance.work,
-      'Ensemble': instance.ensemble,
       'Movement': instance.movement,
       'MovementNumber': instance.movementNumber,
+      'Ensemble': instance.ensemble,
       'Location': instance.location,
       'Grouping': instance.grouping,
       'Comment': instance.comment,

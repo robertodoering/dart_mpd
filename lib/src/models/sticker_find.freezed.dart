@@ -12,7 +12,7 @@ part of 'sticker_find.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MpdStickerFind {
@@ -63,22 +63,22 @@ class _$MpdStickerFindCopyWithImpl<$Res, $Val extends MpdStickerFind>
 }
 
 /// @nodoc
-abstract class _$$_MpdStickerFindCopyWith<$Res>
+abstract class _$$MpdStickerFindImplCopyWith<$Res>
     implements $MpdStickerFindCopyWith<$Res> {
-  factory _$$_MpdStickerFindCopyWith(
-          _$_MpdStickerFind value, $Res Function(_$_MpdStickerFind) then) =
-      __$$_MpdStickerFindCopyWithImpl<$Res>;
+  factory _$$MpdStickerFindImplCopyWith(_$MpdStickerFindImpl value,
+          $Res Function(_$MpdStickerFindImpl) then) =
+      __$$MpdStickerFindImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String file, MapEntry<String, String> sticker});
 }
 
 /// @nodoc
-class __$$_MpdStickerFindCopyWithImpl<$Res>
-    extends _$MpdStickerFindCopyWithImpl<$Res, _$_MpdStickerFind>
-    implements _$$_MpdStickerFindCopyWith<$Res> {
-  __$$_MpdStickerFindCopyWithImpl(
-      _$_MpdStickerFind _value, $Res Function(_$_MpdStickerFind) _then)
+class __$$MpdStickerFindImplCopyWithImpl<$Res>
+    extends _$MpdStickerFindCopyWithImpl<$Res, _$MpdStickerFindImpl>
+    implements _$$MpdStickerFindImplCopyWith<$Res> {
+  __$$MpdStickerFindImplCopyWithImpl(
+      _$MpdStickerFindImpl _value, $Res Function(_$MpdStickerFindImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$_MpdStickerFindCopyWithImpl<$Res>
     Object? file = null,
     Object? sticker = null,
   }) {
-    return _then(_$_MpdStickerFind(
+    return _then(_$MpdStickerFindImpl(
       file: null == file
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
@@ -102,8 +102,8 @@ class __$$_MpdStickerFindCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MpdStickerFind implements _MpdStickerFind {
-  const _$_MpdStickerFind({required this.file, required this.sticker});
+class _$MpdStickerFindImpl implements _MpdStickerFind {
+  const _$MpdStickerFindImpl({required this.file, required this.sticker});
 
   @override
   final String file;
@@ -116,10 +116,10 @@ class _$_MpdStickerFind implements _MpdStickerFind {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MpdStickerFind &&
+            other is _$MpdStickerFindImpl &&
             (identical(other.file, file) || other.file == file) &&
             (identical(other.sticker, sticker) || other.sticker == sticker));
   }
@@ -130,14 +130,15 @@ class _$_MpdStickerFind implements _MpdStickerFind {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MpdStickerFindCopyWith<_$_MpdStickerFind> get copyWith =>
-      __$$_MpdStickerFindCopyWithImpl<_$_MpdStickerFind>(this, _$identity);
+  _$$MpdStickerFindImplCopyWith<_$MpdStickerFindImpl> get copyWith =>
+      __$$MpdStickerFindImplCopyWithImpl<_$MpdStickerFindImpl>(
+          this, _$identity);
 }
 
 abstract class _MpdStickerFind implements MpdStickerFind {
   const factory _MpdStickerFind(
       {required final String file,
-      required final MapEntry<String, String> sticker}) = _$_MpdStickerFind;
+      required final MapEntry<String, String> sticker}) = _$MpdStickerFindImpl;
 
   @override
   String get file;
@@ -145,6 +146,6 @@ abstract class _MpdStickerFind implements MpdStickerFind {
   MapEntry<String, String> get sticker;
   @override
   @JsonKey(ignore: true)
-  _$$_MpdStickerFindCopyWith<_$_MpdStickerFind> get copyWith =>
+  _$$MpdStickerFindImplCopyWith<_$MpdStickerFindImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'config.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 MpdConfig _$MpdConfigFromJson(Map<String, dynamic> json) {
   return _MpdConfig.fromJson(json);
@@ -40,11 +40,10 @@ abstract class $MpdConfigCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'music_directory', fromJson: parseString)
-          String? musicDirectory,
+      String? musicDirectory,
       @JsonKey(name: 'playlist_directory', fromJson: parseString)
-          String? playlistDirectory,
-      @JsonKey(fromJson: parseBool)
-          bool? pcre});
+      String? playlistDirectory,
+      @JsonKey(fromJson: parseBool) bool? pcre});
 }
 
 /// @nodoc
@@ -82,27 +81,27 @@ class _$MpdConfigCopyWithImpl<$Res, $Val extends MpdConfig>
 }
 
 /// @nodoc
-abstract class _$$_MpdConfigCopyWith<$Res> implements $MpdConfigCopyWith<$Res> {
-  factory _$$_MpdConfigCopyWith(
-          _$_MpdConfig value, $Res Function(_$_MpdConfig) then) =
-      __$$_MpdConfigCopyWithImpl<$Res>;
+abstract class _$$MpdConfigImplCopyWith<$Res>
+    implements $MpdConfigCopyWith<$Res> {
+  factory _$$MpdConfigImplCopyWith(
+          _$MpdConfigImpl value, $Res Function(_$MpdConfigImpl) then) =
+      __$$MpdConfigImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: 'music_directory', fromJson: parseString)
-          String? musicDirectory,
+      String? musicDirectory,
       @JsonKey(name: 'playlist_directory', fromJson: parseString)
-          String? playlistDirectory,
-      @JsonKey(fromJson: parseBool)
-          bool? pcre});
+      String? playlistDirectory,
+      @JsonKey(fromJson: parseBool) bool? pcre});
 }
 
 /// @nodoc
-class __$$_MpdConfigCopyWithImpl<$Res>
-    extends _$MpdConfigCopyWithImpl<$Res, _$_MpdConfig>
-    implements _$$_MpdConfigCopyWith<$Res> {
-  __$$_MpdConfigCopyWithImpl(
-      _$_MpdConfig _value, $Res Function(_$_MpdConfig) _then)
+class __$$MpdConfigImplCopyWithImpl<$Res>
+    extends _$MpdConfigCopyWithImpl<$Res, _$MpdConfigImpl>
+    implements _$$MpdConfigImplCopyWith<$Res> {
+  __$$MpdConfigImplCopyWithImpl(
+      _$MpdConfigImpl _value, $Res Function(_$MpdConfigImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -112,7 +111,7 @@ class __$$_MpdConfigCopyWithImpl<$Res>
     Object? playlistDirectory = freezed,
     Object? pcre = freezed,
   }) {
-    return _then(_$_MpdConfig(
+    return _then(_$MpdConfigImpl(
       musicDirectory: freezed == musicDirectory
           ? _value.musicDirectory
           : musicDirectory // ignore: cast_nullable_to_non_nullable
@@ -131,17 +130,16 @@ class __$$_MpdConfigCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MpdConfig implements _MpdConfig {
-  const _$_MpdConfig(
+class _$MpdConfigImpl implements _MpdConfig {
+  const _$MpdConfigImpl(
       {@JsonKey(name: 'music_directory', fromJson: parseString)
-          this.musicDirectory,
+      this.musicDirectory,
       @JsonKey(name: 'playlist_directory', fromJson: parseString)
-          this.playlistDirectory,
-      @JsonKey(fromJson: parseBool)
-          this.pcre});
+      this.playlistDirectory,
+      @JsonKey(fromJson: parseBool) this.pcre});
 
-  factory _$_MpdConfig.fromJson(Map<String, dynamic> json) =>
-      _$$_MpdConfigFromJson(json);
+  factory _$MpdConfigImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MpdConfigImplFromJson(json);
 
   @override
   @JsonKey(name: 'music_directory', fromJson: parseString)
@@ -159,10 +157,10 @@ class _$_MpdConfig implements _MpdConfig {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MpdConfig &&
+            other is _$MpdConfigImpl &&
             (identical(other.musicDirectory, musicDirectory) ||
                 other.musicDirectory == musicDirectory) &&
             (identical(other.playlistDirectory, playlistDirectory) ||
@@ -178,12 +176,12 @@ class _$_MpdConfig implements _MpdConfig {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MpdConfigCopyWith<_$_MpdConfig> get copyWith =>
-      __$$_MpdConfigCopyWithImpl<_$_MpdConfig>(this, _$identity);
+  _$$MpdConfigImplCopyWith<_$MpdConfigImpl> get copyWith =>
+      __$$MpdConfigImplCopyWithImpl<_$MpdConfigImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MpdConfigToJson(
+    return _$$MpdConfigImplToJson(
       this,
     );
   }
@@ -192,14 +190,13 @@ class _$_MpdConfig implements _MpdConfig {
 abstract class _MpdConfig implements MpdConfig {
   const factory _MpdConfig(
       {@JsonKey(name: 'music_directory', fromJson: parseString)
-          final String? musicDirectory,
+      final String? musicDirectory,
       @JsonKey(name: 'playlist_directory', fromJson: parseString)
-          final String? playlistDirectory,
-      @JsonKey(fromJson: parseBool)
-          final bool? pcre}) = _$_MpdConfig;
+      final String? playlistDirectory,
+      @JsonKey(fromJson: parseBool) final bool? pcre}) = _$MpdConfigImpl;
 
   factory _MpdConfig.fromJson(Map<String, dynamic> json) =
-      _$_MpdConfig.fromJson;
+      _$MpdConfigImpl.fromJson;
 
   @override
   @JsonKey(name: 'music_directory', fromJson: parseString)
@@ -212,6 +209,6 @@ abstract class _MpdConfig implements MpdConfig {
   bool? get pcre;
   @override
   @JsonKey(ignore: true)
-  _$$_MpdConfigCopyWith<_$_MpdConfig> get copyWith =>
+  _$$MpdConfigImplCopyWith<_$MpdConfigImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

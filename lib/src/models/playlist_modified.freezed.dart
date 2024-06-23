@@ -12,7 +12,7 @@ part of 'playlist_modified.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PlaylistModified _$PlaylistModifiedFromJson(Map<String, dynamic> json) {
   return _PlaylistModified.fromJson(json);
@@ -38,10 +38,9 @@ abstract class $PlaylistModifiedCopyWith<$Res> {
       _$PlaylistModifiedCopyWithImpl<$Res, PlaylistModified>;
   @useResult
   $Res call(
-      {@JsonKey(fromJson: parseStringSafe)
-          String playlist,
+      {@JsonKey(fromJson: parseStringSafe) String playlist,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
-          DateTime? lastModified});
+      DateTime? lastModified});
 }
 
 /// @nodoc
@@ -74,26 +73,25 @@ class _$PlaylistModifiedCopyWithImpl<$Res, $Val extends PlaylistModified>
 }
 
 /// @nodoc
-abstract class _$$_PlaylistModifiedCopyWith<$Res>
+abstract class _$$PlaylistModifiedImplCopyWith<$Res>
     implements $PlaylistModifiedCopyWith<$Res> {
-  factory _$$_PlaylistModifiedCopyWith(
-          _$_PlaylistModified value, $Res Function(_$_PlaylistModified) then) =
-      __$$_PlaylistModifiedCopyWithImpl<$Res>;
+  factory _$$PlaylistModifiedImplCopyWith(_$PlaylistModifiedImpl value,
+          $Res Function(_$PlaylistModifiedImpl) then) =
+      __$$PlaylistModifiedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(fromJson: parseStringSafe)
-          String playlist,
+      {@JsonKey(fromJson: parseStringSafe) String playlist,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
-          DateTime? lastModified});
+      DateTime? lastModified});
 }
 
 /// @nodoc
-class __$$_PlaylistModifiedCopyWithImpl<$Res>
-    extends _$PlaylistModifiedCopyWithImpl<$Res, _$_PlaylistModified>
-    implements _$$_PlaylistModifiedCopyWith<$Res> {
-  __$$_PlaylistModifiedCopyWithImpl(
-      _$_PlaylistModified _value, $Res Function(_$_PlaylistModified) _then)
+class __$$PlaylistModifiedImplCopyWithImpl<$Res>
+    extends _$PlaylistModifiedCopyWithImpl<$Res, _$PlaylistModifiedImpl>
+    implements _$$PlaylistModifiedImplCopyWith<$Res> {
+  __$$PlaylistModifiedImplCopyWithImpl(_$PlaylistModifiedImpl _value,
+      $Res Function(_$PlaylistModifiedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +100,7 @@ class __$$_PlaylistModifiedCopyWithImpl<$Res>
     Object? playlist = null,
     Object? lastModified = freezed,
   }) {
-    return _then(_$_PlaylistModified(
+    return _then(_$PlaylistModifiedImpl(
       playlist: null == playlist
           ? _value.playlist
           : playlist // ignore: cast_nullable_to_non_nullable
@@ -117,15 +115,14 @@ class __$$_PlaylistModifiedCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PlaylistModified implements _PlaylistModified {
-  const _$_PlaylistModified(
-      {@JsonKey(fromJson: parseStringSafe)
-          required this.playlist,
+class _$PlaylistModifiedImpl implements _PlaylistModified {
+  const _$PlaylistModifiedImpl(
+      {@JsonKey(fromJson: parseStringSafe) required this.playlist,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
-          this.lastModified});
+      this.lastModified});
 
-  factory _$_PlaylistModified.fromJson(Map<String, dynamic> json) =>
-      _$$_PlaylistModifiedFromJson(json);
+  factory _$PlaylistModifiedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PlaylistModifiedImplFromJson(json);
 
   @override
   @JsonKey(fromJson: parseStringSafe)
@@ -140,10 +137,10 @@ class _$_PlaylistModified implements _PlaylistModified {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PlaylistModified &&
+            other is _$PlaylistModifiedImpl &&
             (identical(other.playlist, playlist) ||
                 other.playlist == playlist) &&
             (identical(other.lastModified, lastModified) ||
@@ -157,12 +154,13 @@ class _$_PlaylistModified implements _PlaylistModified {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PlaylistModifiedCopyWith<_$_PlaylistModified> get copyWith =>
-      __$$_PlaylistModifiedCopyWithImpl<_$_PlaylistModified>(this, _$identity);
+  _$$PlaylistModifiedImplCopyWith<_$PlaylistModifiedImpl> get copyWith =>
+      __$$PlaylistModifiedImplCopyWithImpl<_$PlaylistModifiedImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PlaylistModifiedToJson(
+    return _$$PlaylistModifiedImplToJson(
       this,
     );
   }
@@ -170,13 +168,12 @@ class _$_PlaylistModified implements _PlaylistModified {
 
 abstract class _PlaylistModified implements PlaylistModified {
   const factory _PlaylistModified(
-      {@JsonKey(fromJson: parseStringSafe)
-          required final String playlist,
+      {@JsonKey(fromJson: parseStringSafe) required final String playlist,
       @JsonKey(name: 'Last-Modified', fromJson: parseDateTime)
-          final DateTime? lastModified}) = _$_PlaylistModified;
+      final DateTime? lastModified}) = _$PlaylistModifiedImpl;
 
   factory _PlaylistModified.fromJson(Map<String, dynamic> json) =
-      _$_PlaylistModified.fromJson;
+      _$PlaylistModifiedImpl.fromJson;
 
   @override
   @JsonKey(fromJson: parseStringSafe)
@@ -186,6 +183,6 @@ abstract class _PlaylistModified implements PlaylistModified {
   DateTime? get lastModified;
   @override
   @JsonKey(ignore: true)
-  _$$_PlaylistModifiedCopyWith<_$_PlaylistModified> get copyWith =>
+  _$$PlaylistModifiedImplCopyWith<_$PlaylistModifiedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
