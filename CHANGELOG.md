@@ -1,3 +1,6 @@
+## 0.4.1
+- Added `MpdSong.track` field
+
 ## 0.4.0
 - Added automatically escaping & wrapping arguments in double quotation marks in client calls 
   - This is a breaking change and requires any manually wrapped arguments and escaped  characters to be updated (Remove wrapping quotes and escaping backslashes from client calls)
