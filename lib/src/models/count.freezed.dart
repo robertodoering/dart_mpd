@@ -12,7 +12,7 @@ part of 'count.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MpdCount {
@@ -68,21 +68,22 @@ class _$MpdCountCopyWithImpl<$Res, $Val extends MpdCount>
 }
 
 /// @nodoc
-abstract class _$$_MpdCountCopyWith<$Res> implements $MpdCountCopyWith<$Res> {
-  factory _$$_MpdCountCopyWith(
-          _$_MpdCount value, $Res Function(_$_MpdCount) then) =
-      __$$_MpdCountCopyWithImpl<$Res>;
+abstract class _$$MpdCountImplCopyWith<$Res>
+    implements $MpdCountCopyWith<$Res> {
+  factory _$$MpdCountImplCopyWith(
+          _$MpdCountImpl value, $Res Function(_$MpdCountImpl) then) =
+      __$$MpdCountImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? group, int? songs, int? playtime});
 }
 
 /// @nodoc
-class __$$_MpdCountCopyWithImpl<$Res>
-    extends _$MpdCountCopyWithImpl<$Res, _$_MpdCount>
-    implements _$$_MpdCountCopyWith<$Res> {
-  __$$_MpdCountCopyWithImpl(
-      _$_MpdCount _value, $Res Function(_$_MpdCount) _then)
+class __$$MpdCountImplCopyWithImpl<$Res>
+    extends _$MpdCountCopyWithImpl<$Res, _$MpdCountImpl>
+    implements _$$MpdCountImplCopyWith<$Res> {
+  __$$MpdCountImplCopyWithImpl(
+      _$MpdCountImpl _value, $Res Function(_$MpdCountImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +93,7 @@ class __$$_MpdCountCopyWithImpl<$Res>
     Object? songs = freezed,
     Object? playtime = freezed,
   }) {
-    return _then(_$_MpdCount(
+    return _then(_$MpdCountImpl(
       group: freezed == group
           ? _value.group
           : group // ignore: cast_nullable_to_non_nullable
@@ -111,8 +112,8 @@ class __$$_MpdCountCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MpdCount implements _MpdCount {
-  const _$_MpdCount({this.group, this.songs, this.playtime});
+class _$MpdCountImpl implements _MpdCount {
+  const _$MpdCountImpl({this.group, this.songs, this.playtime});
 
   @override
   final String? group;
@@ -127,10 +128,10 @@ class _$_MpdCount implements _MpdCount {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MpdCount &&
+            other is _$MpdCountImpl &&
             (identical(other.group, group) || other.group == group) &&
             (identical(other.songs, songs) || other.songs == songs) &&
             (identical(other.playtime, playtime) ||
@@ -143,15 +144,15 @@ class _$_MpdCount implements _MpdCount {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MpdCountCopyWith<_$_MpdCount> get copyWith =>
-      __$$_MpdCountCopyWithImpl<_$_MpdCount>(this, _$identity);
+  _$$MpdCountImplCopyWith<_$MpdCountImpl> get copyWith =>
+      __$$MpdCountImplCopyWithImpl<_$MpdCountImpl>(this, _$identity);
 }
 
 abstract class _MpdCount implements MpdCount {
   const factory _MpdCount(
       {final String? group,
       final int? songs,
-      final int? playtime}) = _$_MpdCount;
+      final int? playtime}) = _$MpdCountImpl;
 
   @override
   String? get group;
@@ -161,6 +162,6 @@ abstract class _MpdCount implements MpdCount {
   int? get playtime;
   @override
   @JsonKey(ignore: true)
-  _$$_MpdCountCopyWith<_$_MpdCount> get copyWith =>
+  _$$MpdCountImplCopyWith<_$MpdCountImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

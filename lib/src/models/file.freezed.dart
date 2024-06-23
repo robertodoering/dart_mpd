@@ -12,7 +12,7 @@ part of 'file.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MpdFile {
@@ -109,10 +109,11 @@ class _$MpdFileCopyWithImpl<$Res, $Val extends MpdFile>
 }
 
 /// @nodoc
-abstract class _$$MpdFileFileCopyWith<$Res> implements $MpdFileCopyWith<$Res> {
-  factory _$$MpdFileFileCopyWith(
-          _$MpdFileFile value, $Res Function(_$MpdFileFile) then) =
-      __$$MpdFileFileCopyWithImpl<$Res>;
+abstract class _$$MpdFileFileImplCopyWith<$Res>
+    implements $MpdFileCopyWith<$Res> {
+  factory _$$MpdFileFileImplCopyWith(
+          _$MpdFileFileImpl value, $Res Function(_$MpdFileFileImpl) then) =
+      __$$MpdFileFileImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String file, MpdSong? song, DateTime? lastModified, int? size});
@@ -121,11 +122,11 @@ abstract class _$$MpdFileFileCopyWith<$Res> implements $MpdFileCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$MpdFileFileCopyWithImpl<$Res>
-    extends _$MpdFileCopyWithImpl<$Res, _$MpdFileFile>
-    implements _$$MpdFileFileCopyWith<$Res> {
-  __$$MpdFileFileCopyWithImpl(
-      _$MpdFileFile _value, $Res Function(_$MpdFileFile) _then)
+class __$$MpdFileFileImplCopyWithImpl<$Res>
+    extends _$MpdFileCopyWithImpl<$Res, _$MpdFileFileImpl>
+    implements _$$MpdFileFileImplCopyWith<$Res> {
+  __$$MpdFileFileImplCopyWithImpl(
+      _$MpdFileFileImpl _value, $Res Function(_$MpdFileFileImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -136,7 +137,7 @@ class __$$MpdFileFileCopyWithImpl<$Res>
     Object? lastModified = freezed,
     Object? size = freezed,
   }) {
-    return _then(_$MpdFileFile(
+    return _then(_$MpdFileFileImpl(
       file: null == file
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
@@ -171,8 +172,8 @@ class __$$MpdFileFileCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MpdFileFile implements MpdFileFile {
-  const _$MpdFileFile(
+class _$MpdFileFileImpl implements MpdFileFile {
+  const _$MpdFileFileImpl(
       {required this.file, this.song, this.lastModified, this.size});
 
   @override
@@ -190,10 +191,10 @@ class _$MpdFileFile implements MpdFileFile {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MpdFileFile &&
+            other is _$MpdFileFileImpl &&
             (identical(other.file, file) || other.file == file) &&
             (identical(other.song, song) || other.song == song) &&
             (identical(other.lastModified, lastModified) ||
@@ -207,8 +208,8 @@ class _$MpdFileFile implements MpdFileFile {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MpdFileFileCopyWith<_$MpdFileFile> get copyWith =>
-      __$$MpdFileFileCopyWithImpl<_$MpdFileFile>(this, _$identity);
+  _$$MpdFileFileImplCopyWith<_$MpdFileFileImpl> get copyWith =>
+      __$$MpdFileFileImplCopyWithImpl<_$MpdFileFileImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -288,7 +289,7 @@ abstract class MpdFileFile implements MpdFile {
       {required final String file,
       final MpdSong? song,
       final DateTime? lastModified,
-      final int? size}) = _$MpdFileFile;
+      final int? size}) = _$MpdFileFileImpl;
 
   String get file;
   MpdSong? get song;
@@ -298,27 +299,27 @@ abstract class MpdFileFile implements MpdFile {
   int? get size;
   @override
   @JsonKey(ignore: true)
-  _$$MpdFileFileCopyWith<_$MpdFileFile> get copyWith =>
+  _$$MpdFileFileImplCopyWith<_$MpdFileFileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$MpdFileDirectoryCopyWith<$Res>
+abstract class _$$MpdFileDirectoryImplCopyWith<$Res>
     implements $MpdFileCopyWith<$Res> {
-  factory _$$MpdFileDirectoryCopyWith(
-          _$MpdFileDirectory value, $Res Function(_$MpdFileDirectory) then) =
-      __$$MpdFileDirectoryCopyWithImpl<$Res>;
+  factory _$$MpdFileDirectoryImplCopyWith(_$MpdFileDirectoryImpl value,
+          $Res Function(_$MpdFileDirectoryImpl) then) =
+      __$$MpdFileDirectoryImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String directory, DateTime? lastModified, int? size});
 }
 
 /// @nodoc
-class __$$MpdFileDirectoryCopyWithImpl<$Res>
-    extends _$MpdFileCopyWithImpl<$Res, _$MpdFileDirectory>
-    implements _$$MpdFileDirectoryCopyWith<$Res> {
-  __$$MpdFileDirectoryCopyWithImpl(
-      _$MpdFileDirectory _value, $Res Function(_$MpdFileDirectory) _then)
+class __$$MpdFileDirectoryImplCopyWithImpl<$Res>
+    extends _$MpdFileCopyWithImpl<$Res, _$MpdFileDirectoryImpl>
+    implements _$$MpdFileDirectoryImplCopyWith<$Res> {
+  __$$MpdFileDirectoryImplCopyWithImpl(_$MpdFileDirectoryImpl _value,
+      $Res Function(_$MpdFileDirectoryImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -328,7 +329,7 @@ class __$$MpdFileDirectoryCopyWithImpl<$Res>
     Object? lastModified = freezed,
     Object? size = freezed,
   }) {
-    return _then(_$MpdFileDirectory(
+    return _then(_$MpdFileDirectoryImpl(
       directory: null == directory
           ? _value.directory
           : directory // ignore: cast_nullable_to_non_nullable
@@ -347,8 +348,8 @@ class __$$MpdFileDirectoryCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MpdFileDirectory implements MpdFileDirectory {
-  const _$MpdFileDirectory(
+class _$MpdFileDirectoryImpl implements MpdFileDirectory {
+  const _$MpdFileDirectoryImpl(
       {required this.directory, this.lastModified, this.size});
 
   @override
@@ -364,10 +365,10 @@ class _$MpdFileDirectory implements MpdFileDirectory {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MpdFileDirectory &&
+            other is _$MpdFileDirectoryImpl &&
             (identical(other.directory, directory) ||
                 other.directory == directory) &&
             (identical(other.lastModified, lastModified) ||
@@ -381,8 +382,9 @@ class _$MpdFileDirectory implements MpdFileDirectory {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MpdFileDirectoryCopyWith<_$MpdFileDirectory> get copyWith =>
-      __$$MpdFileDirectoryCopyWithImpl<_$MpdFileDirectory>(this, _$identity);
+  _$$MpdFileDirectoryImplCopyWith<_$MpdFileDirectoryImpl> get copyWith =>
+      __$$MpdFileDirectoryImplCopyWithImpl<_$MpdFileDirectoryImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -461,7 +463,7 @@ abstract class MpdFileDirectory implements MpdFile {
   const factory MpdFileDirectory(
       {required final String directory,
       final DateTime? lastModified,
-      final int? size}) = _$MpdFileDirectory;
+      final int? size}) = _$MpdFileDirectoryImpl;
 
   String get directory;
   @override
@@ -470,6 +472,6 @@ abstract class MpdFileDirectory implements MpdFile {
   int? get size;
   @override
   @JsonKey(ignore: true)
-  _$$MpdFileDirectoryCopyWith<_$MpdFileDirectory> get copyWith =>
+  _$$MpdFileDirectoryImplCopyWith<_$MpdFileDirectoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'status.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 MpdStatus _$MpdStatusFromJson(Map<String, dynamic> json) {
   return _MpdStatus.fromJson(json);
@@ -231,10 +231,11 @@ class _$MpdStatusCopyWithImpl<$Res, $Val extends MpdStatus>
 }
 
 /// @nodoc
-abstract class _$$_MpdStatusCopyWith<$Res> implements $MpdStatusCopyWith<$Res> {
-  factory _$$_MpdStatusCopyWith(
-          _$_MpdStatus value, $Res Function(_$_MpdStatus) then) =
-      __$$_MpdStatusCopyWithImpl<$Res>;
+abstract class _$$MpdStatusImplCopyWith<$Res>
+    implements $MpdStatusCopyWith<$Res> {
+  factory _$$MpdStatusImplCopyWith(
+          _$MpdStatusImpl value, $Res Function(_$MpdStatusImpl) then) =
+      __$$MpdStatusImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -263,11 +264,11 @@ abstract class _$$_MpdStatusCopyWith<$Res> implements $MpdStatusCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_MpdStatusCopyWithImpl<$Res>
-    extends _$MpdStatusCopyWithImpl<$Res, _$_MpdStatus>
-    implements _$$_MpdStatusCopyWith<$Res> {
-  __$$_MpdStatusCopyWithImpl(
-      _$_MpdStatus _value, $Res Function(_$_MpdStatus) _then)
+class __$$MpdStatusImplCopyWithImpl<$Res>
+    extends _$MpdStatusCopyWithImpl<$Res, _$MpdStatusImpl>
+    implements _$$MpdStatusImplCopyWith<$Res> {
+  __$$MpdStatusImplCopyWithImpl(
+      _$MpdStatusImpl _value, $Res Function(_$MpdStatusImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -296,7 +297,7 @@ class __$$_MpdStatusCopyWithImpl<$Res>
     Object? updatingDb = freezed,
     Object? error = freezed,
   }) {
-    return _then(_$_MpdStatus(
+    return _then(_$MpdStatusImpl(
       partition: freezed == partition
           ? _value.partition
           : partition // ignore: cast_nullable_to_non_nullable
@@ -391,8 +392,8 @@ class __$$_MpdStatusCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MpdStatus implements _MpdStatus {
-  const _$_MpdStatus(
+class _$MpdStatusImpl implements _MpdStatus {
+  const _$MpdStatusImpl(
       {@JsonKey(fromJson: parseString) this.partition,
       @JsonKey(fromJson: parseInt) this.volume,
       @JsonKey(fromJson: parseBool) this.repeat,
@@ -416,8 +417,8 @@ class _$_MpdStatus implements _MpdStatus {
       @JsonKey(fromJson: parseInt) this.updatingDb,
       @JsonKey(fromJson: parseString) this.error});
 
-  factory _$_MpdStatus.fromJson(Map<String, dynamic> json) =>
-      _$$_MpdStatusFromJson(json);
+  factory _$MpdStatusImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MpdStatusImplFromJson(json);
 
   @override
   @JsonKey(fromJson: parseString)
@@ -492,10 +493,10 @@ class _$_MpdStatus implements _MpdStatus {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MpdStatus &&
+            other is _$MpdStatusImpl &&
             (identical(other.partition, partition) ||
                 other.partition == partition) &&
             (identical(other.volume, volume) || other.volume == volume) &&
@@ -560,12 +561,12 @@ class _$_MpdStatus implements _MpdStatus {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MpdStatusCopyWith<_$_MpdStatus> get copyWith =>
-      __$$_MpdStatusCopyWithImpl<_$_MpdStatus>(this, _$identity);
+  _$$MpdStatusImplCopyWith<_$MpdStatusImpl> get copyWith =>
+      __$$MpdStatusImplCopyWithImpl<_$MpdStatusImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MpdStatusToJson(
+    return _$$MpdStatusImplToJson(
       this,
     );
   }
@@ -594,10 +595,10 @@ abstract class _MpdStatus implements MpdStatus {
       @JsonKey(fromJson: parseDouble) final double? mixrampdelay,
       @JsonKey(fromJson: parseString) final String? audio,
       @JsonKey(fromJson: parseInt) final int? updatingDb,
-      @JsonKey(fromJson: parseString) final String? error}) = _$_MpdStatus;
+      @JsonKey(fromJson: parseString) final String? error}) = _$MpdStatusImpl;
 
   factory _MpdStatus.fromJson(Map<String, dynamic> json) =
-      _$_MpdStatus.fromJson;
+      _$MpdStatusImpl.fromJson;
 
   @override
   @JsonKey(fromJson: parseString)
@@ -667,6 +668,6 @@ abstract class _MpdStatus implements MpdStatus {
   String? get error;
   @override
   @JsonKey(ignore: true)
-  _$$_MpdStatusCopyWith<_$_MpdStatus> get copyWith =>
+  _$$MpdStatusImplCopyWith<_$MpdStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

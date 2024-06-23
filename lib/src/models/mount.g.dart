@@ -6,12 +6,13 @@ part of 'mount.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MpdMount _$$_MpdMountFromJson(Map<String, dynamic> json) => _$_MpdMount(
+_$MpdMountImpl _$$MpdMountImplFromJson(Map<String, dynamic> json) =>
+    _$MpdMountImpl(
       mount: parseString(json['mount'] as List<String>?),
       storage: parseString(json['storage'] as List<String>?),
     );
 
-Map<String, dynamic> _$$_MpdMountToJson(_$_MpdMount instance) =>
+Map<String, dynamic> _$$MpdMountImplToJson(_$MpdMountImpl instance) =>
     <String, dynamic>{
       'mount': instance.mount,
       'storage': instance.storage,

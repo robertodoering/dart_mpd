@@ -12,7 +12,7 @@ part of 'output.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 MpdOutput _$MpdOutputFromJson(Map<String, dynamic> json) {
   return _MpdOutput.fromJson(json);
@@ -97,10 +97,11 @@ class _$MpdOutputCopyWithImpl<$Res, $Val extends MpdOutput>
 }
 
 /// @nodoc
-abstract class _$$_MpdOutputCopyWith<$Res> implements $MpdOutputCopyWith<$Res> {
-  factory _$$_MpdOutputCopyWith(
-          _$_MpdOutput value, $Res Function(_$_MpdOutput) then) =
-      __$$_MpdOutputCopyWithImpl<$Res>;
+abstract class _$$MpdOutputImplCopyWith<$Res>
+    implements $MpdOutputCopyWith<$Res> {
+  factory _$$MpdOutputImplCopyWith(
+          _$MpdOutputImpl value, $Res Function(_$MpdOutputImpl) then) =
+      __$$MpdOutputImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -112,11 +113,11 @@ abstract class _$$_MpdOutputCopyWith<$Res> implements $MpdOutputCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_MpdOutputCopyWithImpl<$Res>
-    extends _$MpdOutputCopyWithImpl<$Res, _$_MpdOutput>
-    implements _$$_MpdOutputCopyWith<$Res> {
-  __$$_MpdOutputCopyWithImpl(
-      _$_MpdOutput _value, $Res Function(_$_MpdOutput) _then)
+class __$$MpdOutputImplCopyWithImpl<$Res>
+    extends _$MpdOutputCopyWithImpl<$Res, _$MpdOutputImpl>
+    implements _$$MpdOutputImplCopyWith<$Res> {
+  __$$MpdOutputImplCopyWithImpl(
+      _$MpdOutputImpl _value, $Res Function(_$MpdOutputImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -128,7 +129,7 @@ class __$$_MpdOutputCopyWithImpl<$Res>
     Object? plugin = freezed,
     Object? values = null,
   }) {
-    return _then(_$_MpdOutput(
+    return _then(_$MpdOutputImpl(
       outputId: freezed == outputId
           ? _value.outputId
           : outputId // ignore: cast_nullable_to_non_nullable
@@ -155,22 +156,18 @@ class __$$_MpdOutputCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MpdOutput implements _MpdOutput {
-  const _$_MpdOutput(
-      {@JsonKey(fromJson: parseInt)
-          this.outputId,
-      @JsonKey(fromJson: parseString)
-          this.outputname,
-      @JsonKey(fromJson: parseBool)
-          this.outputenabled,
-      @JsonKey(fromJson: parseString)
-          this.plugin,
+class _$MpdOutputImpl implements _MpdOutput {
+  const _$MpdOutputImpl(
+      {@JsonKey(fromJson: parseInt) this.outputId,
+      @JsonKey(fromJson: parseString) this.outputname,
+      @JsonKey(fromJson: parseBool) this.outputenabled,
+      @JsonKey(fromJson: parseString) this.plugin,
       @JsonKey(includeFromJson: false)
-          final Map<String, List<String>> values = const {}})
+      final Map<String, List<String>> values = const {}})
       : _values = values;
 
-  factory _$_MpdOutput.fromJson(Map<String, dynamic> json) =>
-      _$$_MpdOutputFromJson(json);
+  factory _$MpdOutputImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MpdOutputImplFromJson(json);
 
   @override
   @JsonKey(fromJson: parseInt)
@@ -203,10 +200,10 @@ class _$_MpdOutput implements _MpdOutput {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MpdOutput &&
+            other is _$MpdOutputImpl &&
             (identical(other.outputId, outputId) ||
                 other.outputId == outputId) &&
             (identical(other.outputname, outputname) ||
@@ -225,12 +222,12 @@ class _$_MpdOutput implements _MpdOutput {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MpdOutputCopyWith<_$_MpdOutput> get copyWith =>
-      __$$_MpdOutputCopyWithImpl<_$_MpdOutput>(this, _$identity);
+  _$$MpdOutputImplCopyWith<_$MpdOutputImpl> get copyWith =>
+      __$$MpdOutputImplCopyWithImpl<_$MpdOutputImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MpdOutputToJson(
+    return _$$MpdOutputImplToJson(
       this,
     );
   }
@@ -238,19 +235,15 @@ class _$_MpdOutput implements _MpdOutput {
 
 abstract class _MpdOutput implements MpdOutput {
   const factory _MpdOutput(
-      {@JsonKey(fromJson: parseInt)
-          final int? outputId,
-      @JsonKey(fromJson: parseString)
-          final String? outputname,
-      @JsonKey(fromJson: parseBool)
-          final bool? outputenabled,
-      @JsonKey(fromJson: parseString)
-          final String? plugin,
+      {@JsonKey(fromJson: parseInt) final int? outputId,
+      @JsonKey(fromJson: parseString) final String? outputname,
+      @JsonKey(fromJson: parseBool) final bool? outputenabled,
+      @JsonKey(fromJson: parseString) final String? plugin,
       @JsonKey(includeFromJson: false)
-          final Map<String, List<String>> values}) = _$_MpdOutput;
+      final Map<String, List<String>> values}) = _$MpdOutputImpl;
 
   factory _MpdOutput.fromJson(Map<String, dynamic> json) =
-      _$_MpdOutput.fromJson;
+      _$MpdOutputImpl.fromJson;
 
   @override
   @JsonKey(fromJson: parseInt)
@@ -271,6 +264,6 @@ abstract class _MpdOutput implements MpdOutput {
   Map<String, List<String>> get values;
   @override
   @JsonKey(ignore: true)
-  _$$_MpdOutputCopyWith<_$_MpdOutput> get copyWith =>
+  _$$MpdOutputImplCopyWith<_$MpdOutputImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,13 +6,13 @@ part of 'neighbor.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MpdNeighbor _$$_MpdNeighborFromJson(Map<String, dynamic> json) =>
-    _$_MpdNeighbor(
+_$MpdNeighborImpl _$$MpdNeighborImplFromJson(Map<String, dynamic> json) =>
+    _$MpdNeighborImpl(
       neighbor: parseString(json['neighbor'] as List<String>?),
       name: parseString(json['name'] as List<String>?),
     );
 
-Map<String, dynamic> _$$_MpdNeighborToJson(_$_MpdNeighbor instance) =>
+Map<String, dynamic> _$$MpdNeighborImplToJson(_$MpdNeighborImpl instance) =>
     <String, dynamic>{
       'neighbor': instance.neighbor,
       'name': instance.name,

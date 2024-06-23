@@ -12,7 +12,7 @@ part of 'message.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 MpdMessage _$MpdMessageFromJson(Map<String, dynamic> json) {
   return _MpdMessage.fromJson(json);
@@ -72,11 +72,11 @@ class _$MpdMessageCopyWithImpl<$Res, $Val extends MpdMessage>
 }
 
 /// @nodoc
-abstract class _$$_MpdMessageCopyWith<$Res>
+abstract class _$$MpdMessageImplCopyWith<$Res>
     implements $MpdMessageCopyWith<$Res> {
-  factory _$$_MpdMessageCopyWith(
-          _$_MpdMessage value, $Res Function(_$_MpdMessage) then) =
-      __$$_MpdMessageCopyWithImpl<$Res>;
+  factory _$$MpdMessageImplCopyWith(
+          _$MpdMessageImpl value, $Res Function(_$MpdMessageImpl) then) =
+      __$$MpdMessageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -85,11 +85,11 @@ abstract class _$$_MpdMessageCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MpdMessageCopyWithImpl<$Res>
-    extends _$MpdMessageCopyWithImpl<$Res, _$_MpdMessage>
-    implements _$$_MpdMessageCopyWith<$Res> {
-  __$$_MpdMessageCopyWithImpl(
-      _$_MpdMessage _value, $Res Function(_$_MpdMessage) _then)
+class __$$MpdMessageImplCopyWithImpl<$Res>
+    extends _$MpdMessageCopyWithImpl<$Res, _$MpdMessageImpl>
+    implements _$$MpdMessageImplCopyWith<$Res> {
+  __$$MpdMessageImplCopyWithImpl(
+      _$MpdMessageImpl _value, $Res Function(_$MpdMessageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -98,7 +98,7 @@ class __$$_MpdMessageCopyWithImpl<$Res>
     Object? channel = null,
     Object? message = null,
   }) {
-    return _then(_$_MpdMessage(
+    return _then(_$MpdMessageImpl(
       channel: null == channel
           ? _value.channel
           : channel // ignore: cast_nullable_to_non_nullable
@@ -113,13 +113,13 @@ class __$$_MpdMessageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MpdMessage implements _MpdMessage {
-  const _$_MpdMessage(
+class _$MpdMessageImpl implements _MpdMessage {
+  const _$MpdMessageImpl(
       {@JsonKey(fromJson: parseStringSafe) required this.channel,
       @JsonKey(fromJson: parseStringSafe) required this.message});
 
-  factory _$_MpdMessage.fromJson(Map<String, dynamic> json) =>
-      _$$_MpdMessageFromJson(json);
+  factory _$MpdMessageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MpdMessageImplFromJson(json);
 
   @override
   @JsonKey(fromJson: parseStringSafe)
@@ -134,10 +134,10 @@ class _$_MpdMessage implements _MpdMessage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MpdMessage &&
+            other is _$MpdMessageImpl &&
             (identical(other.channel, channel) || other.channel == channel) &&
             (identical(other.message, message) || other.message == message));
   }
@@ -149,12 +149,12 @@ class _$_MpdMessage implements _MpdMessage {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MpdMessageCopyWith<_$_MpdMessage> get copyWith =>
-      __$$_MpdMessageCopyWithImpl<_$_MpdMessage>(this, _$identity);
+  _$$MpdMessageImplCopyWith<_$MpdMessageImpl> get copyWith =>
+      __$$MpdMessageImplCopyWithImpl<_$MpdMessageImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MpdMessageToJson(
+    return _$$MpdMessageImplToJson(
       this,
     );
   }
@@ -164,10 +164,10 @@ abstract class _MpdMessage implements MpdMessage {
   const factory _MpdMessage(
           {@JsonKey(fromJson: parseStringSafe) required final String channel,
           @JsonKey(fromJson: parseStringSafe) required final String message}) =
-      _$_MpdMessage;
+      _$MpdMessageImpl;
 
   factory _MpdMessage.fromJson(Map<String, dynamic> json) =
-      _$_MpdMessage.fromJson;
+      _$MpdMessageImpl.fromJson;
 
   @override
   @JsonKey(fromJson: parseStringSafe)
@@ -177,6 +177,6 @@ abstract class _MpdMessage implements MpdMessage {
   String get message;
   @override
   @JsonKey(ignore: true)
-  _$$_MpdMessageCopyWith<_$_MpdMessage> get copyWith =>
+  _$$MpdMessageImplCopyWith<_$MpdMessageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

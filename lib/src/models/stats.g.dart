@@ -6,7 +6,8 @@ part of 'stats.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MpdStats _$$_MpdStatsFromJson(Map<String, dynamic> json) => _$_MpdStats(
+_$MpdStatsImpl _$$MpdStatsImplFromJson(Map<String, dynamic> json) =>
+    _$MpdStatsImpl(
       artists: parseInt(json['artists'] as List<String>?),
       albums: parseInt(json['albums'] as List<String>?),
       songs: parseInt(json['songs'] as List<String>?),
@@ -16,7 +17,7 @@ _$_MpdStats _$$_MpdStatsFromJson(Map<String, dynamic> json) => _$_MpdStats(
       playtime: parseSeconds(json['playtime'] as List<String>?),
     );
 
-Map<String, dynamic> _$$_MpdStatsToJson(_$_MpdStats instance) =>
+Map<String, dynamic> _$$MpdStatsImplToJson(_$MpdStatsImpl instance) =>
     <String, dynamic>{
       'artists': instance.artists,
       'albums': instance.albums,
