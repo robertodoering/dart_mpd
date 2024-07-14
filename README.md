@@ -45,12 +45,6 @@ Keep in mind that using `idle` will block the socket until an `idle` response ha
 
 Request arguments are escaped and wrapped in quotation marks automatically.
 
-An exception to this are quotation marks and backslashes within filter queries, they have to be escaped manually:
-
-```dart
-client.search('(Title contains \\"song title\\")');
-```
-
 ## Connection details
 
 `MpdConnectionDetails.resolve` will resolve the connection details from
