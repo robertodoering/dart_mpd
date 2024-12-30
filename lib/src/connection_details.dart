@@ -6,14 +6,17 @@ import 'package:platform/platform.dart';
 class MpdConnectionDetails {
   /// Manually set the client's connection details.
   ///
-  /// Prefer to use [MpdConnectionDetails.resolve].
+  /// When the [port] is set to `0`, the [host] is treated as a unix domain
+  /// socket.
+  ///
+  /// When using defaults, consider using [resolve] instead.
   const MpdConnectionDetails({
     required this.host,
     required this.port,
-    required this.timeout,
+    this.timeout = defaultTimeout,
   });
 
-  /// Resolves the connection details from environment variables.
+  /// Resolves the connection details from environment variables and defaults.
   ///
   /// See https://mpd.readthedocs.io/en/stable/client.html.
   factory MpdConnectionDetails.resolve() {
@@ -40,18 +43,17 @@ class MpdConnectionDetails {
       port = 0;
     } else {
       if (fileSystem.file('/run/mpd/socket').existsSync()) {
-        host = '/run/mpd/socket';
+        host = defaultSocket;
         port = 0;
       } else {
-        host = 'localhost';
+        host = defaultHost;
       }
     }
 
-    port ??= mpdPort ?? 6600;
+    port ??= mpdPort ?? defaultPort;
 
-    final timeout = mpdTimeout != null
-        ? Duration(seconds: mpdTimeout)
-        : const Duration(seconds: 30);
+    final timeout =
+        mpdTimeout != null ? Duration(seconds: mpdTimeout) : defaultTimeout;
 
     return MpdConnectionDetails(
       host: host,
@@ -63,6 +65,11 @@ class MpdConnectionDetails {
   final String host;
   final int port;
   final Duration timeout;
+
+  static const defaultSocket = '/run/mpd/socket';
+  static const defaultHost = 'localhost';
+  static const defaultPort = 6600;
+  static const defaultTimeout = Duration(seconds: 30);
 
   /// Platform interface used to read environment variables from.
   @visibleForTesting

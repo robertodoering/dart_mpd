@@ -7,20 +7,46 @@ import 'package:dart_mpd/src/parser/value_parser.dart';
 class MpdClient {
   MpdClient({
     required MpdConnectionDetails connectionDetails,
+
+    /// Called when the socket connection has successfully been established.
+    ///
+    /// Requests will automatically connect to the socket if it is not already
+    /// connected.
     void Function()? onConnect,
+
+    /// Called when the socket connection could not be established.
+    ///
+    /// When omitted, the error is thrown instead.
+    void Function(Object, StackTrace)? handleConnectError,
+
+    /// Called when a command is sent to the socket.
     void Function(String)? onSend,
+
+    /// Called with the raw data received from the socket.
+    ///
+    /// This may contain partial or multiple packets concatenated together.
     void Function(Uint8List)? onData,
+
+    /// Called when a complete response has been parsed.
     void Function(MpdResponse)? onResponse,
+
+    /// Called when the socket connection has been closed.
     void Function()? onDone,
-    void Function(Object, StackTrace)? onError,
+
+    /// Called when an error occurs.
+    ///
+    /// When omitted, the error is sent to the current zone's error handler
+    /// instead.
+    void Function(Object, StackTrace)? handleError,
   }) : _connection = MpdConnection(
           connectionDetails: connectionDetails,
           onConnect: onConnect,
+          handleConnectError: handleConnectError,
           onSend: onSend,
           onData: onData,
           onResponse: onResponse,
           onDone: onDone,
-          onError: onError,
+          handleError: handleError,
         );
 
   final MpdConnection _connection;

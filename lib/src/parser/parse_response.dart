@@ -70,7 +70,7 @@ const _commonKeys = ['suffix', 'mime_type', ..._tags];
 ///   (e.g. `decoders`, any tags in a song, etc.).
 ///   In that case, we append the new value to the existing value.
 ///
-/// See: https://mpd.readthedocs.io/en/stable/protocol.html#protocol-overview
+/// See https://mpd.readthedocs.io/en/stable/protocol.html#protocol-overview.
 MpdResponse parseMpdResponse(MpdRawMessage data) {
   final values = <Map<String, List<String>>>[];
   final valuesBuffer = <String, List<String>>{};

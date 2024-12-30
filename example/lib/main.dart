@@ -16,7 +16,7 @@ Future<void> main() async {
 
   // you can also manually connect and close the socket
   await client.connection.connect();
-  await client.connection.close();
+  client.connection.close();
 
   // you can hook into the connection lifecycle through callbacks on the client
   MpdClient(
@@ -26,7 +26,7 @@ Future<void> main() async {
     onData: (data) => print('received: $data'),
     onResponse: (response) => print('response: $response'),
     onDone: () => print('closed'),
-    onError: (e, st) => print('error: $e'),
+    handleError: (e, st) => print('error: $e'),
   );
 
   // `MpdConnectionDetails.resolve` will resolve the connection details from

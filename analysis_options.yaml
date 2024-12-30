@@ -2,5 +2,9 @@ include: package:lints/recommended.yaml
 
 analyzer:
   exclude:
-    - lib/**.freezed.dart
     - lib/**.g.dart
+    - lib/**.freezed.dart
+
+linter:
+  rules:
+    non_constant_identifier_names: false

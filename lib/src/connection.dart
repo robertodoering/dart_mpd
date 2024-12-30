@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:collection';
-import 'dart:io' show Socket, InternetAddress, InternetAddressType;
+import 'dart:io'
+    show InternetAddress, InternetAddressType, Socket, SocketException;
 import 'dart:typed_data';
 
 import 'package:dart_mpd/dart_mpd.dart';
@@ -11,27 +12,30 @@ class MpdConnection {
   MpdConnection({
     required MpdConnectionDetails connectionDetails,
     required void Function()? onConnect,
+    required void Function(Object, StackTrace)? handleConnectError,
     required void Function(String)? onSend,
     required void Function(Uint8List)? onData,
     required void Function(MpdResponse)? onResponse,
     required void Function()? onDone,
-    required void Function(Object, StackTrace)? onError,
+    required void Function(Object, StackTrace)? handleError,
   })  : _connectionDetails = connectionDetails,
         _onConnect = onConnect,
+        _handleConnectError = handleConnectError,
         _onSend = onSend,
         _onData = onData,
         _onResponse = onResponse,
         _onDone = onDone,
-        _onError = onError;
+        _handleError = handleError;
 
   final MpdConnectionDetails _connectionDetails;
 
   final void Function()? _onConnect;
+  final void Function(Object error, StackTrace stackTrace)? _handleConnectError;
   final void Function(String)? _onSend;
   final void Function(Uint8List)? _onData;
   final void Function(MpdResponse)? _onResponse;
   final void Function()? _onDone;
-  final void Function(Object error, StackTrace stackTrace)? _onError;
+  final void Function(Object error, StackTrace stackTrace)? _handleError;
 
   final _requestQueue = Queue<Future<void> Function()>();
   bool _isProcessingQueue = false;
@@ -46,27 +50,30 @@ class MpdConnection {
   String? get protocolVersion => _protocolVersion;
 
   Future<void> connect() async {
-    _socket = await Socket.connect(
-      _connectionDetails.port == 0
-          ? InternetAddress(
-              _connectionDetails.host,
-              type: InternetAddressType.unix,
-            )
-          : _connectionDetails.host,
-      _connectionDetails.port,
-      timeout: _connectionDetails.timeout,
-    );
+    try {
+      _socket = await Socket.connect(
+        _connectionDetails.port == 0
+            ? InternetAddress(
+                _connectionDetails.host,
+                type: InternetAddressType.unix,
+              )
+            : _connectionDetails.host,
+        _connectionDetails.port,
+        timeout: _connectionDetails.timeout,
+      );
+    } catch (e, st) {
+      if (_handleConnectError != null) {
+        return _handleConnectError!(e, st);
+      }
+
+      rethrow;
+    }
 
     _onConnect?.call();
 
     void onDone() {
-      _onDone?.call();
-
       close();
-    }
-
-    void onError(Object error, StackTrace stackTrace) {
-      _onError?.call(error, stackTrace);
+      _onDone?.call();
     }
 
     _messageHandler = MessageHandler();
@@ -77,7 +84,7 @@ class MpdConnection {
         _messageHandler?.onData(data);
       },
       onDone: onDone,
-      onError: onError,
+      onError: _handleError,
     );
 
     _messageHandler!.messageStream
@@ -100,7 +107,7 @@ class MpdConnection {
     _responseCompleter = Completer();
   }
 
-  Future<void> close() async {
+  void close() {
     _socket?.close().ignore();
     _socket = null;
 
@@ -119,6 +126,17 @@ class MpdConnection {
     _requestQueue.add(() async {
       try {
         if (!isConnected) await connect();
+
+        if (!isConnected) {
+          // connection failed but didn't throw (connection error was handled
+          // via `_handleConnectError`)
+          completer.completeError(
+            const SocketException(
+              'Unable to establish connection to MPD socket',
+            ),
+          );
+          return;
+        }
 
         _onSend?.call(event);
         _socket!.write('$event\n');
@@ -158,6 +176,7 @@ class MpdConnection {
 class _MpdResponseTransformer
     extends StreamTransformerBase<MpdRawMessage, MpdResponse> {
   const _MpdResponseTransformer();
+
   @override
   Stream<MpdResponse> bind(Stream<MpdRawMessage> stream) {
     return stream.map(parseMpdResponse);

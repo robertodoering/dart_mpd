@@ -1,3 +1,12 @@
+## 0.5.0
+- **BREAKING**: Renamed `MpdClient.onError` callback to `MpdClient.handleError`
+- Added `MpdClient.handleConnectionError` callback to handle exceptions that are thrown when trying to connect to the socket
+- Changed `MpdClient.onDone` is now called *after* the socket has been closed
+  - This allows for using the callback to re-connect to the socket automatically
+- Added default values to `MpdConnectionDetails`
+- Updated dependencies
+- Updated dartdoc in various places
+
 ## 0.4.1
 - Added `MpdSong.track` field
 

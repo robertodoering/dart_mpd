@@ -26,18 +26,19 @@ print(song?.title); // -> List<String>
 // you can hook into the connection lifecycle through callbacks on the client
 final client = MpdClient(
   connectionDetails: MpdConnectionDetails.resolve(),
-  onConnect: () => print('connected'),
-  onSend: (event) => print('sent: $event'),
-  onData: (data) => print('received: $data'),
-  onResponse: (response) => print('response: $response'),
-  onDone: () => print('closed'),
-  onError: (e, st) => print('error: $e'),
+  onConnect: () => print('connected to socket'),
+  onConnectError: (Object e, StackTrace st) => print('socket connection failed: $e'),
+  onSend: (String event) => print('sent mpd command: $event'),
+  onData: (Uint8List data) => print('received raw data: $data'),
+  onResponse: (MpdResponse response) => print('response: $response'),
+  onDone: () => print('socket closed'),
+  onError: (Object e, StackTrace st) => print('error: $e'),
 );
 ```
 
 ## Requests
 
-To handle concurrent request, each request gets queued, so you can use use one client to make simultanious requests.
+To handle concurrent request, each request gets queued, so you can use use one client to make simultaneous requests.
 
 Keep in mind that using `idle` will block the socket until an `idle` response has been received.
 
@@ -60,13 +61,12 @@ A request can throw the following errors:
 - `SocketException` if the host-lookup or connection fails
 - `MpdUnexpectedResponse` if an unexpected response is received
 - `MpdClientException` and any other error that may be thrown when trying to parse the response
-  (this indicates a bug in the library and should be reported)
 
 ```dart
 try {
   await client.setval(200);
 } catch (e) {
-  print(e);
+  print(e); // -> MpdResponseError
 }
 ```
 
@@ -84,7 +84,7 @@ final values = switch (response) {
   MpdResponseOk(:final values) => values,
   _ => null,
 };
-// values is a list of the received key-value pairs (or null on error)
+// values is a list of the received key-value pairs
 ```
 
 If a command is in the stable release and has not been added to dart_mpd, please file an [issue](https://github.com/robertodoering/twitter_api/issues).
